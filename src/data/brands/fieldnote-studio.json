@@ -1,0 +1,82 @@
+{
+  "name": "Fieldnote Studio",
+  "fictional": true,
+  "fontsHref": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@700&family=Work+Sans:wght@400;600&display=swap",
+  "tokens": {
+    "color-bg": "#F7FAFB",
+    "color-surface": "#E3EEF1",
+    "color-text": "#0F1B1F",
+    "color-muted": "#45575D",
+    "color-accent": "#0E7490",
+    "color-on-accent": "#FFFFFF",
+    "color-border": "#C9DCE1",
+    "font-display": "'Libre Caslon Text', Georgia, serif",
+    "font-body": "'Work Sans', system-ui, sans-serif",
+    "weight-display": "700",
+    "size-hero": "clamp(2rem, 5.5vw, 3.5rem)",
+    "size-heading": "clamp(1.5rem, 3.5vw, 2.25rem)",
+    "size-body": "1rem",
+    "size-small": "0.875rem",
+    "space-section": "clamp(3rem, 8vw, 5.5rem)",
+    "space-block": "1.5rem",
+    "radius": "4px",
+    "measure": "66rem"
+  },
+  "recipe": "vsl",
+  "strategy": {
+    "dream_customer": "Wedding photographers with a strong portfolio who still rely on word of mouth for bookings.",
+    "where_they_are": "Photography YouTube channels and wedding-supplier Facebook groups.",
+    "hook": "Why great portfolios still do not book weddings.",
+    "false_belief": "If my photos are good enough, couples will find me.",
+    "offer": "A 30-minute call to map a booking funnel for next season.",
+    "not_for": "Photographers who are not yet taking paid weddings.",
+    "second_yes": "The 8-week booking programme, offered on the call."
+  },
+  "layout": { "hero": "stacked", "offer": "list" },
+  "seo": {
+    "title": "Book more weddings | Fieldnote Studio",
+    "description": "A short video on why great portfolios still do not book weddings, and a free call to plan your next season."
+  },
+  "content": {
+    "hero": {
+      "eyebrow": "For wedding photographers",
+      "headline": "Why great portfolios still do not book weddings",
+      "subhead": "Watch the 12-minute video, then book a call to plan next season's bookings.",
+      "cta": "Book a planning call"
+    },
+    "video": {
+      "title": "Why great portfolios still do not book weddings",
+      "captions": true,
+      "placeholder": true,
+      "cta": "Book a planning call"
+    },
+    "capture": {
+      "heading": "Book your planning call",
+      "body": "Leave your email and we will send times for a 30-minute call.",
+      "button": "Send me times",
+      "consent": "Also send me Fieldnote's monthly booking tips."
+    },
+    "offer": {
+      "heading": "What happens on the call",
+      "items": [
+        { "title": "Your current enquiries", "body": "Where couples find you now and where they drop off." },
+        { "title": "A funnel map", "body": "The pages and emails that turn a portfolio view into an enquiry." },
+        { "title": "Next season's plan", "body": "What to set up before the peak booking months." }
+      ],
+      "note": "The call is free. If the programme fits, we will tell you about it at the end."
+    },
+    "proof": {
+      "heading": "From photographers",
+      "quotes": [
+        { "quote": "A real photographer's quote goes here.", "source": "Name, studio. Needs written permission.", "placeholder": true }
+      ]
+    },
+    "faq": {
+      "heading": "Common questions",
+      "items": [
+        { "q": "Is this a sales call?", "a": "It is a planning call. If our programme fits, we say so at the end. You can say no." },
+        { "q": "Do I need a website already?", "a": "No. We start from where your enquiries come from today." }
+      ]
+    }
+  }
+}

@@ -8,14 +8,19 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { z } from 'zod';
 import { fileStore } from './store.ts';
 import { brandSchema, referenceSchema, type Brand } from '../src/system/schema.ts';
-import { recipes, sections } from '../src/system/sections.ts';
+import { recipeGuide, recipes, sections } from '../src/system/sections.ts';
 import { tokenNames } from '../src/system/tokens.ts';
-import { contrastPairs } from '../src/system/rules.ts';
+import { contrastPairs, designerChecks, launchChecks } from '../src/system/rules.ts';
 import { slug, validateBrand } from '../src/system/validate.ts';
 import { capture } from '../capture/index.ts';
+import { scanUrls, summary } from '../scan/run.ts';
+import { loadScans, report } from '../scan/report.ts';
+import { extractCompany } from '../scan/extract.ts';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const store = fileStore(process.env.CONVERSION_DATA_DIR ?? path.resolve(HERE, '../src/data'));
+const SCANS = path.resolve(process.env.SCANS_DIR ?? path.resolve(HERE, '../scans'));
+const EXTRACTS = path.resolve(process.env.EXTRACTS_DIR ?? path.resolve(HERE, '../extracts'));
 
 const server = new McpServer({ name: 'conversion-system', version: '0.1.0' });
 
@@ -37,20 +42,26 @@ server.registerTool(
   'system_overview',
   {
     description:
-      'Start here. Returns the recipes, each section with its conversion role, job and layout variants, every token a brand must define, and the contrast rules. Read this before writing a brand.',
+      'Start here. Returns the funnel types (recipes) with when to use each, each section with its conversion role, hook/story/offer stage, job and layout variants, every token a brand must define, the contrast rules, the write rules and the checks only a designer can make. Read this before writing a brand.',
     inputSchema: {},
   },
   async () =>
     reply({
       recipes,
-      sections: Object.values(sections).map(({ id, name, role, job, variants, referenceIds }) => ({ id, name, role, job, variants, referenceIds })),
+      recipeGuide,
+      sections: Object.values(sections).map(({ id, name, role, stage, job, variants, referenceIds }) => ({ id, name, role, stage, job, variants, referenceIds })),
       tokens: tokenNames,
       contrastRules: contrastPairs,
       writeRules: [
+        'Write the strategy first: dream customer, where they are, hook, the belief that stops them, offer, who it is not for.',
+        'Then the Brunson pass (brand.pass, skill brunson-pass): hook, story and offer for every step from the ad to the result, at least two headlines to test, the doubt and the recipe section that answers it, the offer stack (confirmed or ask-client), questions for the client, and a written answer to every designer check by id. Real clients cannot build without it.',
+        'Pick the recipe from the client goal and traffic using recipeGuide, not from the last client.',
         'Copy comes from the client. No invented numbers, results or quotes.',
-        'A quote without a named source and written permission keeps "placeholder": true.',
+        'A quote without a named source and written permission keeps "placeholder": true. So does a story the client has not approved, and a video not yet supplied.',
+        'Multi-step recipes put the first question in the hero (layout.hero "question"). Answers are taps, at most 6 per question, at most 6 questions, contact details last and at most two of them.',
         'Choose layout variants that suit this brand. Do not copy the last client.',
       ],
+      designerChecks,
     }),
 );
 
@@ -136,6 +147,83 @@ server.registerTool(
 );
 
 server.registerTool(
+  'scan_funnels',
+  {
+    description:
+      'Scan 1 to 20 funnel pages with code, not AI: opens each in Chrome and saves one JSON file per page to scans/ with its tokens, assets and funnel structure (first ask, headline type, block sequence, forms, proof, tracking, builder). Pages behind a bot check come back "blocked" and are never bypassed. For hundreds of URLs, tell the user to run npm run scan -- urls.txt instead. Takes about 2 seconds a page.',
+    inputSchema: {
+      urls: z.array(z.url()).min(1).max(20),
+      viewport: z.enum(['mobile', 'desktop']).optional().describe('Default mobile, 390px: most ad traffic is on phones.'),
+    },
+  },
+  async ({ urls, viewport }) => {
+    try {
+      const scans = await scanUrls(urls, { outDir: SCANS, viewport: viewport ?? 'mobile', concurrency: 4 });
+      return reply({
+        ok: true,
+        dir: SCANS,
+        scans: scans.map(summary),
+        next: [
+          'Open http://127.0.0.1:4410/scans (npm run app) to see tokens, assets and blocks for each scan.',
+          'Labels are heuristics from one page load. Check them against the screenshot before citing them.',
+          'To keep a funnel as a pattern, inspect it yourself and save it with add_reference.',
+        ],
+      });
+    } catch (error) {
+      return refuse((error as Error).message);
+    }
+  },
+);
+
+server.registerTool(
+  'extract_design_system',
+  {
+    description:
+      "Extract a company's design system with code, not AI: visits their start page and up to 11 more pages, scrolls each so lazy images load, and writes extracts/<host>/design-system.json (tokens, fonts, logo, component variants with styles, HTML and cropped screenshots, inline icons), assets.json and assets.csv (every image, icon, logo, favicon, video, stream and font, with the pages it appears on). Files are downloaded only with download: true, which needs the company's permission. Takes 10 to 60 seconds.",
+    inputSchema: {
+      url: z.url().describe('The company site start page.'),
+      pages: z.number().int().min(1).max(12).optional().describe('Pages to visit, default 6. One per kind of path, so templates differ.'),
+      viewport: z.enum(['desktop', 'mobile']).optional(),
+      download: z.boolean().optional().describe('Save the asset files too. Only with the company\'s permission.'),
+    },
+  },
+  async ({ url, pages, viewport, download }) => {
+    try {
+      const host = new URL(url).host.replace(/^www\./, '');
+      const outDir = path.join(EXTRACTS, host.replace(/[^a-z0-9.-]/gi, '-'));
+      const { record } = await extractCompany(url, { outDir, pages: pages ?? 6, viewport: viewport ?? 'desktop', download: download ?? false });
+      const kinds: Record<string, number> = {};
+      for (const c of record.components) kinds[c.kind] = (kinds[c.kind] ?? 0) + 1;
+      return reply({
+        ok: true,
+        dir: outDir,
+        pages: record.pages,
+        logo: record.logo ? record.logo.kind : null,
+        assets: record.assets,
+        inline_icons: record.icons.length,
+        component_variants: kinds,
+        fonts: record.tokens.fonts,
+        next: [
+          'Read design-system.json for tokens and components, and assets.json or assets.csv for the asset list.',
+          'Use the measured tokens with capture_brand evidence when drafting a brand file. Fonts and files belong to the company: ask before using them.',
+        ],
+      });
+    } catch (error) {
+      return refuse((error as Error).message);
+    }
+  },
+);
+
+server.registerTool(
+  'scan_report',
+  {
+    description: 'Summarise every scan in scans/: how often each first ask, headline type, block, contact field, builder and tracking tag appears, plus common token values. Use it to find which blocks real funnels use.',
+    inputSchema: {},
+  },
+  async () => reply(report(await loadScans(SCANS))),
+);
+
+server.registerTool(
   'list_brands',
   { description: 'List client brands with their recipe and layout variants.', inputSchema: {} },
   async () => {
@@ -168,8 +256,9 @@ server.registerTool(
   },
   async ({ id, brand }) => {
     if (!slug.test(id)) return refuse('id must be a lowercase slug.');
-    const { ok, errors, warnings } = validateBrand(brand, await otherBrands(id));
-    return reply({ ok, errors, warnings });
+    const check = validateBrand(brand, await otherBrands(id));
+    const { ok, errors, warnings } = check;
+    return reply({ ok, errors, warnings, launch: check.brand ? launchChecks(check.brand) : [] });
   },
 );
 
@@ -190,7 +279,7 @@ server.registerTool(
     const check = validateBrand(brand, await otherBrands(id));
     if (!check.ok) return refuse('Brand not saved.', { errors: check.errors, warnings: check.warnings });
     const file = await store.put('brands', id, check.brand);
-    return reply({ ok: true, file, warnings: check.warnings, review: [`/${id}/system`, `/${id}/`] });
+    return reply({ ok: true, file, warnings: check.warnings, launch: launchChecks(check.brand), review: [`/${id}/system`, `/${id}/`], designerChecks });
   },
 );
 

@@ -1,0 +1,50 @@
+---
+// Who is behind the offer and why they can make the promise. Signed by a real person.
+import type { BrandContent } from '../system/schema';
+
+interface Props {
+  content: NonNullable<BrandContent['story']>;
+}
+const { heading, paragraphs, signed, placeholder } = Astro.props.content;
+---
+
+<section class="section" aria-labelledby="story-heading">
+  <div class="container story">
+    {placeholder && <p class="flag">Placeholder: the client needs to write or approve this story</p>}
+    <h2 id="story-heading" class="section-heading">{heading}</h2>
+    <div class="body">
+      {paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+    <p class="signed">
+      <strong>{signed.name}</strong>
+      <span class="muted">{signed.role}</span>
+    </p>
+  </div>
+</section>
+
+<style>
+  .story {
+    max-width: 42rem;
+  }
+  .body {
+    display: grid;
+    gap: 1rem;
+  }
+  .signed {
+    display: grid;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .signed span {
+    font-size: var(--size-small);
+  }
+  .flag {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.125rem 0.5rem;
+    border: 1px dashed var(--color-muted);
+    font-size: var(--size-small);
+    color: var(--color-muted);
+  }
+</style>

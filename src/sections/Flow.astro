@@ -1,0 +1,323 @@
+---
+// The multi-step question flow: qualify first, ask for contact details last.
+// Without JavaScript it is one plain form with every question visible.
+// With JavaScript it shows one step at a time: tap an answer to advance, contact details last.
+// There is no backend yet, so it must never claim a submission worked.
+import type { BrandContent } from '../system/schema';
+
+interface Props {
+  content: NonNullable<BrandContent['flow']>;
+}
+const { questions, note, contact, after } = Astro.props.content;
+
+const field = {
+  name: { label: 'Your name', type: 'text', autocomplete: 'name', error: 'Enter your name' },
+  email: { label: 'Email address', type: 'email', autocomplete: 'email', error: 'Enter an email address, like name@example.com' },
+  phone: { label: 'Phone number', type: 'tel', autocomplete: 'tel', error: 'Enter a phone number' },
+} as const;
+
+const next = {
+  booking: 'Demo only: nothing was sent, and the booking calendar is not connected yet.',
+  result: 'Demo only: nothing was sent, and the results page is not built yet.',
+  thanks: 'Demo only: nothing was sent.',
+}[after];
+---
+
+<form id="flow" class="flow" data-flow data-after-message={next} method="post" novalidate aria-label="Questions">
+  <p class="progress" data-progress aria-live="polite"></p>
+
+  {
+    questions.map((q, i) => (
+      <>
+        <fieldset class="step" data-step data-kind="question">
+          <legend tabindex="-1">{q.q}</legend>
+          {q.multi && <p class="muted small">Choose all that apply.</p>}
+          <div class="options">
+            {q.options.map((o) => (
+              <label class="option">
+                <input type={q.multi ? 'checkbox' : 'radio'} name={`q${i + 1}`} value={o.label} />
+                <span class="option-label">{o.label}</span>
+                {o.hint && <span class="option-hint muted">{o.hint}</span>}
+              </label>
+            ))}
+          </div>
+          {q.multi && (
+            <>
+              <p class="error" data-pick-error hidden>Choose at least one answer.</p>
+              <button type="button" class="button continue" data-continue>Continue</button>
+            </>
+          )}
+        </fieldset>
+        {i === 0 && note && (
+          <div class="step note" data-step data-kind="note">
+            <h2 tabindex="-1">{note.heading}</h2>
+            <p class="muted">{note.body}</p>
+            <button type="button" class="button continue" data-continue>{note.button}</button>
+          </div>
+        )}
+      </>
+    ))
+  }
+
+  <fieldset class="step contact" data-step data-kind="contact">
+    <legend tabindex="-1">{contact.heading}</legend>
+    <p class="muted">{contact.body}</p>
+    {contact.filter && <p class="filter">{contact.filter}</p>}
+    {
+      contact.fields.map((f) => (
+        <div class="field">
+          <label for={`flow-${f}`}>{field[f].label}</label>
+          <input id={`flow-${f}`} name={f} type={field[f].type} autocomplete={field[f].autocomplete} required aria-describedby={`flow-${f}-error`} />
+          <p id={`flow-${f}-error`} class="error" hidden>{field[f].error}</p>
+        </div>
+      ))
+    }
+    <label class="consent">
+      <input type="checkbox" name="consent" />
+      <span>{contact.consent}</span>
+    </label>
+    <button class="button submit" type="submit">{contact.button}</button>
+    <p class="status" role="status" aria-live="polite"></p>
+  </fieldset>
+
+  <button type="button" class="back" data-back hidden>Back</button>
+</form>
+
+<script>
+  for (const form of document.querySelectorAll<HTMLFormElement>('form[data-flow]')) {
+    const steps = [...form.querySelectorAll<HTMLElement>('[data-step]')];
+    const progress = form.querySelector<HTMLElement>('[data-progress]')!;
+    const back = form.querySelector<HTMLButtonElement>('[data-back]')!;
+    const status = form.querySelector<HTMLElement>('.status')!;
+    const total = steps.filter((s) => s.dataset.kind === 'question').length;
+    let current = 0;
+
+    form.classList.add('js');
+
+    const show = (index: number, focus: boolean) => {
+      current = index;
+      steps.forEach((step, i) => (step.hidden = i !== index));
+      const step = steps[index];
+      const n = steps.slice(0, index + 1).filter((s) => s.dataset.kind === 'question').length;
+      progress.textContent =
+        step.dataset.kind === 'question' ? `Question ${n} of ${total}` : step.dataset.kind === 'contact' ? 'Last step' : '';
+      back.hidden = index === 0;
+      if (focus) step.querySelector<HTMLElement>('legend, h2')?.focus();
+    };
+
+    const advance = () => show(Math.min(current + 1, steps.length - 1), true);
+
+    const isRadio = (el: EventTarget | null): el is HTMLInputElement => el instanceof HTMLInputElement && el.type === 'radio';
+
+    // A tap or click on a single-choice answer advances, after a beat so the selection is visible.
+    // Listening for click, not change, means re-tapping an answer after Back still advances.
+    // Keyboard clicks (detail 0, from arrow keys) only select, so keyboard users can look before they leap.
+    form.addEventListener('click', (event) => {
+      if (isRadio(event.target) && (event as MouseEvent).detail > 0) setTimeout(advance, 180);
+    });
+
+    // Enter on a chosen answer advances, instead of submitting the form early.
+    form.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && isRadio(event.target)) {
+        event.preventDefault();
+        if (event.target.checked) advance();
+      }
+    });
+
+    for (const button of form.querySelectorAll<HTMLButtonElement>('[data-continue]')) {
+      button.addEventListener('click', () => {
+        const step = button.closest<HTMLElement>('[data-step]')!;
+        const error = step.querySelector<HTMLElement>('[data-pick-error]');
+        if (error) {
+          const picked = step.querySelector('input:checked');
+          error.hidden = !!picked;
+          if (!picked) return;
+        }
+        advance();
+      });
+    }
+
+    back.addEventListener('click', () => show(Math.max(current - 1, 0), true));
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      // Only the contact step submits. Anywhere else, Enter means "next".
+      if (steps[current].dataset.kind !== 'contact') {
+        if (steps[current].dataset.kind === 'note' || steps[current].querySelector('input:checked')) advance();
+        return;
+      }
+      const fields = [...form.querySelectorAll<HTMLInputElement>('.contact input[required]')];
+      let firstInvalid: HTMLInputElement | undefined;
+      for (const input of fields) {
+        const valid = input.value.trim() !== '' && input.checkValidity();
+        input.setAttribute('aria-invalid', String(!valid));
+        document.getElementById(`${input.id}-error`)!.hidden = valid;
+        if (!valid) firstInvalid ??= input;
+      }
+      if (firstInvalid) {
+        status.textContent = '';
+        firstInvalid.focus();
+        return;
+      }
+      status.textContent = form.dataset.afterMessage ?? 'Demo only: nothing was sent.';
+    });
+
+    show(0, false);
+  }
+</script>
+
+<style>
+  .flow {
+    display: grid;
+    gap: 1rem;
+  }
+  .progress {
+    font-size: var(--size-small);
+    color: var(--color-muted);
+    font-weight: 600;
+    min-height: 1.5em;
+  }
+  .flow:not(.js) .progress {
+    display: none;
+  }
+  .step {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+  /* Without JavaScript every step shows, as one long form. */
+  .flow:not(.js) .step + .step {
+    margin-top: 2rem;
+  }
+  legend,
+  .note h2 {
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: 1.375em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    padding: 0;
+  }
+  legend:focus,
+  .note h2:focus {
+    outline: none;
+  }
+  .options {
+    display: grid;
+    gap: 0.625rem;
+  }
+  .option {
+    position: relative;
+    display: grid;
+    gap: 0.125rem;
+    min-height: 56px;
+    align-content: center;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    cursor: pointer;
+  }
+  .option input {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: -0.625rem 0 0;
+    accent-color: var(--color-accent);
+  }
+  .option:hover {
+    border-color: var(--color-muted);
+  }
+  .option:has(input:checked) {
+    border-color: var(--color-accent);
+    background: var(--color-surface);
+  }
+  .option:has(input:focus-visible) {
+    outline: 3px solid var(--color-text);
+    outline-offset: 2px;
+  }
+  .option-label {
+    font-weight: 600;
+  }
+  .option-hint {
+    font-size: var(--size-small);
+  }
+  .continue,
+  .submit {
+    width: 100%;
+    min-height: 56px;
+    margin-top: 1rem;
+  }
+  .note {
+    padding: 1.5rem;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+  }
+  .filter {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-surface);
+    font-size: var(--size-small);
+  }
+  .field {
+    margin-top: 1rem;
+  }
+  .field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.375rem;
+  }
+  .field input {
+    width: 100%;
+    min-height: 52px;
+    padding: 0 1rem;
+    border: 1px solid var(--color-muted);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font: inherit;
+  }
+  .field input[aria-invalid='true'] {
+    border-width: 2px;
+  }
+  .error {
+    margin-top: 0.375rem;
+    font-size: var(--size-small);
+    font-weight: 600;
+  }
+  .consent {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    margin-top: 1rem;
+    font-size: var(--size-small);
+    color: var(--color-muted);
+  }
+  .consent input {
+    margin-top: 0.3em;
+    accent-color: var(--color-accent);
+  }
+  .status:not(:empty) {
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+  .small {
+    font-size: var(--size-small);
+    margin: -0.5rem 0 0.75rem;
+  }
+  .back {
+    justify-self: start;
+    min-height: 44px;
+    padding: 0 0.25rem;
+    border: 0;
+    background: none;
+    color: var(--color-muted);
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>

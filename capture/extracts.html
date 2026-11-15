@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Design system extracts</title>
+<style>
+  :root { --bg: #f6f6f4; --panel: #fff; --ink: #18181b; --muted: #5b5b63; --line: #dedede; --focus: #2457d6; --chip: #f0f0ee; --bad: #8d1f1f; color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, sans-serif; }
+  main { max-width: 88rem; margin: 0 auto; padding: 2rem 1rem 5rem; }
+  h1 { font-size: 1.5rem; margin: 0; }
+  h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 2rem 0 0.75rem; }
+  h3 { font-size: 0.95rem; margin: 1rem 0 0.5rem; text-transform: capitalize; }
+  p { margin: 0; }
+  a { color: inherit; }
+  .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; align-items: baseline; }
+  .nav a { margin-left: 1rem; }
+  .lede, .hint { color: var(--muted); }
+  .lede { margin-top: 0.25rem; max-width: 52rem; }
+  .hint { font-size: 0.8rem; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 1.25rem; min-width: 0; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  label { font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.3rem; }
+  input[type=url], input[type=search], input[type=number] { width: 100%; font: inherit; padding: 0.55rem 0.7rem; border: 1px solid #c8c8cc; border-radius: 6px; background: #fff; color: var(--ink); min-width: 0; }
+  button, .button { font: inherit; font-weight: 600; cursor: pointer; border-radius: 6px; padding: 0.55rem 1rem; border: 1px solid var(--ink); background: var(--ink); color: #fff; min-height: 44px; text-decoration: none; display: inline-flex; align-items: center; }
+  button.secondary, .button.secondary { background: #fff; color: var(--ink); border-color: #c8c8cc; }
+  button:disabled { opacity: 0.5; cursor: progress; }
+  form { display: grid; grid-template-columns: minmax(0, 1fr) 7rem auto auto; gap: 1rem; align-items: end; margin-top: 1.5rem; }
+  .check { display: flex; gap: 0.4rem; align-items: center; min-height: 44px; font-weight: 400; }
+  #status { margin-top: 0.75rem; min-height: 1.5rem; font-size: 0.9rem; white-space: pre-line; }
+  #status.error { color: var(--bad); }
+  .tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .tabs button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+  .tabs button { background: #fff; color: var(--ink); border-color: #c8c8cc; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .chip { background: var(--chip); border-radius: 6px; padding: 0.15rem 0.55rem; font-size: 0.8rem; border: 1px solid transparent; cursor: pointer; font-weight: 400; min-height: 0; color: var(--ink); }
+  .chip[aria-pressed="true"] { border-color: var(--ink); background: #fff; }
+  .head { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 1.25rem; align-items: start; }
+.logos { display: grid; gap: 0.5rem; }
+  .logo { background: repeating-conic-gradient(#eee 0 25%, #fff 0 50%) 0 / 14px 14px; border: 1px solid var(--line); border-radius: 8px; min-height: 4.5rem; display: grid; place-items: center; padding: 1rem; }
+  .logo.dark { background: #111; }
+  .logo img { max-width: 100%; max-height: 5rem; }
+  dl.facts { display: grid; grid-template-columns: minmax(0, 8rem) minmax(0, 1fr); gap: 0.3rem 0.75rem; margin: 0; font-size: 0.88rem; }
+  dl.facts dt { color: var(--muted); }
+  dl.facts dd { margin: 0; overflow-wrap: anywhere; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 8rem), 1fr)); gap: 0.6rem; }
+  .swatch { display: grid; gap: 0.15rem; font-size: 0.78rem; }
+  .swatch span:first-child { height: 2.6rem; border-radius: 6px; border: 1px solid #0002; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: 0.75rem; }
+  .comp { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 0.75rem; display: grid; gap: 0.5rem; align-content: start; min-width: 0; }
+  .comp .crop { background: repeating-conic-gradient(#eee 0 25%, #fff 0 50%) 0 / 14px 14px; border-radius: 6px; display: grid; place-items: center; padding: 0.5rem; min-height: 4rem; }
+  .comp .crop img { max-width: 100%; max-height: 14rem; }
+  .comp details summary { cursor: pointer; font-size: 0.8rem; color: var(--muted); }
+  .comp pre { white-space: pre-wrap; word-break: break-all; font-size: 0.72rem; background: var(--chip); padding: 0.5rem; border-radius: 6px; max-height: 12rem; overflow: auto; }
+  .icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr)); gap: 0.5rem; }
+  .icons figure { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 0.5rem; display: grid; gap: 0.25rem; justify-items: center; font-size: 0.7rem; color: var(--muted); }
+  .icons img { width: 2rem; height: 2rem; object-fit: contain; }
+  .table-wrap { overflow-x: auto; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  th, td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  th { color: var(--muted); font-weight: 600; position: sticky; top: 0; background: #fff; }
+  td.url { max-width: 30rem; overflow-wrap: anywhere; }
+  td img.thumb { width: 3rem; height: 3rem; object-fit: contain; background: var(--chip); border-radius: 4px; display: block; }
+  .tools { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin: 0.75rem 0; }
+  .tools input { max-width: 22rem; }
+  .empty { color: var(--muted); }
+  @media (max-width: 52rem) { form { grid-template-columns: 1fr; } .head { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <h1>Design system extracts</h1>
+    <p class="nav"><a href="/">Brand capture</a><a href="/scans">Funnel scans</a></p>
+  </div>
+  <p class="lede">Each extract visits a company's site with code (no AI) and records its tokens, fonts, logo, every component variant and every asset: images, icons, videos and fonts. Files are saved only when you tick "Download files", which needs the company's permission.</p>
+
+  <form id="form">
+    <div><label for="url">Company site</label><input id="url" type="url" placeholder="https://example.com/" required /></div>
+    <div><label for="pages">Pages</label><input id="pages" type="number" min="1" max="12" value="6" /></div>
+    <label class="check"><input id="download" type="checkbox" /> Download files</label>
+    <button id="go" type="submit">Extract</button>
+  </form>
+  <p id="status" role="status" aria-live="polite"></p>
+
+  <nav class="tabs" id="tabs" aria-label="Extracts"></nav>
+  <div id="detail"></div>
+</main>
+
+<script>
+  // Every value here comes from another company's site. Build the page with text and attributes only.
+  const $ = (s) => document.querySelector(s);
+  const el = (tag, attrs = {}, ...kids) => {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (v === null || v === undefined || v === false) continue;
+      if (k === 'class') n.className = v; else if (k === 'text') n.textContent = v; else n.setAttribute(k, v);
+    }
+    for (const c of kids.flat()) if (c !== null && c !== undefined && c !== false) n.append(c instanceof Node ? c : document.createTextNode(String(c)));
+    return n;
+  };
+  const safeUrl = (u) => { try { const x = new URL(u); return /^https?:$/.test(x.protocol) ? x.href : null; } catch { return null; } };
+  const hexOk = (h) => /^#[0-9A-F]{6}([0-9A-F]{2})?$/i.test(h);
+  // SVG shown through <img> never runs script, whatever the markup holds.
+  const svgSrc = (html) => 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(html.includes('xmlns') ? html : html.replace(/^<(svg|symbol)/, '<svg xmlns="http://www.w3.org/2000/svg"').replace(/<\/symbol>$/, '</svg>'));
+  const status = (m, e = false) => { const s = $('#status'); s.textContent = m; s.className = e ? 'error' : ''; };
+  let current = null;
+
+  function facts(rows) {
+    return el('dl', { class: 'facts' }, rows.filter(([, v]) => v !== null && v !== undefined && v !== '').flatMap(([k, v]) => [el('dt', { text: k }), el('dd', {}, v)]));
+  }
+
+  function assetTable(host, assets) {
+    const types = [...new Set(assets.map((a) => a.type))];
+    let filter = 'all', query = '';
+    const body = el('tbody');
+    const render = () => {
+      const rows = assets.filter((a) => (filter === 'all' || a.type === filter) && (!query || a.url.toLowerCase().includes(query) || (a.alt || '').toLowerCase().includes(query)));
+      body.replaceChildren(...rows.slice(0, 400).map((a) => {
+        const local = a.local ? `/extracts/${host}/${a.local}` : null;
+        const preview = /^(image|icon|logo|favicon|share-image)$/.test(a.type) ? el('img', { class: 'thumb', src: local || safeUrl(a.url), alt: '', loading: 'lazy', referrerpolicy: 'no-referrer' }) : el('span', { class: 'hint', text: a.type });
+        const link = safeUrl(a.url);
+        return el('tr', {},
+          el('td', {}, preview),
+          el('td', { text: a.type }),
+          el('td', { class: 'url' }, link ? el('a', { href: link, target: '_blank', rel: 'noreferrer noopener', text: a.url }) : a.url, a.alt ? el('div', { class: 'hint', text: `alt: ${a.alt}` }) : null),
+          el('td', { text: a.natural_w ? `${a.natural_w}×${a.natural_h}` : a.w ? `${a.w}×${a.h}` : '' }),
+          el('td', { text: a.bytes ? `${Math.round(a.bytes / 1024)} KB` : '' }),
+          el('td', { text: String(a.pages.length) }),
+          el('td', {}, local ? el('a', { href: local, download: '', text: 'file' }) : a.skipped ? el('span', { class: 'hint', text: a.skipped }) : ''));
+      }));
+      count.textContent = `${rows.length} shown${rows.length > 400 ? ' (first 400 listed)' : ''}`;
+    };
+    const count = el('span', { class: 'hint' });
+    const chips = el('div', { class: 'chips' }, ['all', ...types].map((t) => {
+      const b = el('button', { class: 'chip', type: 'button', 'aria-pressed': String(t === 'all'), text: t === 'all' ? `all ${assets.length}` : `${t} ${assets.filter((a) => a.type === t).length}` });
+      b.addEventListener('click', () => { filter = t; for (const c of chips.children) c.setAttribute('aria-pressed', String(c === b)); render(); });
+      return b;
+    }));
+    const search = el('input', { type: 'search', placeholder: 'Filter by URL or alt text', 'aria-label': 'Filter assets' });
+    search.addEventListener('input', () => { query = search.value.toLowerCase(); render(); });
+    render();
+    return el('div', {}, el('div', { class: 'tools' }, chips, search, count),
+      el('div', { class: 'table-wrap' }, el('table', {}, el('thead', {}, el('tr', {}, ['', 'Type', 'URL', 'Size', 'Bytes', 'Pages', 'File'].map((h) => el('th', { scope: 'col', text: h })))), body)));
+  }
+
+  async function open(host) {
+    current = host;
+    for (const b of $('#tabs').children) b.setAttribute('aria-pressed', String(b.dataset.host === host));
+    const [ds, assets] = await Promise.all([fetch(`/extracts/${host}/design-system.json`).then((r) => r.json()), fetch(`/extracts/${host}/assets.json`).then((r) => r.json())]);
+    const t = ds.tokens;
+    const logo = ds.logo?.kind === 'inline-svg' && ds.logo.html ? el('img', { src: svgSrc(ds.logo.html), alt: `${host} logo` })
+      : ds.logo?.url && safeUrl(ds.logo.url) ? el('img', { src: safeUrl(ds.logo.url), alt: `${host} logo`, referrerpolicy: 'no-referrer' }) : el('span', { class: 'hint', text: 'No logo found' });
+    const kinds = [...new Set(ds.components.map((c) => c.kind))];
+    $('#detail').replaceChildren(
+      el('h2', { text: host }),
+      el('div', { class: 'head' }, el('div', { class: 'logos' }, el('div', { class: 'logo' }, logo), el('div', { class: 'logo dark' }, logo.cloneNode(true))),
+        el('div', {},
+          facts([
+            ['Extracted', ds.extracted_at.slice(0, 16).replace('T', ' ')],
+            ['Pages', `${ds.pages.filter((p) => p.status === 'ok').length} read of ${ds.pages.length}`],
+            ['Assets', Object.entries(ds.assets.counts).map(([k, n]) => `${k} ${n}`).join(' · ')],
+            ['Downloaded', ds.assets.downloaded ? `${ds.assets.downloaded} files` : 'No. Tick "Download files" to save them'],
+            ['Fonts', t.fonts.map((f) => f.family).join(', ')],
+          ]),
+          el('p', { class: 'tools' },
+            el('a', { class: 'button secondary', href: `/extracts/${host}/design-system.json`, download: `${host}-design-system.json`, text: 'design-system.json' }),
+            el('a', { class: 'button secondary', href: `/extracts/${host}/assets.json`, download: `${host}-assets.json`, text: 'assets.json' }),
+            el('a', { class: 'button secondary', href: `/extracts/${host}/assets.csv`, download: `${host}-assets.csv`, text: 'assets.csv' })))),
+
+      el('h2', { text: 'Colour' }),
+      el('div', { class: 'swatches' }, t.colors.slice(0, 24).map((c) => el('div', { class: 'swatch' },
+        el('span', { style: hexOk(c.hex) ? `background:${c.hex}` : '' }), el('code', { text: c.hex }), el('span', { class: 'hint', text: c.roles.join(', ') })))),
+
+      el('h2', { text: `Components (${ds.components.length} variants)` }),
+      ...kinds.map((k) => el('section', {}, el('h3', { text: `${k} · ${ds.components.filter((c) => c.kind === k).length}` }),
+        el('div', { class: 'gallery' }, ds.components.filter((c) => c.kind === k).map((c) => el('div', { class: 'comp' },
+          el('div', { class: 'crop' }, c.screenshot ? el('img', { src: `/extracts/${host}/${c.screenshot}`, alt: `${k} variant`, loading: 'lazy' }) : el('span', { class: 'hint', text: 'No crop' })),
+          el('p', { class: 'hint', text: `Used ${c.count}× on ${c.pages.length} page(s)${c.examples.length ? ' · ' + c.examples.join(' / ') : ''}` }),
+          el('details', {}, el('summary', { text: 'Styles' }), el('pre', { text: Object.entries(c.style).map(([p, v]) => `${p}: ${v};`).join('\n') })),
+          el('details', {}, el('summary', { text: 'HTML' }), el('pre', { text: c.html }))))))),
+
+      el('h2', { text: `Inline icons (${ds.icons.length})` }),
+      ds.icons.length ? el('div', { class: 'icons' }, ds.icons.slice(0, 120).map((i) => el('figure', {}, el('img', { src: svgSrc(i.html), alt: i.label || 'icon' }), el('figcaption', { text: `×${i.count}` })))) : el('p', { class: 'empty', text: 'None' }),
+
+      el('h2', { text: `Assets (${assets.length})` }),
+      assetTable(host, assets),
+
+      el('h2', { text: 'Limits' }),
+      el('ul', {}, ds.limitations.map((l) => el('li', { class: 'hint', text: l }))),
+    );
+  }
+
+  async function refresh() {
+    const data = await (await fetch('/api/extracts')).json();
+    $('#tabs').replaceChildren(...data.extracts.map((x) => {
+      const b = el('button', { type: 'button', 'data-host': x.host, 'aria-pressed': String(x.host === current), text: `${x.host} · ${x.assets} assets` });
+      b.addEventListener('click', () => open(x.host));
+      return b;
+    }));
+    if (!data.extracts.length) $('#detail').replaceChildren(el('p', { class: 'empty', text: 'No extracts yet. Enter a company site above.' }));
+    else if (!current) open(data.extracts[0].host);
+  }
+
+  $('#form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const go = $('#go');
+    go.disabled = true;
+    status(`Extracting. About 10 seconds a page…`);
+    try {
+      const res = await fetch('/api/extract', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url: $('#url').value, pages: $('#pages').value, download: $('#download').checked }) });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message);
+      status(`${data.assets.total} assets and ${data.components} component variants from ${data.host}.`);
+      current = data.host;
+      await refresh();
+      open(data.host);
+    } catch (err) { status(err.message, true); } finally { go.disabled = false; }
+  });
+
+  refresh().catch(() => status('Could not load extracts. Is the app running?', true));
+</script>
+</body>
+</html>

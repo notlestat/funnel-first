@@ -1,14 +1,20 @@
 ---
-// A client's landing page. This file never changes per client: it reads
-// the brand file, checks it, and assembles sections in recipe order.
+// A client's funnel page. This file never changes per client: it reads the brand file,
+// checks it, and assembles sections in recipe order. Every button points at the one ask.
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Hero from '../../sections/Hero.astro';
+import Flow from '../../sections/Flow.astro';
+import Video from '../../sections/Video.astro';
 import Benefits from '../../sections/Benefits.astro';
+import Offer from '../../sections/Offer.astro';
+import Story from '../../sections/Story.astro';
 import Proof from '../../sections/Proof.astro';
+import Agenda from '../../sections/Agenda.astro';
 import Faq from '../../sections/Faq.astro';
 import Capture from '../../sections/Capture.astro';
-import { recipes } from '../../system/sections';
+import Cta from '../../sections/Cta.astro';
+import { recipes, usesFlow } from '../../system/sections';
 import { assertBrandPasses } from '../../system/rules';
 
 export async function getStaticPaths() {
@@ -17,8 +23,11 @@ export async function getStaticPaths() {
 }
 
 const { brand } = Astro.props as { brand: CollectionEntry<'brands'> };
-const { tokens, content, layout, seo, fontsHref, recipe } = brand.data;
+const { tokens, content: c, layout, seo, fontsHref, recipe } = brand.data;
 assertBrandPasses(brand.id, tokens);
+
+// The schema guarantees every section in the recipe has content, so the ! below is safe.
+const target = usesFlow(recipe) ? '#flow' : '#capture';
 ---
 
 <Base title={seo.title} description={seo.description} tokens={tokens} fontsHref={fontsHref}>
@@ -27,15 +36,32 @@ assertBrandPasses(brand.id, tokens);
       recipes[recipe].map((id) => {
         switch (id) {
           case 'hero':
-            return <Hero content={content.hero} variant={layout.hero} />;
+            return (
+              <Hero content={c.hero!} variant={layout.hero!} target={target}>
+                {layout.hero === 'question' && <Flow content={c.flow!} />}
+              </Hero>
+            );
+          case 'flow':
+            // Rendered inside the hero: the first ask is a tap on the first screen.
+            return null;
+          case 'video':
+            return <Video content={c.video!} target={target} />;
           case 'benefits':
-            return <Benefits content={content.benefits} variant={layout.benefits} />;
+            return <Benefits content={c.benefits!} variant={layout.benefits!} />;
+          case 'offer':
+            return <Offer content={c.offer!} variant={layout.offer!} />;
+          case 'story':
+            return <Story content={c.story!} />;
           case 'proof':
-            return <Proof content={content.proof} />;
+            return <Proof content={c.proof!} />;
+          case 'agenda':
+            return <Agenda content={c.agenda!} />;
           case 'faq':
-            return <Faq content={content.faq} />;
+            return <Faq content={c.faq!} />;
           case 'capture':
-            return <Capture content={content.capture} />;
+            return <Capture content={c.capture!} />;
+          case 'cta':
+            return <Cta content={c.cta!} target={target} />;
         }
       })
     }

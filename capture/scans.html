@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Funnel scans</title>
+<style>
+  :root {
+    --bg: #f6f6f4; --panel: #ffffff; --ink: #18181b; --muted: #5b5b63; --line: #dedede; --focus: #2457d6;
+    --ok: #146c43; --warn: #8a5a00; --bad: #8d1f1f; --chip: #f0f0ee; --bar: #2457d6;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, sans-serif; }
+  main { max-width: 84rem; margin: 0 auto; padding: 2rem 1rem 5rem; }
+  h1 { font-size: 1.5rem; margin: 0; letter-spacing: -0.01em; }
+  h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 0.75rem; }
+  h3 { font-size: 1rem; margin: 1.25rem 0 0.5rem; }
+  p { margin: 0; }
+  a { color: inherit; }
+  .lede { color: var(--muted); margin-top: 0.25rem; max-width: 50rem; }
+  .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; align-items: baseline; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 1.25rem; min-width: 0; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  label { font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.3rem; }
+  textarea, select { width: 100%; font: inherit; padding: 0.55rem 0.7rem; border: 1px solid #c8c8cc; border-radius: 6px; background: #fff; color: var(--ink); }
+  textarea { min-height: 5.5rem; resize: vertical; }
+  button { font: inherit; font-weight: 600; cursor: pointer; border-radius: 6px; padding: 0.6rem 1rem; border: 1px solid var(--ink); background: var(--ink); color: #fff; min-height: 44px; }
+  button:disabled { opacity: 0.5; cursor: progress; }
+  .hint { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
+  form { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 10rem) auto; gap: 1rem; align-items: end; margin-top: 1.5rem; }
+  #status { margin-top: 0.75rem; min-height: 1.5rem; font-size: 0.9rem; white-space: pre-line; }
+  #status.error { color: var(--bad); }
+
+  .report { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .stat { font-size: 1.6rem; font-weight: 700; }
+  .bars { display: grid; gap: 0.35rem; }
+  .bar { display: grid; grid-template-columns: minmax(0, 7.5rem) minmax(0, 1fr) 2.5rem; gap: 0.5rem; align-items: center; font-size: 0.82rem; }
+  .bar .track { height: 0.55rem; background: var(--chip); border-radius: 99px; overflow: hidden; }
+  .bar .fill { height: 100%; background: var(--bar); }
+  .bar .n { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .bar .label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .layout { display: grid; grid-template-columns: minmax(0, 24rem) minmax(0, 1fr); gap: 1rem; margin-top: 1.5rem; align-items: start; }
+  .list { display: grid; gap: 0.5rem; max-height: 80vh; overflow: auto; padding: 0.25rem; }
+  .item { display: grid; gap: 0.25rem; text-align: left; background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 0.7rem 0.8rem; font-weight: 400; }
+  .item[aria-current="true"] { border-color: var(--focus); box-shadow: 0 0 0 1px var(--focus); }
+  .item .url { font-weight: 600; overflow-wrap: anywhere; font-size: 0.88rem; }
+  .item .meta { font-size: 0.78rem; color: var(--muted); overflow-wrap: anywhere; }
+  .badge { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.05rem 0.45rem; border-radius: 99px; border: 1px solid currentColor; white-space: nowrap; }
+  .badge.ok { color: var(--ok); } .badge.blocked { color: var(--warn); } .badge.error { color: var(--bad); }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .chip { background: var(--chip); border-radius: 6px; padding: 0.1rem 0.5rem; font-size: 0.8rem; overflow-wrap: anywhere; }
+
+  .detail-head { display: grid; grid-template-columns: minmax(0, 12rem) minmax(0, 1fr); gap: 1rem; }
+  .shot { width: 100%; border: 1px solid var(--line); border-radius: 8px; display: block; background: var(--chip); }
+  dl.facts { display: grid; grid-template-columns: minmax(0, 8rem) minmax(0, 1fr); gap: 0.3rem 0.75rem; margin: 0; font-size: 0.88rem; }
+  dl.facts dt { color: var(--muted); }
+  dl.facts dd { margin: 0; overflow-wrap: anywhere; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+  th, td { text-align: left; padding: 0.4rem 0.6rem 0.4rem 0; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; }
+  th { color: var(--muted); font-weight: 600; }
+  .table-wrap { overflow-x: auto; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 8.5rem), 1fr)); gap: 0.6rem; }
+  .swatch { display: grid; gap: 0.2rem; font-size: 0.78rem; }
+  .swatch .chipcolour { height: 2.6rem; border-radius: 6px; border: 1px solid #0002; }
+  .swatch code { font-size: 0.8rem; font-weight: 600; }
+  .thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 7rem), 1fr)); gap: 0.6rem; }
+  .thumbs figure { margin: 0; display: grid; gap: 0.2rem; font-size: 0.72rem; color: var(--muted); }
+  .thumbs img { width: 100%; height: 5.5rem; object-fit: contain; background: var(--chip); border-radius: 6px; border: 1px solid var(--line); }
+  details > summary { cursor: pointer; font-weight: 600; margin-top: 1rem; }
+  .empty { color: var(--muted); }
+  @media (max-width: 52rem) {
+    form { grid-template-columns: 1fr; }
+    .layout { grid-template-columns: 1fr; }
+    .list { max-height: 22rem; }
+    .detail-head { grid-template-columns: 1fr; }
+    .detail-head .shot { max-width: 14rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <h1>Funnel scans</h1>
+    <a href="/">Brand capture</a>
+  </div>
+  <p class="lede">Each scan opens a page in Chrome, reads its tokens, assets and funnel structure with code (no AI), and saves one JSON file. Labels are heuristics from one page load: check them by eye.</p>
+
+  <form id="scan-form">
+    <div>
+      <label for="urls">URLs to scan, one per line (up to 10)</label>
+      <textarea id="urls" name="urls" placeholder="https://example.com/landing" required></textarea>
+      <p class="hint">For hundreds of URLs use <code>npm run scan -- urls.txt</code>. Pages behind a bot check are recorded as blocked, never bypassed.</p>
+    </div>
+    <div>
+      <label for="viewport">Screen</label>
+      <select id="viewport" name="viewport"><option value="mobile">Phone, 390px</option><option value="desktop">Desktop, 1440px</option></select>
+    </div>
+    <button type="submit" id="scan-button">Scan</button>
+  </form>
+  <p id="status" role="status" aria-live="polite"></p>
+
+  <section aria-labelledby="report-heading">
+    <h2 id="report-heading" style="margin-top:1.5rem">Across all scans</h2>
+    <div class="report" id="report"></div>
+  </section>
+
+  <div class="layout">
+    <section aria-labelledby="list-heading">
+      <h2 id="list-heading">Scans</h2>
+      <div class="list" id="list"></div>
+    </section>
+    <section class="panel" id="detail" aria-live="polite">
+      <p class="empty">Choose a scan to see its tokens, assets and funnel structure.</p>
+    </section>
+  </div>
+</main>
+
+<script>
+  // Every value shown here comes from someone else's website. Build the page with
+  // textContent and attributes only, never innerHTML, so their markup cannot run.
+  const $ = (sel) => document.querySelector(sel);
+  const el = (tag, attrs = {}, ...children) => {
+    const node = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) {
+      if (v === null || v === undefined || v === false) continue;
+      if (k === 'class') node.className = v;
+      else if (k === 'text') node.textContent = v;
+      else if (k === 'style') node.setAttribute('style', v);
+      else node.setAttribute(k, v);
+    }
+    for (const c of children.flat()) if (c !== null && c !== undefined && c !== false) node.append(c instanceof Node ? c : document.createTextNode(String(c)));
+    return node;
+  };
+  const safeUrl = (u) => {
+    try {
+      const url = new URL(u);
+      return url.protocol === 'http:' || url.protocol === 'https:' ? url.href : null;
+    } catch { return null; }
+  };
+  const hexOk = (h) => /^#[0-9A-F]{6}$/i.test(h);
+  // Third-party images often 404 or block hotlinking: drop the tile rather than show a broken icon.
+  document.addEventListener('error', (e) => { if (e.target instanceof HTMLImageElement && e.target.closest('.thumbs figure')) e.target.closest('figure').remove(); }, true);
+  const status = (msg, error = false) => { const s = $('#status'); s.textContent = msg; s.className = error ? 'error' : ''; };
+
+  let current = null;
+
+  function bars(title, rows, total) {
+    const max = Math.max(1, ...rows.map((r) => r.count ?? r.funnels ?? 0));
+    return el('div', { class: 'panel' },
+      el('h2', { text: title }),
+      rows.length ? el('div', { class: 'bars' }, rows.slice(0, 8).map((r) => {
+        const n = r.count ?? r.funnels ?? 0;
+        const label = r.value ?? r.kind;
+        return el('div', { class: 'bar' },
+          el('span', { class: 'label', title: label, text: label }),
+          el('span', { class: 'track' }, el('span', { class: 'fill', style: `width:${Math.round((n / (total || max)) * 100)}%; display:block` })),
+          el('span', { class: 'n', text: r.pct !== undefined ? `${r.pct}%` : String(n) }));
+      })) : el('p', { class: 'empty', text: 'No data yet.' }));
+  }
+
+  function renderReport(r) {
+    const box = $('#report');
+    box.replaceChildren(
+      el('div', { class: 'panel' },
+        el('h2', { text: 'Scans' }),
+        el('p', { class: 'stat', text: String(r.totals.scanned) }),
+        el('p', { class: 'hint', text: `${r.totals.ok} read · ${r.totals.blocked} blocked · ${r.totals.error} failed · median ${r.totals.median_ms ?? '-'} ms` }),
+        el('p', { class: 'hint', text: `Proof next to an ask: ${r.funnel.proof_near_ask_pct}% · video: ${r.funnel.video_pct}% · median CTA repeats: ${r.funnel.median_cta_repeats ?? '-'}` })),
+      bars('First ask', r.funnel.first_ask, r.totals.ok),
+      bars('Headline type', r.funnel.headline_type, r.totals.ok),
+      bars('Blocks (share of funnels)', r.funnel.blocks.filter((b) => b.funnels > 0), 0),
+      bars('Builder', r.stack.builder, r.totals.ok),
+      bars('Tracking', r.stack.tracking, r.totals.ok),
+    );
+  }
+
+  function renderList(scans) {
+    const list = $('#list');
+    if (!scans.length) { list.replaceChildren(el('p', { class: 'empty', text: 'No scans yet. Paste a URL above.' })); return; }
+    list.replaceChildren(...scans.map((s) => {
+      const button = el('button', { class: 'item', type: 'button', 'aria-current': String(s.id === current), 'data-id': s.id },
+        el('span', { class: 'url', text: s.url }),
+        el('span', { class: 'meta' },
+          el('span', { class: `badge ${s.status}`, text: s.status }), ' ',
+          s.status === 'ok' ? `${s.first_ask} first · ${s.headline_type} headline${s.builder ? ' · ' + s.builder : ''}` : s.reason),
+        s.status === 'ok' ? el('span', { class: 'chips' }, (s.sequence || []).map((k) => el('span', { class: 'chip', text: k }))) : null);
+      button.addEventListener('click', () => openScan(s.id));
+      return button;
+    }));
+  }
+
+  function facts(rows) {
+    return el('dl', { class: 'facts' }, rows.filter(([, v]) => v !== null && v !== undefined && v !== '').flatMap(([k, v]) => [el('dt', { text: k }), el('dd', {}, v)]));
+  }
+  function table(head, rows) {
+    return el('div', { class: 'table-wrap' }, el('table', {},
+      el('thead', {}, el('tr', {}, head.map((h) => el('th', { scope: 'col', text: h })))),
+      el('tbody', {}, rows.map((r) => el('tr', {}, r.map((c) => el('td', {}, c ?? '')))))));
+  }
+
+  function renderDetail(s) {
+    const d = $('#detail');
+    if (s.status !== 'ok') {
+      d.replaceChildren(el('h2', { text: s.status }), facts([['URL', s.url], ['Reason', s.reason], ['When', s.scanned_at]]));
+      return;
+    }
+    const f = s.funnel, t = s.tokens, a = s.assets;
+    const shot = s.screenshot ? el('img', { class: 'shot', src: `/scans/${s.screenshot}`, alt: `Screenshot of ${s.url} at ${s.viewport.name} width` }) : el('p', { class: 'empty', text: 'No screenshot' });
+    const link = safeUrl(s.url);
+    d.replaceChildren(
+      el('div', { class: 'detail-head' }, shot,
+        el('div', {},
+          el('h2', { text: 'Page' }),
+          facts([
+            ['URL', link ? el('a', { href: link, rel: 'noreferrer noopener', target: '_blank', text: s.url }) : s.url],
+            ['Title', s.title], ['Screen', `${s.viewport.name}, ${s.viewport.w}×${s.viewport.h}`], ['Read in', `${s.ms} ms`],
+            ['Builder', s.stack.builder.join(', ') || 'unknown'], ['Tracking', s.stack.tracking.join(', ') || 'none found'],
+          ]),
+          el('p', { style: 'margin-top:0.75rem' }, el('a', { href: `/api/scans/${s.id}`, download: `${s.id}.json`, text: 'Download the JSON' })))),
+
+      el('h3', { text: 'Funnel' }),
+      facts([
+        ['Headline', `${f.headline.text} (${f.headline.type})`],
+        ['First ask', `${f.first_ask.ask}: ${f.first_ask.evidence}`],
+        ['Sequence', el('span', { class: 'chips' }, f.sequence.map((k) => el('span', { class: 'chip', text: k })))],
+        ['CTA repeats', String(f.cta_repeats)],
+        ['Contact fields', f.contact_fields.join(', ') || 'none'],
+        ['Proof', `${f.proof.blocks} block(s)${f.proof.logo_strip ? ', logo strip' : ''}${f.proof.rating ? `, rating "${f.proof.rating}"` : ''}, ${f.proof.near_ask ? 'next to an ask' : 'not next to an ask'}`],
+        ['Video', f.video.present ? 'yes' : 'no'],
+        ['Page height', `${f.page_height}px`],
+      ]),
+      el('details', {}, el('summary', { text: `Blocks (${f.blocks.length})` }),
+        table(['#', 'Kind', 'Heading', 'Signals'], f.blocks.map((b) => [String(b.order + 1), b.kind, b.heading, b.signals.join(', ')]))),
+      el('details', {}, el('summary', { text: `Calls to action (${f.ctas.length})` }),
+        table(['Text', 'Target', 'Above the fold'], f.ctas.map((c) => [c.text, c.href ?? c.kind, c.above_fold ? 'yes' : '']))),
+      el('details', {}, el('summary', { text: `Forms (${f.forms.length})` }),
+        f.forms.map((form) => el('div', {}, el('p', { class: 'hint', text: `Submit: "${form.submit}" · ${form.fields.length} field(s)${form.steps ? ` · ${form.steps} step marker(s)` : ''}` }),
+          table(['Type', 'Label', 'Required', 'Visible'], form.fields.map((x) => [x.type, x.label, x.required ? 'yes' : '', x.visible ? 'yes' : 'hidden step']))))),
+
+      el('h3', { text: 'Colour' }),
+      el('div', { class: 'swatches' }, t.colors.map((c) => el('div', { class: 'swatch' },
+        el('span', { class: 'chipcolour', style: hexOk(c.hex) ? `background:${c.hex}` : '' }),
+        el('code', { text: c.hex }), el('span', { class: 'hint', text: c.roles.join(', ') })))),
+
+      el('h3', { text: 'Type' }),
+      facts([
+        ['Page', `${t.page.family} · ${t.page.size} / ${t.page.line_height}`],
+        ['Display', t.display ? `${t.display.family} · ${t.display.size} · ${t.display.weight}` : null],
+      ]),
+      el('details', {}, el('summary', { text: `Type by role (${t.type.length})` }),
+        table(['Role', 'Family', 'Size', 'Weight', 'Line height', 'Spacing', 'Case', 'Seen'], t.type.map((x) => [x.role, x.family.split(',')[0], x.size, x.weight, x.line_height, x.letter_spacing, x.transform, String(x.count)]))),
+
+      el('h3', { text: 'Shape and space' }),
+      facts([
+        ['Radius', el('span', { class: 'chips' }, t.radius.map((r) => el('span', { class: 'chip', text: `${r.value} ×${r.count}` })))],
+        ['Section padding', el('span', { class: 'chips' }, t.spacing.section_padding.map((r) => el('span', { class: 'chip', text: `${r.value} ×${r.count}` })))],
+        ['Gaps', el('span', { class: 'chips' }, t.spacing.gap.map((r) => el('span', { class: 'chip', text: `${r.value} ×${r.count}` })))],
+        ['Button height', t.button.median_height ? `${t.button.median_height}px median of ${t.button.count}` : 'no filled buttons'],
+        ['Shadows', String(t.shadow.length)],
+      ]),
+      el('details', {}, el('summary', { text: `Declared CSS variables (${Object.keys(t.declared).length})` }),
+        table(['Name', 'Value'], Object.entries(t.declared).map(([k, v]) => [k, v]))),
+
+      el('h3', { text: 'Assets' }),
+      el('div', { class: 'thumbs' }, [
+        ['Logo', a.logo?.src], ['Favicon', a.favicon], ['Touch icon', a.apple_touch_icon], ['Share image', a.og_image],
+      ].filter(([, src]) => safeUrl(src)).map(([label, src]) => el('figure', {}, el('img', { src: safeUrl(src), alt: label, loading: 'lazy', referrerpolicy: 'no-referrer' }), el('figcaption', { text: label })))),
+      facts([
+        ['Fonts loaded', [...new Set(a.fonts_loaded.map((x) => x.family))].join(', ') || 'none reported'],
+        ['Font sources', a.font_links.length ? a.font_links.join(' · ') : `${a.font_faces.length} @font-face rule(s)`],
+        ['Videos', a.videos.length ? a.videos.map((v) => v.src).join(' · ') : 'none'],
+        ['Inline SVGs', String(a.svg_count)],
+      ]),
+      el('details', {}, el('summary', { text: `Images (${a.images.length})` }),
+        el('div', { class: 'thumbs' }, a.images.filter((i) => safeUrl(i.src)).slice(0, 40).map((i) => el('figure', {},
+          el('img', { src: safeUrl(i.src), alt: i.alt || '', loading: 'lazy', referrerpolicy: 'no-referrer' }),
+          el('figcaption', { text: `${i.w}×${i.h}${i.above_fold ? ' · first screen' : ''}` }))))),
+
+      el('h3', { text: 'Limits' }),
+      el('ul', {}, s.limitations.map((l) => el('li', { class: 'hint', text: l }))),
+    );
+  }
+
+  async function openScan(id) {
+    current = id;
+    for (const b of document.querySelectorAll('.item')) b.setAttribute('aria-current', String(b.dataset.id === id));
+    const res = await fetch(`/api/scans/${encodeURIComponent(id)}`);
+    if (!res.ok) return status('Could not load that scan.', true);
+    renderDetail(await res.json());
+  }
+
+  async function refresh() {
+    const res = await fetch('/api/scans');
+    const data = await res.json();
+    renderReport(data.report);
+    renderList(data.scans);
+    if (!current && data.scans[0]) openScan(data.scans[0].id);
+  }
+
+  $('#scan-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const urls = $('#urls').value.split('\n').map((u) => u.trim()).filter(Boolean);
+    if (!urls.length) return status('Paste at least one URL.', true);
+    const button = $('#scan-button');
+    button.disabled = true;
+    status(`Scanning ${urls.length} page(s). About 2 seconds each…`);
+    try {
+      const res = await fetch('/api/scan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ urls, viewport: $('#viewport').value }) });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message);
+      const ok = data.scans.filter((s) => s.status === 'ok').length;
+      status(`${ok} read, ${data.scans.length - ok} not read.`);
+      current = data.scans[0]?.id ?? current;
+      await refresh();
+      if (current) openScan(current);
+    } catch (error) {
+      status(error.message, true);
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  refresh().catch(() => status('Could not load scans. Is the app running?', true));
+</script>
+</body>
+</html>

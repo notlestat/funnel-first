@@ -11,7 +11,7 @@ test('contrast matches known WCAG values', () => {
 
 test('conversion warnings flag a long headline and placeholder proof', () => {
   const brand = load('gridline');
-  brand.content.hero.headline = 'A very long headline that keeps going well past what anyone will read at a glance';
+  brand.content.hero!.headline = 'A very long headline that keeps going well past what anyone will read at a glance';
   const warnings = conversionWarnings(brand);
   assert.ok(warnings.some((w) => w.startsWith('Hero headline')));
   assert.ok(warnings.some((w) => w.includes('placeholder')));

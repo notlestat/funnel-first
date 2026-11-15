@@ -2,8 +2,8 @@
 // The client's conversion-first design system sheet, generated from the brand file.
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { recipes, sections } from '../../system/sections';
-import { checkContrast } from '../../system/rules';
+import { recipeGuide, recipes, sections, usesFlow } from '../../system/sections';
+import { checkContrast, designerChecks, launchChecks } from '../../system/rules';
 import { tokenNames } from '../../system/tokens';
 
 export async function getStaticPaths() {
@@ -12,14 +12,30 @@ export async function getStaticPaths() {
 }
 
 const { brand } = Astro.props as { brand: CollectionEntry<'brands'> };
-const { name, tokens, fontsHref, recipe, layout, content, fictional } = brand.data;
+const { name, tokens, fontsHref, recipe, layout, content, fictional, strategy, pass } = brand.data;
 const references = await getCollection('references');
 const capture = (await getCollection('captures')).find((c) => c.id === brand.id)?.data;
 const evidence = (t: string) => capture?.proposal.tokens[t];
 const contrastResults = checkContrast(tokens);
 const colours = tokenNames.filter((t) => t.startsWith('color-'));
-const placeholders = content.proof.quotes.filter((q) => q.placeholder).length;
-const variants: Record<string, string> = layout;
+const checks = launchChecks(brand.data);
+const statusLabel = { pass: 'Pass', waiting: 'Waiting', fail: 'Fail' } as const;
+const variants: Record<string, string | undefined> = layout;
+const guide = recipeGuide[recipe];
+const flow = usesFlow(recipe);
+const target = flow ? '#flow' : '#capture';
+const action = content.hero?.cta ?? content.flow?.questions[0].q ?? '';
+const strategyRows = strategy
+  ? [
+      ['Dream customer', strategy.dream_customer],
+      ['Where they are', strategy.where_they_are],
+      ['Hook', strategy.hook],
+      ['Belief that stops them', strategy.false_belief],
+      ['Offer', strategy.offer],
+      ['Not for', strategy.not_for],
+      ['Second yes', strategy.second_yes ?? 'Not planned yet'],
+    ]
+  : [];
 ---
 
 <Base title={`${name} design system`} description={`Conversion-first design system for ${name}.`} tokens={tokens} fontsHref={fontsHref}>
@@ -28,7 +44,7 @@ const variants: Record<string, string> = layout;
       <p class="eyebrow">Design system{fictional && ' · fictional sample brand'}</p>
       <h1>{name}</h1>
       <p class="muted">
-        Recipe: {recipe}. <a href={`/${brand.id}/`}>View the landing page</a>
+        Funnel type: {recipe}. {guide.goal} <a href={`/${brand.id}/`}>View the funnel</a>
       </p>
       <p class="muted small">
         Download tokens: <a href={`/${brand.id}/tokens.json`}>JSON (DTCG)</a> · <a href={`/${brand.id}/tokens.css`}>CSS</a>
@@ -46,9 +62,67 @@ const variants: Record<string, string> = layout;
     <section aria-labelledby="launch">
       <h2 id="launch">Launch readiness</h2>
       <ul class="checks" role="list">
-        <li>{contrastResults.every((r) => r.pass) ? 'Pass' : 'Fail'}: colour contrast (WCAG AA)</li>
-        <li>{placeholders === 0 ? 'Pass' : 'Waiting'}: proof, {placeholders} placeholder quote{placeholders === 1 ? '' : 's'} still to be supplied</li>
-        <li>Waiting: form backend not connected, the demo sends nothing</li>
+        {checks.map((c) => <li data-status={c.status}>{statusLabel[c.status]}: {c.label}</li>)}
+      </ul>
+    </section>
+
+    <section aria-labelledby="strategy">
+      <h2 id="strategy">Funnel strategy</h2>
+      {
+        strategy ? (
+          <dl class="strategy">
+            {strategyRows.map(([k, v]) => (
+              <div>
+                <dt class="muted small">{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : (
+          <p class="muted">Not written yet. Add a strategy to the brand file before building the page.</p>
+        )
+      }
+    </section>
+
+    <section aria-labelledby="pass-heading">
+      <h2 id="pass-heading">Brunson pass</h2>
+      {
+        pass ? (
+          <>
+            <div class="table-wrap">
+              <table>
+                <caption class="muted">Hook, story and offer on every step. When a step fails, one of the three is wrong.</caption>
+                <thead><tr><th scope="col">Step</th><th scope="col">Hook</th><th scope="col">Story</th><th scope="col">Offer</th></tr></thead>
+                <tbody>{pass.steps.map((s) => <tr><td><strong>{s.step}</strong></td><td>{s.hook}</td><td>{s.story}</td><td>{s.offer}</td></tr>)}</tbody>
+              </table>
+            </div>
+            <dl class="strategy pass-facts">
+              <div><dt class="muted small">Headlines to test</dt><dd><ol>{pass.headline_options.map((h) => <li>{h}</li>)}</ol></dd></div>
+              <div><dt class="muted small">The doubt</dt><dd>{pass.doubt.belief}</dd></div>
+              <div><dt class="muted small">How the page answers it ({pass.doubt.where} section)</dt><dd>{pass.doubt.answer}</dd></div>
+              <div>
+                <dt class="muted small">Offer stack</dt>
+                <dd><ul>{pass.offer_stack.map((o) => <li>{o.item} <span class="role">{o.status === 'confirmed' ? 'confirmed' : 'ask the client'}</span></li>)}</ul></dd>
+              </div>
+              {pass.client_questions.length > 0 && (
+                <div><dt class="muted small">Questions for the client</dt><dd><ol>{pass.client_questions.map((q) => <li>{q}</li>)}</ol></dd></div>
+              )}
+            </dl>
+          </>
+        ) : (
+          <p class="muted">Not written yet. Run the brunson-pass skill before this funnel is reviewed. Real client funnels cannot build without it.</p>
+        )
+      }
+      <h3 class="subhead">Designer checks the build cannot make</h3>
+      <ul class="designer" role="list">
+        {
+          designerChecks.map((d) => (
+            <li>
+              {d.q}
+              {pass?.checks[d.id] && <p class="answer">{pass.checks[d.id]}</p>}
+            </li>
+          ))
+        }
       </ul>
     </section>
 
@@ -89,8 +163,11 @@ const variants: Record<string, string> = layout;
 
     <section aria-labelledby="actions">
       <h2 id="actions">Actions</h2>
-      <a class="button" href={`/${brand.id}/#capture`}>{content.hero.cta}</a>
-      <p class="muted small">One primary action per page. Every button points to the capture form.</p>
+      {content.hero?.cta && <a class="button" href={`/${brand.id}/${target}`}>{content.hero.cta}</a>}
+      {flow && <p>First ask: "{action}", a one-tap question in the hero.</p>}
+      <p class="muted small">
+        One ask per page. Every button points to the {flow ? 'question flow' : 'capture form'}. First ask: {guide.firstAsk}
+      </p>
     </section>
 
     <section aria-labelledby="sections">
@@ -102,7 +179,7 @@ const variants: Record<string, string> = layout;
             const refs = references.filter((r) => spec.referenceIds.includes(r.id));
             return (
               <li>
-                <strong>{spec.name}</strong> <span class="role">{spec.role}</span>
+                <strong>{spec.name}</strong> <span class="role">{spec.role}</span> <span class="role">{spec.stage}</span>
                 {variants[id] && <span class="muted"> · variant: {variants[id]}</span>}
                 <p class="muted">{spec.job}</p>
                 <p class="muted small">
@@ -190,6 +267,52 @@ const variants: Record<string, string> = layout;
     font-weight: var(--weight-display);
     font-size: var(--size-heading);
     margin-bottom: 1rem;
+  }
+  .strategy {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+    gap: 1rem 2rem;
+  }
+  .strategy dd {
+    margin: 0.25rem 0 0;
+  }
+  .strategy .small {
+    margin-top: 0;
+  }
+  .subhead {
+    font-size: 1.25em;
+    margin: var(--space-block) 0 0.75rem;
+  }
+  /* Grid items default to min-width: auto, so a wide table would widen the page. Let them shrink. */
+  .sheet > * {
+    min-width: 0;
+  }
+  .table-wrap {
+    overflow-x: auto;
+    margin-bottom: var(--space-block);
+  }
+  .table-wrap td {
+    vertical-align: top;
+    min-width: 10rem;
+  }
+  .pass-facts ol,
+  .pass-facts ul {
+    margin: 0.25rem 0 0;
+    padding-left: 1.25rem;
+  }
+  .answer {
+    margin-top: 0.25rem;
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--color-border);
+    color: var(--color-muted);
+  }
+  .designer {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 0.5rem;
+    max-width: 52rem;
   }
   .sections {
     margin: 0;

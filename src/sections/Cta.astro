@@ -1,0 +1,37 @@
+---
+// The repeated ask, for visitors who needed the whole page before acting.
+import type { BrandContent } from '../system/schema';
+
+interface Props {
+  content: NonNullable<BrandContent['cta']>;
+  target: string;
+}
+const { content, target } = Astro.props;
+const { heading, body, button } = content;
+---
+
+<section class="section" aria-labelledby="cta-heading">
+  <div class="container panel">
+    <h2 id="cta-heading" class="section-heading">{heading}</h2>
+    {body && <p class="muted">{body}</p>}
+    <a class="button" href={target}>{button}</a>
+  </div>
+</section>
+
+<style>
+  .panel {
+    padding: clamp(1.5rem, 5vw, 3rem);
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    text-align: center;
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+  }
+  .panel .section-heading {
+    margin-bottom: 0;
+  }
+  .panel p {
+    max-width: 44ch;
+  }
+</style>

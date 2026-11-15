@@ -1,0 +1,77 @@
+{
+  "name": "Kiln Collective",
+  "fictional": true,
+  "fontsHref": "https://fonts.googleapis.com/css2?family=Sora:wght@600&family=Inter:wght@400;600&display=swap",
+  "tokens": {
+    "color-bg": "#FFFFFF",
+    "color-surface": "#FCEEF1",
+    "color-text": "#1C1215",
+    "color-muted": "#5E4B51",
+    "color-accent": "#BE123C",
+    "color-on-accent": "#FFFFFF",
+    "color-border": "#F0D5DC",
+    "font-display": "'Sora', system-ui, sans-serif",
+    "font-body": "'Inter', system-ui, sans-serif",
+    "weight-display": "600",
+    "size-hero": "clamp(2rem, 6vw, 3.75rem)",
+    "size-heading": "clamp(1.5rem, 3.5vw, 2.25rem)",
+    "size-body": "1rem",
+    "size-small": "0.8125rem",
+    "space-section": "clamp(3rem, 8vw, 5.5rem)",
+    "space-block": "1.5rem",
+    "radius": "999px",
+    "measure": "68rem"
+  },
+  "recipe": "webinar",
+  "strategy": {
+    "dream_customer": "Independent ceramicists who sell at markets and want steady online sales.",
+    "where_they_are": "Pottery Instagram accounts and craft-market newsletters.",
+    "hook": "Sell your pottery online without a big following.",
+    "false_belief": "You need thousands of followers before an online shop works.",
+    "offer": "A free 45-minute live workshop with a question and answer session.",
+    "not_for": "Large studios with a shop team already.",
+    "second_yes": "The shop-setup course, offered at the end of the workshop."
+  },
+  "layout": { "hero": "split" },
+  "seo": {
+    "title": "Free live workshop | Kiln Collective",
+    "description": "A free live workshop for independent ceramicists on selling online without a big following."
+  },
+  "content": {
+    "hero": {
+      "eyebrow": "Free live workshop",
+      "headline": "Sell your pottery online, even without a big following",
+      "subhead": "A 45-minute live session for independent ceramicists, with time for your questions.",
+      "cta": "Save my seat for Thursday"
+    },
+    "agenda": {
+      "heading": "What we will cover",
+      "when": "Thursday at 7pm UK time, 45 minutes, live",
+      "items": [
+        "Why followers matter less than one good product page",
+        "Pricing pieces so the shop pays for your time",
+        "Photographing glazes on a phone",
+        "Your questions, answered live"
+      ]
+    },
+    "proof": {
+      "heading": "From past attendees",
+      "quotes": [
+        { "quote": "A real attendee quote goes here.", "source": "Name, studio. Needs written permission.", "placeholder": true }
+      ]
+    },
+    "faq": {
+      "heading": "Before you register",
+      "items": [
+        { "q": "Is there a recording?", "a": "Registered attendees get a recording for 48 hours afterwards." },
+        { "q": "Will you sell something?", "a": "Yes, at the end we mention our shop-setup course. The workshop stands on its own." }
+      ]
+    },
+    "capture": {
+      "heading": "Save your seat",
+      "body": "We will email the joining link and a reminder before it starts.",
+      "button": "Save my seat",
+      "consent": "Also send me Kiln Collective's monthly newsletter."
+    }
+  }
+}

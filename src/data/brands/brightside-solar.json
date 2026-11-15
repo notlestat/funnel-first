@@ -1,0 +1,109 @@
+{
+  "name": "Brightside Solar",
+  "fictional": true,
+  "fontsHref": "https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Source+Sans+3:wght@400;600&display=swap",
+  "tokens": {
+    "color-bg": "#FFFBF5",
+    "color-surface": "#FBEFDD",
+    "color-text": "#1F1A14",
+    "color-muted": "#5C5246",
+    "color-accent": "#B45309",
+    "color-on-accent": "#FFFFFF",
+    "color-border": "#EAD9C0",
+    "font-display": "'Archivo', system-ui, sans-serif",
+    "font-body": "'Source Sans 3', system-ui, sans-serif",
+    "weight-display": "700",
+    "size-hero": "clamp(2rem, 6vw, 3.5rem)",
+    "size-heading": "clamp(1.5rem, 3.5vw, 2.25rem)",
+    "size-body": "1.0625rem",
+    "size-small": "0.875rem",
+    "space-section": "clamp(3rem, 8vw, 5.5rem)",
+    "space-block": "1.5rem",
+    "radius": "10px",
+    "measure": "68rem"
+  },
+  "recipe": "appointment",
+  "strategy": {
+    "dream_customer": "Homeowners with a south-facing roof who already pay attention to their energy bill.",
+    "where_they_are": "Local Facebook groups and home-improvement Instagram accounts.",
+    "hook": "Find out in 60 seconds whether your roof suits solar.",
+    "false_belief": "Solar only works in sunny countries, so it is not worth a survey here.",
+    "offer": "A free roof check: four taps, then a survey slot.",
+    "not_for": "Renters, flats, and anyone not ready for a home visit in the next three months.",
+    "second_yes": "Battery storage quote at the survey."
+  },
+  "layout": { "hero": "question", "benefits": "cards" },
+  "seo": {
+    "title": "Free roof check | Brightside Solar",
+    "description": "Answer four quick questions to see whether your roof suits solar panels, then book a free home survey."
+  },
+  "content": {
+    "hero": {
+      "eyebrow": "Free roof check",
+      "headline": "Does your roof suit solar?",
+      "subhead": "Four taps, about a minute. If it fits, you can book a free survey at the end."
+    },
+    "flow": {
+      "questions": [
+        { "q": "Do you own your home?", "options": [{ "label": "Yes, I own it" }, { "label": "I rent" }] },
+        {
+          "q": "Which way does your main roof face?",
+          "options": [{ "label": "South" }, { "label": "East or west" }, { "label": "North" }, { "label": "Not sure" }]
+        },
+        {
+          "q": "What is your monthly electricity bill?",
+          "options": [{ "label": "Under £80" }, { "label": "£80 to £150" }, { "label": "Over £150" }]
+        },
+        {
+          "q": "When would you want panels fitted?",
+          "options": [{ "label": "Within 3 months" }, { "label": "3 to 12 months" }, { "label": "Just researching" }]
+        }
+      ],
+      "contact": {
+        "heading": "Where should we send your result?",
+        "body": "We will email whether your roof suits solar, with a link to book a survey.",
+        "fields": ["name", "email"],
+        "button": "Send my result",
+        "consent": "Also send me Brightside's occasional energy tips. You can unsubscribe at any time.",
+        "filter": "Only book if you own your home and could have panels fitted this year."
+      },
+      "after": "booking"
+    },
+    "benefits": {
+      "heading": "What the survey covers",
+      "items": [
+        { "title": "Roof and shading", "body": "We check the angle, the condition and what shades it through the day." },
+        { "title": "Your usage", "body": "We look at when you use power, so the system fits your home." },
+        { "title": "A written quote", "body": "You get the size, the parts and the price in writing. No pressure to decide." }
+      ]
+    },
+    "proof": {
+      "heading": "From homeowners",
+      "quotes": [
+        { "quote": "A real customer quote goes here.", "source": "Name, town. Needs written permission.", "placeholder": true }
+      ]
+    },
+    "story": {
+      "heading": "Why we only survey roofs that fit",
+      "paragraphs": [
+        "The founder writes this: why Brightside turns away roofs that will not pay back, and what they learned fitting panels locally.",
+        "Keep it short. Its job is to make the free check believable."
+      ],
+      "signed": { "name": "Founder's name", "role": "Founder, Brightside Solar" },
+      "placeholder": true
+    },
+    "faq": {
+      "heading": "Common questions",
+      "items": [
+        { "q": "Does solar work when it is cloudy?", "a": "Panels produce less on cloudy days but still generate power. The survey estimates your yearly output." },
+        { "q": "Is the survey really free?", "a": "Yes. You get a written quote and there is no obligation to go ahead." },
+        { "q": "Will you call me?", "a": "Only if you book a survey slot. Otherwise we send your result by email." }
+      ]
+    },
+    "cta": {
+      "heading": "See if your roof suits solar",
+      "body": "Four questions, then your result.",
+      "button": "Start the roof check"
+    }
+  }
+}

@@ -21,7 +21,7 @@ before(async () => {
     new StdioClientTransport({
       command: process.execPath,
       args: [path.join(ROOT, 'mcp/server.ts')],
-      env: { ...process.env, CONVERSION_DATA_DIR: dataDir } as Record<string, string>,
+      env: { ...process.env, CONVERSION_DATA_DIR: dataDir, SCANS_DIR: path.join(dataDir, 'scans'), EXTRACTS_DIR: path.join(dataDir, 'extracts') } as Record<string, string>,
     }),
   );
 });
@@ -44,22 +44,48 @@ const newClient = () => {
   return b;
 };
 
-test('lists all eight tools', async () => {
+test('lists all eleven tools', async () => {
   const { tools } = await client.listTools();
   assert.deepEqual(tools.map((t) => t.name).sort(), [
-    'add_reference', 'capture_brand', 'get_brand', 'list_brands', 'search_references', 'system_overview', 'validate_brand', 'write_brand',
+    'add_reference', 'capture_brand', 'extract_design_system', 'get_brand', 'list_brands', 'scan_funnels', 'scan_report', 'search_references', 'system_overview', 'validate_brand', 'write_brand',
   ]);
+});
+
+test('system_overview carries the funnel playbook', async () => {
+  const { body } = await call('system_overview');
+  assert.deepEqual(Object.keys(body.recipes).sort(), ['appointment', 'lead-magnet', 'quiz', 'vsl', 'webinar']);
+  assert.ok(body.recipeGuide.appointment.firstAsk.includes('question'));
+  assert.ok(body.designerChecks.some((c: { id: string; q: string }) => c.id === 'hook-story-offer' && c.q.includes('hook, the story and the offer')));
+  assert.equal(body.sections.find((s: { id: string }) => s.id === 'flow').stage, 'offer');
+});
+
+test('scan_funnels refuses a non-web URL before opening a browser', async () => {
+  const res = await client.callTool({ name: 'scan_funnels', arguments: { urls: ['file:///etc/passwd'] } });
+  assert.equal(res.isError, true);
 });
 
 test('system_overview describes the recipe and variants', async () => {
   const { body } = await call('system_overview');
   assert.deepEqual(body.recipes['lead-magnet'], ['hero', 'benefits', 'proof', 'faq', 'capture']);
-  assert.deepEqual(body.sections.find((s: { id: string }) => s.id === 'hero').variants, ['stacked', 'split']);
+  assert.deepEqual(body.sections.find((s: { id: string }) => s.id === 'hero').variants, ['stacked', 'split', 'question']);
 });
 
 test('search_references filters by funnel type', async () => {
-  assert.equal((await call('search_references', { funnel_type: 'appointment' })).body.count, 1);
-  assert.equal((await call('search_references', { funnel_type: 'lead-magnet' })).body.count, 0);
+  // The library may be empty, so add one reference, then check what the filter returns.
+  await call('add_reference', {
+    id: 'search-sample',
+    reference: {
+      name: 'Search sample', source_url: 'https://example.com/', inspected_at: '2026-11-15', status: 'candidate',
+      coverage: { kind: 'full-page', viewports: ['mobile-390'], limitations: [] },
+      tags: { funnel_types: ['appointment'], pattern_types: ['multi-step'], conversion_roles: ['qualification'] },
+      mechanism: { label: 'HYPOTHESIS', statement: 'Test record.' }, evidence: { level: 'visual-only' },
+    },
+  });
+  const { body } = await call('search_references', { funnel_type: 'appointment' });
+  assert.ok(body.count >= 1);
+  assert.equal(body.references.length, body.count);
+  for (const r of body.references) assert.ok(r.data.tags.funnel_types.includes('appointment'), r.id);
+  assert.equal((await call('search_references', { funnel_type: 'no-such-funnel' })).body.count, 0);
 });
 
 test('write_brand saves a valid, distinct client and returns review pages', async () => {

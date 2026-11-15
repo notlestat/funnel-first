@@ -11,7 +11,10 @@
     "test": "node --test test/*.test.ts",
     "mcp": "node mcp/server.ts",
     "capture": "node capture/cli.ts",
-    "app": "node capture/app.ts"
+    "app": "node capture/app.ts",
+    "scan": "node scan/cli.ts",
+    "scan:report": "node scan/cli.ts report",
+    "extract": "node scan/cli.ts extract"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
