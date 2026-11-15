@@ -1,0 +1,756 @@
+{
+  "status": "reconstructed-draft",
+  "urls": [
+    "http://localhost:4421/harbour-physio/"
+  ],
+  "captured_at": "2026-11-13",
+  "fontsHref": "https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Figtree:wght@400;600&display=swap",
+  "customProperties": {
+    "--color-bg": "#F4F7F6",
+    "--color-surface": "#E3ECE9",
+    "--color-text": "#14211E",
+    "--color-muted": "#4A5C57",
+    "--color-accent": "#0F6B5C",
+    "--color-on-accent": "#FFFFFF",
+    "--color-border": "#CBD8D4",
+    "--font-display": "'Instrument Serif', Georgia, serif",
+    "--font-body": "'Figtree', system-ui, sans-serif",
+    "--weight-display": "400",
+    "--size-hero": "clamp(2.75rem, 8vw, 5.5rem)",
+    "--size-heading": "clamp(1.875rem, 4.5vw, 3rem)",
+    "--size-body": "1.0625rem",
+    "--size-small": "0.875rem",
+    "--space-section": "clamp(4rem, 9vw, 6.5rem)",
+    "--space-block": "2rem",
+    "--radius": "6px",
+    "--measure": "70rem"
+  },
+  "samples": [
+    {
+      "role": "page",
+      "property": "background-color",
+      "value": "#F4F7F6",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "page",
+      "property": "color",
+      "value": "#14211E",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "page",
+      "property": "font-family",
+      "value": "Figtree, system-ui, sans-serif",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "page",
+      "property": "font-size",
+      "value": "17px",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h1",
+      "property": "font-family",
+      "value": "\"Instrument Serif\", Georgia, serif",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h1",
+      "property": "font-size",
+      "value": "88px",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h1",
+      "property": "font-weight",
+      "value": "400",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h1",
+      "property": "color",
+      "value": "#14211E",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "font-family",
+      "value": "\"Instrument Serif\", Georgia, serif",
+      "count": 4,
+      "weight": 4,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "font-size",
+      "value": "48px",
+      "count": 4,
+      "weight": 4,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "font-weight",
+      "value": "400",
+      "count": 4,
+      "weight": 4,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "color",
+      "value": "#14211E",
+      "count": 4,
+      "weight": 4,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "font-family",
+      "value": "\"Instrument Serif\", Georgia, serif",
+      "count": 3,
+      "weight": 3,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "font-size",
+      "value": "21.25px",
+      "count": 3,
+      "weight": 3,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "font-weight",
+      "value": "400",
+      "count": 3,
+      "weight": 3,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "color",
+      "value": "#14211E",
+      "count": 3,
+      "weight": 3,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "display",
+      "property": "font-size",
+      "value": "88px",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "display",
+      "property": "font-family",
+      "value": "\"Instrument Serif\", Georgia, serif",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "display",
+      "property": "font-weight",
+      "value": "400",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "color",
+      "value": "#4A5C57",
+      "count": 11,
+      "weight": 646,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "14px",
+      "count": 4,
+      "weight": 152,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "19.125px",
+      "count": 1,
+      "weight": 91,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "color",
+      "value": "#14211E",
+      "count": 4,
+      "weight": 280,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "17px",
+      "count": 10,
+      "weight": 683,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "action",
+      "property": "background-color",
+      "value": "#0F6B5C",
+      "count": 2,
+      "weight": 2,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "action",
+      "property": "color",
+      "value": "#FFFFFF",
+      "count": 2,
+      "weight": 2,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "action",
+      "property": "border-radius",
+      "value": "6px",
+      "count": 2,
+      "weight": 2,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "action",
+      "property": "font-weight",
+      "value": "600",
+      "count": 2,
+      "weight": 2,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "input",
+      "property": "border-color",
+      "value": "#4A5C57",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "input",
+      "property": "border-radius",
+      "value": "6px",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "surface",
+      "property": "background-color",
+      "value": "#E3ECE9",
+      "count": 4,
+      "weight": 571087.4853515625,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "border",
+      "property": "color",
+      "value": "#CBD8D4",
+      "count": 6,
+      "weight": 6,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "border",
+      "property": "color",
+      "value": "#4A5C57",
+      "count": 4,
+      "weight": 4,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "104px",
+      "count": 5,
+      "weight": 5,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "container",
+      "property": "max-width",
+      "value": "1120px",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "page",
+      "property": "background-color",
+      "value": "#F4F7F6",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "page",
+      "property": "color",
+      "value": "#14211E",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "page",
+      "property": "font-family",
+      "value": "Figtree, system-ui, sans-serif",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "page",
+      "property": "font-size",
+      "value": "17px",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h1",
+      "property": "font-family",
+      "value": "\"Instrument Serif\", Georgia, serif",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h1",
+      "property": "font-size",
+      "value": "44px",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h1",
+      "property": "font-weight",
+      "value": "400",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h1",
+      "property": "color",
+      "value": "#14211E",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-family",
+      "value": "\"Instrument Serif\", Georgia, serif",
+      "count": 4,
+      "weight": 4,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-size",
+      "value": "30px",
+      "count": 4,
+      "weight": 4,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-weight",
+      "value": "400",
+      "count": 4,
+      "weight": 4,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "color",
+      "value": "#14211E",
+      "count": 4,
+      "weight": 4,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "font-family",
+      "value": "\"Instrument Serif\", Georgia, serif",
+      "count": 3,
+      "weight": 3,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "font-size",
+      "value": "21.25px",
+      "count": 3,
+      "weight": 3,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "font-weight",
+      "value": "400",
+      "count": 3,
+      "weight": 3,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "color",
+      "value": "#14211E",
+      "count": 3,
+      "weight": 3,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "display",
+      "property": "font-size",
+      "value": "44px",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "display",
+      "property": "font-family",
+      "value": "\"Instrument Serif\", Georgia, serif",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "display",
+      "property": "font-weight",
+      "value": "400",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "color",
+      "value": "#4A5C57",
+      "count": 11,
+      "weight": 646,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "14px",
+      "count": 4,
+      "weight": 152,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "19.125px",
+      "count": 1,
+      "weight": 91,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "color",
+      "value": "#14211E",
+      "count": 4,
+      "weight": 280,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "17px",
+      "count": 10,
+      "weight": 683,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "action",
+      "property": "background-color",
+      "value": "#0F6B5C",
+      "count": 2,
+      "weight": 2,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "action",
+      "property": "color",
+      "value": "#FFFFFF",
+      "count": 2,
+      "weight": 2,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "action",
+      "property": "border-radius",
+      "value": "6px",
+      "count": 2,
+      "weight": 2,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "action",
+      "property": "font-weight",
+      "value": "600",
+      "count": 2,
+      "weight": 2,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "input",
+      "property": "border-color",
+      "value": "#4A5C57",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "input",
+      "property": "border-radius",
+      "value": "6px",
+      "count": 1,
+      "weight": 1,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "surface",
+      "property": "background-color",
+      "value": "#E3ECE9",
+      "count": 4,
+      "weight": 277164.71875,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "border",
+      "property": "color",
+      "value": "#CBD8D4",
+      "count": 6,
+      "weight": 6,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "border",
+      "property": "color",
+      "value": "#4A5C57",
+      "count": 4,
+      "weight": 4,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "64px",
+      "count": 5,
+      "weight": 5,
+      "page": "http://localhost:4421/harbour-physio/",
+      "viewport": "mobile"
+    }
+  ],
+  "limitations": [
+    "http://localhost:4421/harbour-physio/: 1 cross-origin stylesheet(s) could not be read for custom properties.",
+    "Reconstructed from rendered pages. Internal token names, intent and font licences are unknown."
+  ],
+  "proposal": {
+    "tokens": {
+      "color-bg": {
+        "value": "#F4F7F6",
+        "confidence": "measured",
+        "source": "Page background, seen 2× on 1/1 page(s). Matches --color-bg declared by the site"
+      },
+      "color-text": {
+        "value": "#14211E",
+        "confidence": "measured",
+        "source": "Body text colour, seen 2× on 1/1 page(s). Matches --color-text declared by the site"
+      },
+      "font-body": {
+        "value": "Figtree, system-ui, sans-serif",
+        "confidence": "measured",
+        "source": "Body font, seen 2× on 1/1 page(s)"
+      },
+      "color-accent": {
+        "value": "#0F6B5C",
+        "confidence": "measured",
+        "source": "Most common filled button, 4 button(s). Matches --color-accent declared by the site"
+      },
+      "color-on-accent": {
+        "value": "#FFFFFF",
+        "confidence": "measured",
+        "source": "Button text colour, seen 4× on 1/1 page(s). Matches --color-on-accent declared by the site"
+      },
+      "font-display": {
+        "value": "\"Instrument Serif\", Georgia, serif",
+        "confidence": "measured",
+        "source": "Font of the largest text near the top of the page"
+      },
+      "weight-display": {
+        "value": "400",
+        "confidence": "measured",
+        "source": "Weight of the largest text near the top"
+      },
+      "size-hero": {
+        "value": "clamp(2.75rem, 6.11vw, 5.5rem)",
+        "confidence": "measured",
+        "source": "Largest text near the top at 390px (44px) and 1440px (88px)"
+      },
+      "size-heading": {
+        "value": "clamp(1.875rem, 3.33vw, 3rem)",
+        "confidence": "measured",
+        "source": "h2 at 390px (30px) and 1440px (48px)"
+      },
+      "size-body": {
+        "value": "1.0625rem",
+        "confidence": "recurring",
+        "source": "Most common running-text size (17px)"
+      },
+      "size-small": {
+        "value": "0.875rem",
+        "confidence": "inferred",
+        "source": "Most common text smaller than body (14px)"
+      },
+      "color-muted": {
+        "value": "#4A5C57",
+        "confidence": "measured",
+        "source": "Most-used secondary text colour (1292 characters). Matches --color-muted declared by the site"
+      },
+      "color-surface": {
+        "value": "#E3ECE9",
+        "confidence": "measured",
+        "source": "Largest filled area that is not the page background. Matches --color-surface declared by the site"
+      },
+      "color-border": {
+        "value": "#CBD8D4",
+        "confidence": "measured",
+        "source": "Most common divider colour, seen 12×. Matches --color-border declared by the site"
+      },
+      "radius": {
+        "value": "6px",
+        "confidence": "measured",
+        "source": "Button corner radius"
+      },
+      "measure": {
+        "value": "70rem",
+        "confidence": "inferred",
+        "source": "Width of the container around the main heading (1120px)"
+      },
+      "space-section": {
+        "value": "clamp(4rem, 7.22vw, 6.5rem)",
+        "confidence": "recurring",
+        "source": "Section padding at 390px (64px) and 1440px (104px)"
+      },
+      "space-block": {
+        "value": "2rem",
+        "confidence": "default",
+        "source": "No evidence on the page. System default."
+      }
+    },
+    "fontsHref": "https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Figtree:wght@400;600&display=swap",
+    "needsReview": [
+      "size-small: inferred. Most common text smaller than body (14px)",
+      "space-block: default. No evidence on the page. System default.",
+      "measure: inferred. Width of the container around the main heading (1120px)"
+    ],
+    "contrastErrors": []
+  }
+}

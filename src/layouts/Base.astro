@@ -1,0 +1,104 @@
+---
+import { toCssVars, type TokenName } from '../system/tokens';
+
+interface Props {
+  title: string;
+  description: string;
+  tokens: Record<TokenName, string>;
+  fontsHref?: string;
+}
+
+const { title, description, tokens, fontsHref } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" style={toCssVars(tokens)}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {fontsHref && <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />}
+    {fontsHref && <link rel="stylesheet" href={fontsHref} />}
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--size-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .container {
+    width: min(100% - 2rem, var(--measure));
+    margin-inline: auto;
+  }
+  .section {
+    padding-block: var(--space-section);
+  }
+  .section + .section {
+    border-top: 1px solid var(--color-border);
+  }
+  .section-heading {
+    font-size: var(--size-heading);
+    margin-bottom: var(--space-block);
+  }
+  .eyebrow {
+    font-size: var(--size-small);
+    color: var(--color-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .muted {
+    color: var(--color-muted);
+  }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 1.5rem;
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .button:hover {
+    filter: brightness(0.92);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-text);
+    outline-offset: 3px;
+  }
+</style>

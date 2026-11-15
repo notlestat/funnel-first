@@ -1,0 +1,63 @@
+---
+interface Props {
+  content: { heading: string; items: { title: string; body: string }[] };
+  variant: 'cards' | 'list';
+}
+const { content, variant } = Astro.props;
+const { heading, items } = content;
+---
+
+<section class="section" aria-labelledby="benefits-heading">
+  <div class="container">
+    <h2 id="benefits-heading" class="section-heading">{heading}</h2>
+    <ul class={variant} role="list">
+      {
+        items.map((item) => (
+          <li class="item">
+            <h3>{item.title}</h3>
+            <p class="muted">{item.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 1rem;
+  }
+  .cards .item {
+    padding: 1.5rem;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+  }
+  .item h3 {
+    font-size: 1.25em;
+    margin-bottom: 0.5rem;
+  }
+  .list {
+    counter-reset: item;
+    max-width: 48rem;
+  }
+  .list .item {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    counter-increment: item;
+  }
+  .list .item::before {
+    content: counter(item, decimal-leading-zero);
+    grid-row: span 2;
+    font-family: var(--font-display);
+    color: var(--color-muted);
+  }
+</style>

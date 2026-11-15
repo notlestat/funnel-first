@@ -1,0 +1,88 @@
+{
+  "name": "Harbour Physio",
+  "fictional": true,
+  "fontsHref": "https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Figtree:wght@400;600&display=swap",
+  "tokens": {
+    "color-bg": "#F4F7F6",
+    "color-surface": "#E3ECE9",
+    "color-text": "#14211E",
+    "color-muted": "#4A5C57",
+    "color-accent": "#0F6B5C",
+    "color-on-accent": "#FFFFFF",
+    "color-border": "#CBD8D4",
+    "font-display": "'Instrument Serif', Georgia, serif",
+    "font-body": "'Figtree', system-ui, sans-serif",
+    "weight-display": "400",
+    "size-hero": "clamp(2.75rem, 8vw, 5.5rem)",
+    "size-heading": "clamp(1.875rem, 4.5vw, 3rem)",
+    "size-body": "1.0625rem",
+    "size-small": "0.875rem",
+    "space-section": "clamp(4rem, 9vw, 6.5rem)",
+    "space-block": "2rem",
+    "radius": "6px",
+    "measure": "70rem"
+  },
+  "recipe": "lead-magnet",
+  "layout": {
+    "hero": "split",
+    "benefits": "cards"
+  },
+  "seo": {
+    "title": "The desk worker’s back guide | Harbour Physio",
+    "description": "A free 10-minute routine for lower back stiffness from sitting all day, with photos for every movement."
+  },
+  "content": {
+    "hero": {
+      "eyebrow": "Free guide from our physios",
+      "headline": "Ease a stiff back in ten minutes a day",
+      "subhead": "Six movements for people who sit at a desk, with a photo and a common mistake for each one.",
+      "cta": "Get the free guide"
+    },
+    "benefits": {
+      "heading": "Inside the guide",
+      "items": [
+        {
+          "title": "A 10-minute routine",
+          "body": "Six movements you can do beside your desk. No mat or equipment."
+        },
+        {
+          "title": "Photos for every step",
+          "body": "See the start and end position, plus the mistake most people make."
+        },
+        {
+          "title": "When to see someone",
+          "body": "The signs that mean stretching is not enough and you should book an assessment."
+        }
+      ]
+    },
+    "proof": {
+      "heading": "What patients say",
+      "quotes": [
+        {
+          "quote": "A real patient quote goes here.",
+          "source": "First name, with written permission.",
+          "placeholder": true
+        }
+      ]
+    },
+    "faq": {
+      "heading": "Common questions",
+      "items": [
+        {
+          "q": "Is this a replacement for treatment?",
+          "a": "No. It is a starting point. If pain gets worse or spreads, stop and book an assessment."
+        },
+        {
+          "q": "How soon will I notice a difference?",
+          "a": "It varies from person to person. The guide explains what to track so you can tell."
+        }
+      ]
+    },
+    "capture": {
+      "heading": "Get the back guide",
+      "body": "We will email you the PDF.",
+      "button": "Email me the guide",
+      "consent": "Also send me the clinic’s monthly newsletter."
+    }
+  }
+}

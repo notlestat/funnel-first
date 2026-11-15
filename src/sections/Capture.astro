@@ -1,0 +1,104 @@
+---
+interface Props {
+  content: { heading: string; body: string; button: string; consent: string };
+}
+const { heading, body, button, consent } = Astro.props.content;
+---
+
+<section class="section capture" id="capture" aria-labelledby="capture-heading">
+  <div class="container panel">
+    <h2 id="capture-heading" class="section-heading">{heading}</h2>
+    <p class="muted intro">{body}</p>
+    <form data-capture novalidate>
+      <label for="email">Email address</label>
+      <div class="row">
+        <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-error" />
+        <button class="button" type="submit">{button}</button>
+      </div>
+      <p id="email-error" class="error" hidden>Enter an email address, like name@example.com</p>
+      <label class="consent">
+        <input type="checkbox" name="consent" />
+        <span>{consent}</span>
+      </label>
+      <p class="status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  // Demo only: there is no backend yet, so this must never claim a sign-up worked.
+  for (const form of document.querySelectorAll<HTMLFormElement>('form[data-capture]')) {
+    const email = form.querySelector<HTMLInputElement>('input[type="email"]')!;
+    const error = form.querySelector<HTMLElement>('.error')!;
+    const status = form.querySelector<HTMLElement>('.status')!;
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const valid = email.checkValidity();
+      error.hidden = valid;
+      email.setAttribute('aria-invalid', String(!valid));
+      if (!valid) {
+        email.focus();
+        status.textContent = '';
+        return;
+      }
+      status.textContent = 'Demo only: nothing was sent.';
+    });
+  }
+</script>
+
+<style>
+  .panel {
+    padding: clamp(1.5rem, 5vw, 3rem);
+    background: var(--color-surface);
+    border-radius: var(--radius);
+  }
+  .intro {
+    max-width: 48ch;
+    margin: -0.5rem 0 1.5rem;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  input[type='email'] {
+    flex: 1 1 16rem;
+    min-height: 48px;
+    padding: 0 1rem;
+    border: 1px solid var(--color-muted);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font: inherit;
+  }
+  input[aria-invalid='true'] {
+    border-width: 2px;
+  }
+  .error {
+    margin-top: 0.5rem;
+    font-size: var(--size-small);
+    font-weight: 600;
+  }
+  .consent {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    margin-top: 1rem;
+    font-weight: 400;
+    font-size: var(--size-small);
+    color: var(--color-muted);
+  }
+  .consent input {
+    margin-top: 0.3em;
+    accent-color: var(--color-accent);
+  }
+  .status:not(:empty) {
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+</style>

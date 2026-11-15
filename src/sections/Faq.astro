@@ -1,0 +1,39 @@
+---
+interface Props {
+  content: { heading: string; items: { q: string; a: string }[] };
+}
+const { heading, items } = Astro.props.content;
+---
+
+<section class="section" aria-labelledby="faq-heading">
+  <div class="container">
+    <h2 id="faq-heading" class="section-heading">{heading}</h2>
+    <div class="faq">
+      {
+        items.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p class="muted">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    max-width: 44rem;
+  }
+  details {
+    border-bottom: 1px solid var(--color-border);
+  }
+  summary {
+    padding-block: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  details p {
+    padding-bottom: 1rem;
+  }
+</style>

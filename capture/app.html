@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brand capture</title>
+<style>
+  :root {
+    --bg: #f6f6f4; --panel: #ffffff; --ink: #18181b; --muted: #5b5b63; --line: #dedede; --focus: #2457d6;
+    --measured: #146c43; --recurring: #3a5a9c; --inferred: #8a5a00; --default: #8d1f1f; --edited: #5b3cc4;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, sans-serif; }
+  main { max-width: 76rem; margin: 0 auto; padding: 2rem 1rem 5rem; }
+  h1 { font-size: 1.5rem; margin: 0; letter-spacing: -0.01em; }
+  h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 0.75rem; }
+  p { margin: 0; }
+  .lede { color: var(--muted); margin-top: 0.25rem; max-width: 46rem; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 1.25rem; min-width: 0; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  label { font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.3rem; }
+  input[type=text], input[type=url] { width: 100%; font: inherit; padding: 0.55rem 0.7rem; border: 1px solid #c8c8cc; border-radius: 6px; background: #fff; color: var(--ink); min-width: 0; }
+  button { font: inherit; font-weight: 600; cursor: pointer; border-radius: 6px; padding: 0.6rem 1rem; border: 1px solid var(--ink); background: var(--ink); color: #fff; }
+  button.secondary { background: #fff; color: var(--ink); border-color: #c8c8cc; }
+  button:disabled { opacity: 0.5; cursor: progress; }
+  .hint { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
+
+  form { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr) auto; gap: 1rem; align-items: end; margin-top: 1.5rem; }
+  details.more { grid-column: 2 / 3; }
+  details.more summary { cursor: pointer; font-size: 0.85rem; color: var(--muted); }
+  details.more input { margin-top: 0.5rem; }
+  #status { margin-top: 1rem; min-height: 1.5rem; font-size: 0.9rem; white-space: pre-line; }
+  #status.error { color: var(--default); }
+
+  #results { display: none; gap: 1.25rem; margin-top: 1rem; grid-template-columns: minmax(0, 1fr) minmax(0, 26rem); align-items: start; }
+  #results.shown { display: grid; }
+  .stack { display: grid; gap: 1.25rem; min-width: 0; }
+  .sticky { position: sticky; top: 1rem; }
+
+  .summary { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; align-items: baseline; }
+  .counts { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .badge { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.45rem; border-radius: 99px; border: 1px solid currentColor; white-space: nowrap; }
+  .badge.measured { color: var(--measured); } .badge.recurring { color: var(--recurring); }
+  .badge.inferred { color: var(--inferred); } .badge.default { color: var(--default); } .badge.edited { color: var(--edited); }
+  .legend { font-size: 0.8rem; color: var(--muted); margin-top: 0.6rem; }
+  .limits { margin-top: 0.75rem; font-size: 0.85rem; color: var(--muted); }
+  .limits ul { margin: 0.4rem 0 0; padding-left: 1.1rem; }
+
+  .row { display: grid; grid-template-columns: minmax(0, 9rem) minmax(0, 1fr); gap: 0.25rem 1rem; padding: 0.75rem 0; border-top: 1px solid var(--line); }
+  .row:first-of-type { border-top: 0; }
+  .row .name { font: 600 0.82rem ui-monospace, SFMono-Regular, Menlo, monospace; padding-top: 0.55rem; overflow-wrap: anywhere; }
+  .row .control { display: flex; gap: 0.5rem; align-items: center; min-width: 0; }
+  .row .meta { grid-column: 2; display: flex; gap: 0.5rem; align-items: baseline; font-size: 0.8rem; color: var(--muted); min-width: 0; }
+  .row .meta span:last-child { overflow-wrap: anywhere; }
+  .row.selected { background: #f1f4fd; margin: 0 -0.75rem; padding-left: 0.75rem; padding-right: 0.75rem; border-radius: 6px; }
+  .swatch { width: 2.4rem; height: 2.4rem; flex: none; padding: 0; border-radius: 6px; border: 1px solid #0003; }
+  input[type=color] { width: 2.4rem; height: 2.4rem; flex: none; padding: 0; border: 1px solid #c8c8cc; border-radius: 6px; background: #fff; cursor: pointer; }
+
+  .palette { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip { display: grid; gap: 0.2rem; justify-items: center; background: none; border: 0; padding: 0.2rem; color: var(--ink); font-weight: 500; }
+  .chip span:first-child { width: 2.6rem; height: 2.6rem; border-radius: 6px; border: 1px solid #0003; }
+  .chip span:last-child { font: 0.68rem ui-monospace, Menlo, monospace; }
+  .target { font-size: 0.85rem; margin-bottom: 0.75rem; }
+  .target code { font-weight: 700; }
+
+  /* The preview uses only the captured tokens, the same variables a brand page uses. */
+  .preview { background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); font-size: var(--size-body); border-radius: 10px; border: 1px solid var(--line); overflow: hidden; }
+  .preview .inner { padding: 2rem 1.5rem; }
+  .preview .eyebrow { color: var(--color-muted); font-size: var(--size-small); margin-bottom: 0.5rem; }
+  .preview .hero { font-family: var(--font-display); font-weight: var(--weight-display); font-size: min(var(--size-hero), 2.6rem); line-height: 1.05; margin: 0 0 0.75rem; overflow-wrap: anywhere; }
+  .preview .cta { display: inline-block; margin-top: 1.25rem; background: var(--color-accent); color: var(--color-on-accent); border-radius: var(--radius); padding: 0.7rem 1.1rem; font-weight: 600; border: 0; }
+  .preview .card { background: var(--color-surface); border-top: 1px solid var(--color-border); padding: 1.25rem 1.5rem; }
+  .preview .card h3 { font-family: var(--font-display); font-weight: var(--weight-display); font-size: min(var(--size-heading), 1.6rem); margin: 0 0 0.3rem; }
+  .preview .card p { color: var(--color-muted); }
+
+  #contrast ul { margin: 0; padding-left: 1.1rem; color: var(--default); font-size: 0.85rem; }
+  #contrast .ok { color: var(--measured); font-size: 0.85rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  #saved { margin-top: 0.75rem; font-size: 0.85rem; white-space: pre-line; }
+
+  @media (max-width: 900px) {
+    form { grid-template-columns: minmax(0, 1fr); }
+    details.more { grid-column: auto; }
+    #results.shown { grid-template-columns: minmax(0, 1fr); }
+    .sticky { position: static; }
+  }
+  @media (max-width: 520px) {
+    .row { grid-template-columns: minmax(0, 1fr); }
+    .row .meta { grid-column: 1; }
+    .row .name { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Brand capture</h1>
+    <p class="lede">Paste a client's live site. Chrome reads the styles it actually renders at 1440px and 390px and proposes tokens for the conversion system. Check each one, fix what is wrong, then save.</p>
+  </header>
+
+  <form id="capture">
+    <div>
+      <label for="client">Client id</label>
+      <input id="client" type="text" required pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="acme-dental" autocomplete="off" spellcheck="false" />
+    </div>
+    <div>
+      <label for="url1">Main landing page</label>
+      <input id="url1" type="url" required placeholder="https://example.com/" />
+    </div>
+    <button id="go" type="submit">Capture</button>
+    <details class="more">
+      <summary>Add up to two pages that use different templates</summary>
+      <input id="url2" type="url" placeholder="https://example.com/pricing" aria-label="Second page URL" />
+      <input id="url3" type="url" placeholder="https://example.com/contact" aria-label="Third page URL" />
+      <p class="hint">More pages turn "recurring" values into "measured" ones.</p>
+    </details>
+  </form>
+  <p id="status" role="status" aria-live="polite"></p>
+
+  <div id="results">
+    <div class="stack">
+      <section class="panel" aria-labelledby="h-summary">
+        <h2 id="h-summary">Capture</h2>
+        <div class="summary">
+          <div style="min-width:12rem;flex:1">
+            <label for="brand-name">Brand name</label>
+            <input id="brand-name" type="text" />
+          </div>
+          <div class="counts" id="counts"></div>
+        </div>
+        <p class="legend"><b>measured</b>: on every page at both widths, or matches a CSS variable the site declares · <b>recurring</b>: seen more than once · <b>inferred</b>: best guess, check it · <b>default</b>: no evidence, system fallback</p>
+        <details class="limits"><summary>What this capture can't know</summary><ul id="limits"></ul></details>
+      </section>
+
+      <section class="panel" aria-labelledby="h-colour">
+        <h2 id="h-colour">Colour</h2>
+        <div id="colour-rows"></div>
+      </section>
+      <section class="panel" aria-labelledby="h-type">
+        <h2 id="h-type">Type</h2>
+        <div id="type-rows"></div>
+      </section>
+      <section class="panel" aria-labelledby="h-space">
+        <h2 id="h-space">Space and shape</h2>
+        <div id="space-rows"></div>
+      </section>
+    </div>
+
+    <div class="stack sticky">
+      <section aria-labelledby="h-preview">
+        <h2 id="h-preview">Preview</h2>
+        <div class="preview" id="preview">
+          <div class="inner">
+            <p class="eyebrow">Free guide</p>
+            <p class="hero" id="preview-hero">Your headline in their type</p>
+            <p>Body copy in the captured body font and size, so you can judge the pairing.</p>
+            <span class="cta">Primary action</span>
+          </div>
+          <div class="card">
+            <h3>A section heading</h3>
+            <p>Muted text on the surface colour, above a border.</p>
+          </div>
+        </div>
+        <p class="hint" id="font-note" hidden>Their fonts aren't on Google Fonts, so they may be self-hosted or licensed. The preview falls back to the next font in each stack. Ask the client before using them.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="h-palette">
+        <h2 id="h-palette">Colours on their site</h2>
+        <p class="target" id="target"></p>
+        <div class="palette" id="palette"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="h-contrast" id="contrast">
+        <h2 id="h-contrast">Contrast</h2>
+        <div id="contrast-body" aria-live="polite"></div>
+        <div class="actions">
+          <button id="save" type="button">Save tokens</button>
+          <button id="apply" type="button" class="secondary" hidden>Save and apply to brand</button>
+          <button id="dl-css" type="button" class="secondary" hidden>tokens.css</button>
+          <button id="dl-json" type="button" class="secondary" hidden>tokens.json</button>
+        </div>
+        <p id="saved" aria-live="polite"></p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const groups = {
+  'colour-rows': ['color-bg', 'color-surface', 'color-text', 'color-muted', 'color-accent', 'color-on-accent', 'color-border'],
+  'type-rows': ['font-display', 'font-body', 'weight-display', 'size-hero', 'size-heading', 'size-body', 'size-small'],
+  'space-rows': ['space-section', 'space-block', 'radius', 'measure'],
+};
+const isColour = (name) => name.startsWith('color-');
+const hexPattern = /^#[0-9A-F]{6}$/i;
+
+let state = null; // { id, proposal, values, palette, fontsHref, brand, selected, exports }
+
+async function post(path, body) {
+  const res = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  const data = await res.json().catch(() => ({ message: `HTTP ${res.status}` }));
+  if (!res.ok) throw new Error(data.message);
+  return data;
+}
+
+function setStatus(text, isError = false) {
+  $('status').textContent = text;
+  $('status').classList.toggle('error', isError);
+}
+
+// Capture
+$('capture').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const id = $('client').value.trim();
+  const urls = ['url1', 'url2', 'url3'].map((u) => $(u).value.trim()).filter(Boolean);
+  $('go').disabled = true;
+  const started = Date.now();
+  const tick = () => setStatus(`Opening ${urls.length} page${urls.length > 1 ? 's' : ''} in Chrome at desktop and phone width… ${Math.round((Date.now() - started) / 1000)}s`);
+  tick();
+  const timer = setInterval(tick, 1000);
+  try {
+    const data = await post('/api/capture', { id, urls });
+    clearInterval(timer);
+    show(id, data);
+    setStatus(`Captured in ${Math.round((Date.now() - started) / 1000)}s. Evidence saved to ${data.file}.`);
+  } catch (error) {
+    clearInterval(timer);
+    setStatus(error.message, true);
+  } finally {
+    $('go').disabled = false;
+  }
+});
+
+function show(id, data) {
+  const values = Object.fromEntries(Object.entries(data.tokens).map(([k, t]) => [k, t.value]));
+  state = { id, proposal: data.tokens, values, palette: data.palette, fontsHref: data.fontsHref, brand: data.brand, selected: 'color-accent', exports: null };
+  $('brand-name').value = data.name;
+
+  const counts = {};
+  for (const t of Object.values(data.tokens)) counts[t.confidence] = (counts[t.confidence] ?? 0) + 1;
+  $('counts').replaceChildren(...['measured', 'recurring', 'inferred', 'default'].filter((c) => counts[c]).map((c) => badge(c, `${counts[c]} ${c}`)));
+  $('limits').replaceChildren(...data.limitations.map((l) => Object.assign(document.createElement('li'), { textContent: l })));
+
+  // Load the client's Google Fonts, if they use them, so the preview shows the real type.
+  document.querySelectorAll('link[data-brand-font]').forEach((l) => l.remove());
+  if (data.fontsHref) {
+    const link = Object.assign(document.createElement('link'), { rel: 'stylesheet', href: data.fontsHref });
+    link.dataset.brandFont = '';
+    document.head.append(link);
+  }
+  $('font-note').hidden = Boolean(data.fontsHref);
+
+  for (const [container, names] of Object.entries(groups)) $(container).replaceChildren(...names.map(row));
+  renderPalette();
+  $('apply').hidden = !data.brand;
+  $('dl-css').hidden = $('dl-json').hidden = true;
+  $('saved').textContent = '';
+  $('results').classList.add('shown');
+  update();
+}
+
+function badge(kind, text = kind) {
+  return Object.assign(document.createElement('span'), { className: `badge ${kind}`, textContent: text });
+}
+
+function row(name) {
+  const t = state.proposal[name];
+  const el = document.createElement('div');
+  el.className = 'row';
+  el.dataset.token = name;
+  const label = Object.assign(document.createElement('label'), { className: 'name', htmlFor: `t-${name}`, textContent: name });
+  const control = Object.assign(document.createElement('div'), { className: 'control' });
+  const text = Object.assign(document.createElement('input'), { type: 'text', id: `t-${name}`, value: t.value, spellcheck: false });
+
+  if (isColour(name)) {
+    const pick = Object.assign(document.createElement('input'), { type: 'color', value: hexPattern.test(t.value) ? t.value : '#000000' });
+    pick.setAttribute('aria-label', `Pick ${name}`);
+    pick.addEventListener('input', () => { text.value = pick.value.toUpperCase(); edit(name, text.value); });
+    text.addEventListener('input', () => { if (hexPattern.test(text.value)) pick.value = text.value; edit(name, text.value); });
+    const select = Object.assign(document.createElement('button'), { type: 'button', className: 'secondary', textContent: 'Swap' });
+    select.setAttribute('aria-label', `Swap ${name} for a colour from their site`);
+    select.addEventListener('click', () => { state.selected = name; renderPalette(); $('palette').querySelector('button')?.focus(); });
+    control.append(pick, text, select);
+  } else {
+    text.addEventListener('input', () => edit(name, text.value));
+    control.append(text);
+  }
+  text.addEventListener('focus', () => { if (isColour(name)) { state.selected = name; renderPalette(); } });
+
+  const meta = Object.assign(document.createElement('div'), { className: 'meta' });
+  meta.append(badge(t.confidence), Object.assign(document.createElement('span'), { textContent: t.source }));
+  el.append(label, control, meta);
+  return el;
+}
+
+function edit(name, value) {
+  state.values[name] = value.trim();
+  const original = state.proposal[name];
+  const meta = document.querySelector(`[data-token="${name}"] .meta`);
+  const edited = state.values[name] !== original.value;
+  meta.firstChild.replaceWith(badge(edited ? 'edited' : original.confidence));
+  meta.lastChild.textContent = edited ? `Was ${original.value} (${original.confidence}). ${original.source}` : original.source;
+  update();
+}
+
+function renderPalette() {
+  document.querySelectorAll('.row.selected').forEach((r) => r.classList.remove('selected'));
+  document.querySelector(`[data-token="${state.selected}"]`)?.classList.add('selected');
+  const target = $('target');
+  target.replaceChildren('Click a colour to use it for ', Object.assign(document.createElement('code'), { textContent: state.selected }), '.');
+  $('palette').replaceChildren(...state.palette.map((c) => {
+    const chip = Object.assign(document.createElement('button'), { type: 'button', className: 'chip' });
+    chip.title = `${c.value}, seen ${c.count}× as ${c.roles.join(', ')}`;
+    chip.setAttribute('aria-label', `Use ${c.value} for ${state.selected}. Seen ${c.count} times as ${c.roles.join(', ')}`);
+    const sw = document.createElement('span');
+    sw.style.background = c.value;
+    chip.append(sw, Object.assign(document.createElement('span'), { textContent: c.value }));
+    chip.addEventListener('click', () => {
+      const input = $(`t-${state.selected}`);
+      input.value = c.value;
+      input.previousElementSibling.value = c.value;
+      edit(state.selected, c.value);
+    });
+    return chip;
+  }));
+}
+
+// Apply tokens to the preview and re-check contrast (debounced: the server owns the rules).
+let checkTimer;
+function update() {
+  const preview = $('preview');
+  for (const [name, value] of Object.entries(state.values)) preview.style.setProperty(`--${name}`, value);
+  state.exports = null;
+  $('dl-css').hidden = $('dl-json').hidden = true;
+  clearTimeout(checkTimer);
+  checkTimer = setTimeout(async () => {
+    try {
+      const { contrastErrors } = await post('/api/check', { tokens: state.values });
+      renderContrast(contrastErrors);
+    } catch (error) {
+      renderContrast([error.message]);
+    }
+  }, 250);
+}
+
+function renderContrast(errors) {
+  const body = $('contrast-body');
+  if (!errors.length) {
+    body.replaceChildren(Object.assign(document.createElement('p'), { className: 'ok', textContent: 'Every text and button pair passes the system’s contrast rules.' }));
+  } else {
+    const list = document.createElement('ul');
+    list.append(...errors.map((e) => Object.assign(document.createElement('li'), { textContent: e })));
+    body.replaceChildren(list);
+  }
+  $('save').disabled = $('apply').disabled = errors.length > 0;
+}
+
+// Save
+async function save(applyToBrand) {
+  $('saved').textContent = 'Saving…';
+  try {
+    const data = await post('/api/save', { id: state.id, name: $('brand-name').value, tokens: state.values, fontsHref: state.fontsHref, applyToBrand });
+    state.exports = data;
+    const lines = [`Saved to the capture record${data.edited.length ? ` with ${data.edited.length} edit(s): ${data.edited.join(', ')}` : ', no edits'}.`];
+    if (data.applied) lines.push(`Applied to ${data.applied.file}. Review ${data.applied.review.join(' and ')} on the Astro dev server.`, ...data.applied.warnings.map((w) => `Warning: ${w}`));
+    else if (!state.brand) lines.push('No brand file yet. Ask the agent to draft one with these tokens and the client’s copy.');
+    $('saved').textContent = lines.join('\n');
+    $('dl-css').hidden = $('dl-json').hidden = false;
+  } catch (error) {
+    $('saved').textContent = error.message;
+  }
+}
+$('save').addEventListener('click', () => save(false));
+$('apply').addEventListener('click', () => save(true));
+
+function download(filename, text, type) {
+  const url = URL.createObjectURL(new Blob([text], { type }));
+  Object.assign(document.createElement('a'), { href: url, download: filename }).click();
+  URL.revokeObjectURL(url);
+}
+$('dl-css').addEventListener('click', () => download(`${state.id}-tokens.css`, state.exports.css, 'text/css'));
+$('dl-json').addEventListener('click', () => download(`${state.id}-tokens.json`, JSON.stringify(state.exports.json, null, 2), 'application/json'));
+</script>
+</body>
+</html>

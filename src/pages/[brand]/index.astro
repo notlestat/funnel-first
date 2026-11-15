@@ -1,0 +1,43 @@
+---
+// A client's landing page. This file never changes per client: it reads
+// the brand file, checks it, and assembles sections in recipe order.
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Hero from '../../sections/Hero.astro';
+import Benefits from '../../sections/Benefits.astro';
+import Proof from '../../sections/Proof.astro';
+import Faq from '../../sections/Faq.astro';
+import Capture from '../../sections/Capture.astro';
+import { recipes } from '../../system/sections';
+import { assertBrandPasses } from '../../system/rules';
+
+export async function getStaticPaths() {
+  const brands = await getCollection('brands');
+  return brands.map((brand) => ({ params: { brand: brand.id }, props: { brand } }));
+}
+
+const { brand } = Astro.props as { brand: CollectionEntry<'brands'> };
+const { tokens, content, layout, seo, fontsHref, recipe } = brand.data;
+assertBrandPasses(brand.id, tokens);
+---
+
+<Base title={seo.title} description={seo.description} tokens={tokens} fontsHref={fontsHref}>
+  <main>
+    {
+      recipes[recipe].map((id) => {
+        switch (id) {
+          case 'hero':
+            return <Hero content={content.hero} variant={layout.hero} />;
+          case 'benefits':
+            return <Benefits content={content.benefits} variant={layout.benefits} />;
+          case 'proof':
+            return <Proof content={content.proof} />;
+          case 'faq':
+            return <Faq content={content.faq} />;
+          case 'capture':
+            return <Capture content={content.capture} />;
+        }
+      })
+    }
+  </main>
+</Base>

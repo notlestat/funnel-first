@@ -1,0 +1,56 @@
+---
+interface Props {
+  content: { heading: string; quotes: { quote: string; source: string; placeholder: boolean }[] };
+}
+const { heading, quotes } = Astro.props.content;
+---
+
+<section class="section" aria-labelledby="proof-heading">
+  <div class="container">
+    <h2 id="proof-heading" class="section-heading">{heading}</h2>
+    <div class="quotes">
+      {
+        quotes.map((q) => (
+          <figure class:list={['quote', { placeholder: q.placeholder }]}>
+            {q.placeholder && <p class="flag">Placeholder: the client needs to supply this</p>}
+            <blockquote>{q.quote}</blockquote>
+            <figcaption class="muted">{q.source}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .quotes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 1.5rem;
+  }
+  .quote {
+    margin: 0;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--color-accent);
+  }
+  blockquote {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-display);
+    font-size: 1.25em;
+    line-height: 1.35;
+  }
+  figcaption {
+    font-size: var(--size-small);
+  }
+  .placeholder {
+    border-left-style: dashed;
+  }
+  .flag {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    padding: 0.125rem 0.5rem;
+    border: 1px dashed var(--color-muted);
+    font-size: var(--size-small);
+    color: var(--color-muted);
+  }
+</style>

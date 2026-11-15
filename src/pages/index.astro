@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+const brands = await getCollection('brands');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Conversion system</title>
+    <meta name="description" content="Brands built from the conversion system." />
+  </head>
+  <body>
+    <main>
+      <h1>Brands</h1>
+      <ul>
+        {
+          brands.map((b) => (
+            <li>
+              {b.data.name}
+              {b.data.fictional && ' (fictional)'}: <a href={`/${b.id}/`}>landing page</a> ·{' '}
+              <a href={`/${b.id}/system`}>design system</a>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </body>
+</html>
+
+<style>
+  body {
+    font: 16px/1.6 system-ui, sans-serif;
+    max-width: 40rem;
+    margin: 4rem auto;
+    padding: 0 1rem;
+  }
+</style>

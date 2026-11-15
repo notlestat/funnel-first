@@ -1,0 +1,47 @@
+---
+interface Props {
+  content: { eyebrow: string; headline: string; subhead: string; cta: string };
+  variant: 'stacked' | 'split';
+}
+const { content, variant } = Astro.props;
+const { eyebrow, headline, subhead, cta } = content;
+---
+
+<header class={`section hero ${variant}`}>
+  <div class="container layout">
+    <div>
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{headline}</h1>
+    </div>
+    <div>
+      <p class="subhead muted">{subhead}</p>
+      <a class="button" href="#capture">{cta}</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .split .layout {
+    display: grid;
+    gap: 1rem 3rem;
+    align-items: end;
+  }
+  @media (min-width: 52rem) {
+    .split .layout {
+      grid-template-columns: 1.4fr 1fr;
+    }
+    .split h1 {
+      margin-bottom: 0;
+    }
+  }
+  .hero h1 {
+    font-size: var(--size-hero);
+    max-width: 16ch;
+    margin-block: 1rem 1.25rem;
+  }
+  .subhead {
+    max-width: 52ch;
+    margin-bottom: 2rem;
+    font-size: 1.125em;
+  }
+</style>

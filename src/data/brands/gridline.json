@@ -1,0 +1,67 @@
+{
+  "name": "Gridline",
+  "fictional": true,
+  "fontsHref": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Space+Grotesk:wght@600&display=swap",
+  "tokens": {
+    "color-bg": "#FFFFFF",
+    "color-surface": "#F2F4F5",
+    "color-text": "#0E1113",
+    "color-muted": "#4F575D",
+    "color-accent": "#1F4BFF",
+    "color-on-accent": "#FFFFFF",
+    "color-border": "#D7DCE0",
+    "font-display": "'Space Grotesk', system-ui, sans-serif",
+    "font-body": "'IBM Plex Sans', system-ui, sans-serif",
+    "weight-display": "600",
+    "size-hero": "clamp(2.25rem, 6vw, 4rem)",
+    "size-heading": "clamp(1.5rem, 3.5vw, 2.25rem)",
+    "size-body": "1rem",
+    "size-small": "0.8125rem",
+    "space-section": "clamp(3.5rem, 8vw, 6rem)",
+    "space-block": "1.75rem",
+    "radius": "2px",
+    "measure": "72rem"
+  },
+  "recipe": "lead-magnet",
+  "layout": { "hero": "split", "benefits": "list" },
+  "seo": {
+    "title": "Month-end close checklist | Gridline",
+    "description": "A free checklist for finance teams that want to close the books in fewer days, with every task, owner and deadline in one sheet."
+  },
+  "content": {
+    "hero": {
+      "eyebrow": "Free checklist for finance teams",
+      "headline": "Close the month in five days, not ten",
+      "subhead": "Every task, owner and deadline for a clean month-end close, in one spreadsheet you can copy today.",
+      "cta": "Download the checklist"
+    },
+    "benefits": {
+      "heading": "What you get",
+      "items": [
+        { "title": "42 close tasks, in order", "body": "Grouped by day, from cut-off to sign-off, so nothing waits on something else." },
+        { "title": "An owner column", "body": "Assign each task once and reuse the sheet every month." },
+        { "title": "A review checklist", "body": "The reconciliations and checks to finish before the numbers go to leadership." }
+      ]
+    },
+    "proof": {
+      "heading": "Used by finance teams",
+      "quotes": [
+        { "quote": "A real quote from a finance lead goes here.", "source": "Name, title, company. Needs written permission.", "placeholder": true }
+      ]
+    },
+    "faq": {
+      "heading": "Before you download",
+      "items": [
+        { "q": "What format is it?", "a": "A Google Sheet and an Excel file. Use whichever your team already works in." },
+        { "q": "Does it work for small teams?", "a": "Yes. Delete the tasks that don't apply. The order still holds." },
+        { "q": "Will you call me?", "a": "No. You get the file by email. Nobody from sales follows up unless you ask." }
+      ]
+    },
+    "capture": {
+      "heading": "Get the close checklist",
+      "body": "Enter your work email and we'll send both versions.",
+      "button": "Send the checklist",
+      "consent": "Send me the monthly finance ops newsletter too."
+    }
+  }
+}

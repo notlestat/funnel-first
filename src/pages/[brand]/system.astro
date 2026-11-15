@@ -1,0 +1,206 @@
+---
+// The client's conversion-first design system sheet, generated from the brand file.
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { recipes, sections } from '../../system/sections';
+import { checkContrast } from '../../system/rules';
+import { tokenNames } from '../../system/tokens';
+
+export async function getStaticPaths() {
+  const brands = await getCollection('brands');
+  return brands.map((brand) => ({ params: { brand: brand.id }, props: { brand } }));
+}
+
+const { brand } = Astro.props as { brand: CollectionEntry<'brands'> };
+const { name, tokens, fontsHref, recipe, layout, content, fictional } = brand.data;
+const references = await getCollection('references');
+const capture = (await getCollection('captures')).find((c) => c.id === brand.id)?.data;
+const evidence = (t: string) => capture?.proposal.tokens[t];
+const contrastResults = checkContrast(tokens);
+const colours = tokenNames.filter((t) => t.startsWith('color-'));
+const placeholders = content.proof.quotes.filter((q) => q.placeholder).length;
+const variants: Record<string, string> = layout;
+---
+
+<Base title={`${name} design system`} description={`Conversion-first design system for ${name}.`} tokens={tokens} fontsHref={fontsHref}>
+  <main class="container sheet">
+    <header>
+      <p class="eyebrow">Design system{fictional && ' · fictional sample brand'}</p>
+      <h1>{name}</h1>
+      <p class="muted">
+        Recipe: {recipe}. <a href={`/${brand.id}/`}>View the landing page</a>
+      </p>
+      <p class="muted small">
+        Download tokens: <a href={`/${brand.id}/tokens.json`}>JSON (DTCG)</a> · <a href={`/${brand.id}/tokens.css`}>CSS</a>
+      </p>
+      {
+        capture && (
+          <p class="muted small">
+            Captured from {capture.urls.join(', ')} on {capture.captured_at}. A reconstructed draft: values were read from the
+            rendered pages, not from the client's source files.
+          </p>
+        )
+      }
+    </header>
+
+    <section aria-labelledby="launch">
+      <h2 id="launch">Launch readiness</h2>
+      <ul class="checks" role="list">
+        <li>{contrastResults.every((r) => r.pass) ? 'Pass' : 'Fail'}: colour contrast (WCAG AA)</li>
+        <li>{placeholders === 0 ? 'Pass' : 'Waiting'}: proof, {placeholders} placeholder quote{placeholders === 1 ? '' : 's'} still to be supplied</li>
+        <li>Waiting: form backend not connected, the demo sends nothing</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="colour">
+      <h2 id="colour">Colour</h2>
+      <ul class="swatches" role="list">
+        {
+          colours.map((t) => (
+            <li>
+              <span class="chip" style={`background: var(--${t})`} />
+              <code>--{t}</code>
+              <span class="muted">{tokens[t]}</span>
+              {evidence(t) && (
+                <span class="muted small" title={evidence(t)!.source}>
+                  {evidence(t)!.value.toUpperCase() === tokens[t].toUpperCase() ? evidence(t)!.confidence : 'changed after capture'}
+                </span>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+      <table>
+        <caption class="muted">Contrast pairs the build checks</caption>
+        <thead><tr><th scope="col">Pair</th><th scope="col">Ratio</th><th scope="col">Result</th></tr></thead>
+        <tbody>
+          {contrastResults.map((r) => <tr><td>{r.label}</td><td>{r.ratio.toFixed(2)}</td><td>{r.pass ? 'Pass' : 'Fail'}</td></tr>)}
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="type">
+      <h2 id="type">Type</h2>
+      <p class="specimen-hero">Display, hero size</p>
+      <p class="specimen-heading">Display, heading size</p>
+      <p>Body: {tokens['font-body'].split(',')[0].replace(/['"]/g, '')} at {tokens['size-body']}</p>
+      <p class="muted small">Small and muted, for captions and labels</p>
+    </section>
+
+    <section aria-labelledby="actions">
+      <h2 id="actions">Actions</h2>
+      <a class="button" href={`/${brand.id}/#capture`}>{content.hero.cta}</a>
+      <p class="muted small">One primary action per page. Every button points to the capture form.</p>
+    </section>
+
+    <section aria-labelledby="sections">
+      <h2 id="sections">Conversion sections, in order</h2>
+      <ol class="sections">
+        {
+          recipes[recipe].map((id) => {
+            const spec = sections[id];
+            const refs = references.filter((r) => spec.referenceIds.includes(r.id));
+            return (
+              <li>
+                <strong>{spec.name}</strong> <span class="role">{spec.role}</span>
+                {variants[id] && <span class="muted"> · variant: {variants[id]}</span>}
+                <p class="muted">{spec.job}</p>
+                <p class="muted small">
+                  References: {refs.length ? refs.map((r) => r.data.name).join(', ') : 'none linked yet'}
+                </p>
+              </li>
+            );
+          })
+        }
+      </ol>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .sheet {
+    padding-block: var(--space-section);
+    display: grid;
+    gap: var(--space-section);
+  }
+  h1 {
+    font-size: var(--size-hero);
+    margin-block: 0.5rem 1rem;
+  }
+  h2 {
+    font-size: var(--size-heading);
+    margin-bottom: var(--space-block);
+  }
+  a:not(.button) {
+    color: inherit;
+  }
+  .small {
+    font-size: var(--size-small);
+    margin-top: 0.75rem;
+  }
+  .checks,
+  .swatches {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .swatches {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+    gap: 1rem;
+    margin-bottom: var(--space-block);
+  }
+  .swatches li {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .chip {
+    height: 4rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+  }
+  code {
+    font-size: var(--size-small);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--size-small);
+  }
+  caption {
+    text-align: left;
+    padding-bottom: 0.5rem;
+  }
+  th,
+  td {
+    text-align: left;
+    padding: 0.5rem 0.75rem 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .specimen-hero {
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--size-hero);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .specimen-heading {
+    font-family: var(--font-display);
+    font-weight: var(--weight-display);
+    font-size: var(--size-heading);
+    margin-bottom: 1rem;
+  }
+  .sections {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .role {
+    font-size: var(--size-small);
+    padding: 0.125rem 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+</style>
