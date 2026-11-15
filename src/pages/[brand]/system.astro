@@ -13,7 +13,8 @@ export async function getStaticPaths() {
 
 const { brand } = Astro.props as { brand: CollectionEntry<'brands'> };
 const { name, tokens, fontsHref, recipe, layout, content, fictional, strategy, pass } = brand.data;
-const references = await getCollection('references');
+// Read the reference library only when a section links to it; an empty library is normal in a fresh copy.
+const references = Object.values(sections).some((s) => s.referenceIds.length) ? await getCollection('references') : [];
 const capture = (await getCollection('captures')).find((c) => c.id === brand.id)?.data;
 const evidence = (t: string) => capture?.proposal.tokens[t];
 const contrastResults = checkContrast(tokens);
