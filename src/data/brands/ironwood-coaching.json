@@ -1,0 +1,119 @@
+{
+  "name": "Ironwood Coaching",
+  "fictional": true,
+  "fontsHref": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=DM+Sans:wght@400;600&display=swap",
+  "tokens": {
+    "color-bg": "#FAF9FC",
+    "color-surface": "#EFEAF7",
+    "color-text": "#17131F",
+    "color-muted": "#544C61",
+    "color-accent": "#6D28D9",
+    "color-on-accent": "#FFFFFF",
+    "color-border": "#DCD4EA",
+    "font-display": "'Bricolage Grotesque', system-ui, sans-serif",
+    "font-body": "'DM Sans', system-ui, sans-serif",
+    "weight-display": "700",
+    "size-hero": "clamp(2rem, 6.5vw, 3.75rem)",
+    "size-heading": "clamp(1.5rem, 3.5vw, 2.25rem)",
+    "size-body": "1rem",
+    "size-small": "0.875rem",
+    "space-section": "clamp(3rem, 8vw, 5.5rem)",
+    "space-block": "1.5rem",
+    "radius": "16px",
+    "measure": "64rem"
+  },
+  "recipe": "quiz",
+  "strategy": {
+    "dream_customer": "Adults over 35 who want to get stronger but have stalled on gym programmes made for 20-year-olds.",
+    "where_they_are": "Fitness podcasts and Instagram accounts aimed at busy parents.",
+    "hook": "Find out why your training stopped working.",
+    "false_belief": "I am too old or too busy to get stronger now.",
+    "offer": "A personal training type and a plan that fits three sessions a week.",
+    "not_for": "Competitive athletes and anyone who needs medical rehab.",
+    "second_yes": "A 12-week coached plan offered on the results page."
+  },
+  "layout": { "hero": "question", "benefits": "list" },
+  "seo": {
+    "title": "Training type quiz | Ironwood Coaching",
+    "description": "Five quick questions to find your training type and a strength plan that fits three sessions a week."
+  },
+  "content": {
+    "hero": {
+      "eyebrow": "Two-minute quiz",
+      "headline": "Why did your training stop working?",
+      "subhead": "Answer five quick questions to find your training type."
+    },
+    "flow": {
+      "questions": [
+        {
+          "q": "What is your main goal right now?",
+          "options": [
+            { "label": "Get stronger", "hint": "Lift more, feel capable" },
+            { "label": "Lose fat", "hint": "Change how clothes fit" },
+            { "label": "Move without pain", "hint": "Back, knees, shoulders" },
+            { "label": "Build a habit", "hint": "Actually keep going" }
+          ]
+        },
+        {
+          "q": "How many days a week can you train?",
+          "options": [{ "label": "1 or 2" }, { "label": "3" }, { "label": "4 or more" }]
+        },
+        {
+          "q": "Where do you train?",
+          "multi": true,
+          "options": [{ "label": "A gym" }, { "label": "At home" }, { "label": "Outdoors" }]
+        },
+        {
+          "q": "What usually stops you?",
+          "options": [{ "label": "Time" }, { "label": "Not knowing what to do" }, { "label": "Losing motivation" }, { "label": "Aches and injuries" }]
+        },
+        {
+          "q": "How old are you?",
+          "options": [{ "label": "Under 35" }, { "label": "35 to 49" }, { "label": "50 to 64" }, { "label": "65 or over" }]
+        }
+      ],
+      "note": {
+        "heading": "Before you go on",
+        "body": "This quiz suggests a starting point. It is not medical advice. If you have an injury or a health condition, check with a professional first.",
+        "button": "I understand, continue"
+      },
+      "contact": {
+        "heading": "Your training type is ready",
+        "body": "Where should we send it? You also get the first week of the plan.",
+        "fields": ["email"],
+        "button": "Show my result",
+        "consent": "Send me Ironwood's weekly training email. You can unsubscribe at any time."
+      },
+      "after": "result"
+    },
+    "benefits": {
+      "heading": "How it works",
+      "items": [
+        { "title": "Five questions", "body": "About your goal, your week and what usually stops you." },
+        { "title": "Your training type", "body": "One of four types, with why your last plan may not have fit." },
+        { "title": "A first week", "body": "Three sessions you can start this week, at a gym or at home." }
+      ]
+    },
+    "story": {
+      "heading": "Why we built a quiz instead of a programme",
+      "paragraphs": [
+        "The coach writes this: what they saw training people over 35, and why one plan does not fit everyone.",
+        "Two or three short paragraphs, signed."
+      ],
+      "signed": { "name": "Coach's name", "role": "Head coach, Ironwood" },
+      "placeholder": true
+    },
+    "proof": {
+      "heading": "From people who took it",
+      "quotes": [
+        { "quote": "A real client quote goes here.", "source": "First name, age. Needs written permission.", "placeholder": true },
+        { "quote": "A second real client quote goes here.", "source": "First name, age. Needs written permission.", "placeholder": true }
+      ]
+    },
+    "cta": {
+      "heading": "Find your training type",
+      "body": "Five questions. Two minutes.",
+      "button": "Take the quiz"
+    }
+  }
+}

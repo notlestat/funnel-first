@@ -1,0 +1,76 @@
+---
+// Brunson's stack: everything included, each item solving the problem the last one creates.
+// Values come from the client; the system never invents a price or a "worth".
+import type { BrandContent } from '../system/schema';
+
+interface Props {
+  content: NonNullable<BrandContent['offer']>;
+  variant: 'list' | 'cards';
+}
+const { content, variant } = Astro.props;
+const { heading, items, note } = content;
+---
+
+<section class="section" aria-labelledby="offer-heading">
+  <div class="container">
+    <h2 id="offer-heading" class="section-heading">{heading}</h2>
+    <ol class={`stack ${variant}`} role="list">
+      {
+        items.map((item) => (
+          <li class="item">
+            <div>
+              <h3>{item.title}</h3>
+              <p class="muted">{item.body}</p>
+            </div>
+            {item.value && <p class="value">{item.value}</p>}
+          </li>
+        ))
+      }
+    </ol>
+    {note && <p class="note">{note}</p>}
+  </div>
+</section>
+
+<style>
+  .stack {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .list {
+    max-width: 44rem;
+  }
+  .list .item {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 1rem;
+  }
+  .cards .item {
+    display: grid;
+    align-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+  }
+  h3 {
+    font-size: 1.125em;
+    margin-bottom: 0.375rem;
+  }
+  .value {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .note {
+    max-width: 44rem;
+    margin-top: 1.5rem;
+    font-weight: 600;
+  }
+</style>

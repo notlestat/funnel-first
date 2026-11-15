@@ -1,3 +1,12 @@
 node_modules/
 dist/
 .astro/
+
+# Funnel scans hold third-party pages and screenshots. Keep them local.
+scans/
+
+# Company design-system extracts: other companies' files. Keep them local.
+extracts/
+
+# Blueprint board data: screenshots and board state. Local.
+.blueprint/

@@ -1,9 +1,12 @@
 ---
+// The hook. "question" replaces the button with the first step of the question flow,
+// passed in as a slot, so the first ask is a tap rather than a form.
 interface Props {
-  content: { eyebrow: string; headline: string; subhead: string; cta: string };
-  variant: 'stacked' | 'split';
+  content: { eyebrow: string; headline: string; subhead: string; cta?: string };
+  variant: 'stacked' | 'split' | 'question';
+  target: string;
 }
-const { content, variant } = Astro.props;
+const { content, variant, target } = Astro.props;
 const { eyebrow, headline, subhead, cta } = content;
 ---
 
@@ -15,7 +18,7 @@ const { eyebrow, headline, subhead, cta } = content;
     </div>
     <div>
       <p class="subhead muted">{subhead}</p>
-      <a class="button" href="#capture">{cta}</a>
+      {variant === 'question' ? <slot /> : <a class="button" href={target}>{cta}</a>}
     </div>
   </div>
 </header>
@@ -39,9 +42,19 @@ const { eyebrow, headline, subhead, cta } = content;
     max-width: 16ch;
     margin-block: 1rem 1.25rem;
   }
+  /* Narrow column for the question, left edge aligned with the sections below. */
+  .question .layout > div {
+    max-width: 40rem;
+  }
+  .question h1 {
+    max-width: 20ch;
+  }
   .subhead {
     max-width: 52ch;
     margin-bottom: 2rem;
     font-size: 1.125em;
+  }
+  .question .subhead {
+    margin-bottom: 1.5rem;
   }
 </style>

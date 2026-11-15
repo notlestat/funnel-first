@@ -1,0 +1,60 @@
+---
+// The one-to-many presentation. A placeholder stays visibly marked until the client supplies the video.
+import type { BrandContent } from '../system/schema';
+
+interface Props {
+  content: NonNullable<BrandContent['video']>;
+  target: string;
+}
+const { content, target } = Astro.props;
+const { heading, src, title, placeholder, cta } = content;
+---
+
+<section class="section video" aria-label={heading ?? title}>
+  <div class="container">
+    {heading && <h2 class="section-heading">{heading}</h2>}
+    <div class="frame">
+      {
+        placeholder || !src ? (
+          <div class="placeholder">
+            <p class="flag">Placeholder: the client needs to supply this video, with captions</p>
+            <p class="muted">{title}</p>
+          </div>
+        ) : (
+          <iframe src={src} title={title} loading="lazy" allow="fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" />
+        )
+      }
+    </div>
+    <a class="button" href={target}>{cta}</a>
+  </div>
+</section>
+
+<style>
+  .frame {
+    aspect-ratio: 16 / 9;
+    max-width: 52rem;
+    margin-bottom: 1.5rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .placeholder {
+    height: 100%;
+    display: grid;
+    place-content: center;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    border: 2px dashed var(--color-muted);
+    border-radius: var(--radius);
+  }
+  .flag {
+    font-size: var(--size-small);
+    font-weight: 600;
+  }
+</style>

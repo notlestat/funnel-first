@@ -40,17 +40,85 @@ export function assertBrandPasses(id: string, tokens: Tokens) {
 const words = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
 
 export function conversionWarnings(brand: Brand): string[] {
-  const { hero, proof, capture } = brand.content;
+  const { hero, proof, capture, flow, story, video, cta } = brand.content;
   const out: string[] = [];
-  if (words(hero.headline) > 10) out.push(`Hero headline is ${words(hero.headline)} words. Aim for 10 or fewer.`);
-  if (words(hero.subhead) > 35) out.push(`Hero subhead is ${words(hero.subhead)} words. Aim for 35 or fewer.`);
-  if (words(hero.cta) > 4) out.push(`Hero button "${hero.cta}" is long. Aim for 4 words or fewer.`);
-  if (words(capture.button) > 4) out.push(`Form button "${capture.button}" is long. Aim for 4 words or fewer.`);
-  const pending = proof.quotes.filter((q) => q.placeholder).length;
-  if (proof.quotes.length === 0) out.push('No proof. Add at least one real quote or a placeholder for the client.');
-  if (pending) out.push(`${pending} proof quote${pending === 1 ? ' is a placeholder' : 's are placeholders'}. Not launch-ready.`);
+  if (!brand.strategy) {
+    out.push('No strategy. Write the dream customer, where they are, the hook, the belief that stops them, the offer and who it is not for.');
+  }
+  if (hero) {
+    if (words(hero.headline) > 10) out.push(`Hero headline is ${words(hero.headline)} words. Aim for 10 or fewer.`);
+    if (words(hero.subhead) > 35) out.push(`Hero subhead is ${words(hero.subhead)} words. Aim for 35 or fewer.`);
+    if (hero.cta && words(hero.cta) > 4) out.push(`Hero button "${hero.cta}" is long. Aim for 4 words or fewer.`);
+  }
+  for (const [label, text] of [['Form button', capture?.button], ['Closing button', cta?.button], ['Contact button', flow?.contact.button]] as const) {
+    if (text && words(text) > 5) out.push(`${label} "${text}" is long. Aim for 5 words or fewer.`);
+  }
+  if (flow) {
+    if (flow.questions.length > 5) out.push(`The flow asks ${flow.questions.length} questions before contact. Four is usually enough to qualify.`);
+    for (const q of flow.questions) {
+      const long = q.options.filter((o) => words(o.label) > 5);
+      if (long.length) out.push(`"${q.q}" has answers over 5 words. Answers should read at a glance.`);
+    }
+    if (!flow.contact.filter && brand.recipe === 'appointment') out.push('No filter line on the contact step. Say who should not book.');
+  }
+  if (proof) {
+    const pending = proof.quotes.filter((q) => q.placeholder).length;
+    if (proof.quotes.length === 0) out.push('No proof. Add at least one real quote or a placeholder for the client.');
+    if (pending) out.push(`${pending} proof quote${pending === 1 ? ' is a placeholder' : 's are placeholders'}. Not launch-ready.`);
+  }
+  if (!brand.pass) {
+    out.push('No Brunson pass. Write hook, story and offer for every step, the doubt and where it is answered, the offer stack, and answers to the designer checks. Required for real clients.');
+  } else {
+    const unconfirmed = brand.pass.offer_stack.filter((i) => i.status === 'ask-client').length;
+    if (unconfirmed === brand.pass.offer_stack.length) out.push('No item in the offer stack is confirmed by the client yet. The first yes is weak. Not launch-ready.');
+    if (brand.pass.client_questions.length) out.push(`${brand.pass.client_questions.length} question(s) for the client in the Brunson pass.`);
+  }
+  if (story?.placeholder) out.push('The story is a placeholder. The client must write or approve it. Not launch-ready.');
+  if (video?.placeholder) out.push('The video is a placeholder. Not launch-ready.');
   return out;
 }
+
+// ---- Launch readiness: one list for the system sheet and the agent tools ----
+
+export type Check = { status: 'pass' | 'waiting' | 'fail'; label: string };
+
+export function launchChecks(brand: Brand): Check[] {
+  const { proof, story, video, flow } = brand.content;
+  const checks: Check[] = [];
+  const contrastOk = checkContrast(brand.tokens).every((r) => r.pass);
+  checks.push({ status: contrastOk ? 'pass' : 'fail', label: 'colour contrast (WCAG AA)' });
+  checks.push({ status: brand.strategy ? 'pass' : 'waiting', label: 'funnel strategy written' });
+  checks.push({ status: brand.pass ? 'pass' : 'waiting', label: 'Brunson pass written' });
+  if (brand.pass) {
+    const confirmed = brand.pass.offer_stack.some((i) => i.status === 'confirmed');
+    checks.push({ status: confirmed ? 'pass' : 'waiting', label: confirmed ? 'offer stack has confirmed items' : 'offer stack still to be confirmed by the client' });
+    if (brand.pass.client_questions.length) checks.push({ status: 'waiting', label: `${brand.pass.client_questions.length} question(s) for the client still open` });
+  }
+  if (proof) {
+    const n = proof.quotes.filter((q) => q.placeholder).length;
+    checks.push({ status: n ? 'waiting' : 'pass', label: `proof, ${n} placeholder quote${n === 1 ? '' : 's'} still to be supplied` });
+  }
+  if (story) checks.push({ status: story.placeholder ? 'waiting' : 'pass', label: story.placeholder ? 'story still to be written or approved by the client' : 'story approved' });
+  if (video) checks.push({ status: video.placeholder ? 'waiting' : 'pass', label: video.placeholder ? 'video still to be supplied' : 'video supplied with captions' });
+  checks.push({ status: 'waiting', label: 'form backend not connected, the demo sends nothing' });
+  if (flow?.after === 'booking') checks.push({ status: 'waiting', label: 'booking calendar not connected' });
+  if (flow?.after === 'result') checks.push({ status: 'waiting', label: 'quiz results page not built' });
+  return checks;
+}
+
+// What a passing build cannot check. The Brunson pass answers each one in writing (brand.pass.checks),
+// and the designer judges the answers on the board.
+export const designerChecks = [
+  { id: 'hook-story-offer', q: 'Can you name the hook, the story and the offer on every step? When a step fails, it is one of those three.' },
+  { id: 'curiosity', q: 'Does the headline make the visitor curious, or do they already know what they will get?' },
+  { id: 'doubt', q: 'Does the page name the belief that stops this customer, and answer it?' },
+  { id: 'not-for', q: 'Does the page say who it is not for?' },
+  { id: 'proof-near-ask', q: 'Is proof next to every ask: a logo strip under the form, a rating by the button?' },
+  { id: 'smallest-yes', q: 'Is the first ask the smallest possible yes?' },
+  { id: 'second-yes', q: 'Is there a second yes after this one? It belongs to the backend, but plan it now.' },
+] as const;
+export type DesignerCheckId = (typeof designerChecks)[number]['id'];
+export const designerCheckIds = designerChecks.map((c) => c.id) as DesignerCheckId[];
 
 // ---- Distinctness checks: keep every client's system visibly its own ----
 
@@ -70,7 +138,7 @@ export function distinctnessWarnings(brand: Brand, others: { id: string; data: B
   for (const other of others) {
     const o = other.data;
     const shared: string[] = [];
-    if (brand.layout.hero === o.layout.hero && brand.layout.benefits === o.layout.benefits) shared.push('the same layout variants');
+    if (brand.recipe === o.recipe && JSON.stringify(brand.layout) === JSON.stringify(o.layout)) shared.push('the same layout variants');
     if (hexDistance(brand.tokens['color-accent'], o.tokens['color-accent']) < 40) shared.push('a near-identical accent colour');
     if (firstFont(brand.tokens['font-display']) === firstFont(o.tokens['font-display'])) shared.push('the same display font');
     if (shared.length >= 2) out.push(`Looks close to "${other.id}": ${shared.join(', ')}.`);

@@ -1,0 +1,37 @@
+---
+// When the session is and what the visitor will leave with.
+import type { BrandContent } from '../system/schema';
+
+interface Props {
+  content: NonNullable<BrandContent['agenda']>;
+}
+const { heading, when, items } = Astro.props.content;
+---
+
+<section class="section" aria-labelledby="agenda-heading">
+  <div class="container">
+    <h2 id="agenda-heading" class="section-heading">{heading}</h2>
+    <p class="when">{when}</p>
+    <ol class="items">
+      {items.map((item) => <li>{item}</li>)}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .when {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    padding: 0.375rem 0.75rem;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    font-weight: 600;
+  }
+  .items {
+    max-width: 44rem;
+    margin: 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+</style>
