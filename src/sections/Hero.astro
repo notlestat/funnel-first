@@ -1,26 +1,49 @@
 ---
 // The hook. "question" replaces the button with the first step of the question flow,
 // passed in as a slot, so the first ask is a tap rather than a form.
+// An optional photo sits behind the words under a fixed scrim; the question stays below it,
+// on the page background, so the first ask still lands on the first phone screen.
+import type { BrandImage } from '../system/schema';
+
 interface Props {
-  content: { eyebrow: string; headline: string; subhead: string; cta?: string };
+  content: { eyebrow: string; headline: string; subhead: string; cta?: string; image?: BrandImage };
   variant: 'stacked' | 'split' | 'question';
   target: string;
+  logo?: BrandImage;
 }
-const { content, variant, target } = Astro.props;
-const { eyebrow, headline, subhead, cta } = content;
+const { content, variant, target, logo } = Astro.props;
+const { eyebrow, headline, subhead, cta, image } = content;
+const question = variant === 'question';
 ---
 
-<header class={`section hero ${variant}`}>
-  <div class="container layout">
-    <div>
-      <p class="eyebrow">{eyebrow}</p>
-      <h1>{headline}</h1>
-    </div>
-    <div>
-      <p class="subhead muted">{subhead}</p>
-      {variant === 'question' ? <slot /> : <a class="button" href={target}>{cta}</a>}
+<header class:list={['section hero', variant, { photo: image }]}>
+  <div class="banner">
+    {
+      image && (
+        <img class="backdrop" src={image.src} alt={image.alt} width={image.width} height={image.height} fetchpriority="high" decoding="async" />
+      )
+    }
+    <div class="container layout">
+      <div>
+        {logo && <img class="logo" src={logo.src} alt={logo.alt} width={logo.width} height={logo.height} />}
+        <p class="eyebrow">{eyebrow}</p>
+        <h1>{headline}</h1>
+      </div>
+      <div>
+        <p class="subhead muted">{subhead}</p>
+        {!question && <a class="button" href={target}>{cta}</a>}
+      </div>
     </div>
   </div>
+  {
+    question && (
+      <div class="container">
+        <div class="ask">
+          <slot />
+        </div>
+      </div>
+    )
+  }
 </header>
 
 <style>
@@ -42,8 +65,16 @@ const { eyebrow, headline, subhead, cta } = content;
     max-width: 16ch;
     margin-block: 1rem 1.25rem;
   }
+  .logo {
+    display: block;
+    width: 3.5rem;
+    height: auto;
+    margin-bottom: 1.5rem;
+    border-radius: 50%;
+  }
   /* Narrow column for the question, left edge aligned with the sections below. */
-  .question .layout > div {
+  .question .layout > div,
+  .question .ask {
     max-width: 40rem;
   }
   .question h1 {
@@ -56,5 +87,44 @@ const { eyebrow, headline, subhead, cta } = content;
   }
   .question .subhead {
     margin-bottom: 1.5rem;
+  }
+
+  /* ---- Photo hero ----
+     The scrim is fixed, not a brand token, so the contrast holds for any photo:
+     the photo at 40% opacity over black is a 60% black scrim. Over the brightest
+     possible pixel (white) that leaves at most #666666,
+     and white text on #666666 is 5.7:1, above the 4.5:1 AA minimum. */
+  .photo {
+    padding-top: 0;
+  }
+  .photo .banner {
+    position: relative;
+    isolation: isolate;
+    padding-block: clamp(2rem, 5vw, 4rem);
+    margin-bottom: var(--space-block);
+    background: #000;
+    color: #fff;
+  }
+  .photo .backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+  }
+  .photo .eyebrow,
+  .photo .subhead {
+    color: #fff;
+  }
+  .photo .subhead {
+    margin-bottom: 0;
+  }
+  .photo:not(.question) .subhead {
+    margin-bottom: 2rem;
+  }
+  .photo .banner :focus-visible {
+    outline-color: #fff;
   }
 </style>

@@ -15,7 +15,7 @@ import Faq from '../../sections/Faq.astro';
 import Capture from '../../sections/Capture.astro';
 import Cta from '../../sections/Cta.astro';
 import { recipes, usesFlow } from '../../system/sections';
-import { assertBrandPasses } from '../../system/rules';
+import { assertBrandPasses, assertImagesExist } from '../../system/rules';
 
 export async function getStaticPaths() {
   const brands = await getCollection('brands');
@@ -23,8 +23,10 @@ export async function getStaticPaths() {
 }
 
 const { brand } = Astro.props as { brand: CollectionEntry<'brands'> };
-const { tokens, content: c, layout, seo, fontsHref, recipe } = brand.data;
+const { tokens, content: c, layout, seo, fontsHref, recipe, logo } = brand.data;
 assertBrandPasses(brand.id, tokens);
+// The build runs from the project root, so public/ resolves from there.
+assertImagesExist(brand.id, brand.data, 'public');
 
 // The schema guarantees every section in the recipe has content, so the ! below is safe.
 const target = usesFlow(recipe) ? '#flow' : '#capture';
@@ -37,7 +39,7 @@ const target = usesFlow(recipe) ? '#flow' : '#capture';
         switch (id) {
           case 'hero':
             return (
-              <Hero content={c.hero!} variant={layout.hero!} target={target}>
+              <Hero content={c.hero!} variant={layout.hero!} target={target} logo={logo}>
                 {layout.hero === 'question' && <Flow content={c.flow!} />}
               </Hero>
             );

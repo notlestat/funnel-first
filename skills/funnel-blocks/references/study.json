@@ -1,0 +1,2742 @@
+{
+ "pages_desktop": 127,
+ "pages_mobile": 127,
+ "templates": 47,
+ "steps_by_type": {
+  "cross-sell": 3,
+  "daily-deal": 6,
+  "lead-generation": 21,
+  "lead-magnet": 14,
+  "sales": 28,
+  "tripwire": 2,
+  "value-ladder": 18,
+  "video-sales-letter": 19,
+  "webinar": 16
+ },
+ "type_scale": {
+  "desktop": {
+   "H1": {
+    "p25": 48.0,
+    "p50": 52.0,
+    "p75": 55.0,
+    "n": 84
+   },
+   "H2": {
+    "p25": 40.0,
+    "p50": 42.0,
+    "p75": 45.0,
+    "n": 306
+   },
+   "H3": {
+    "p25": 34.0,
+    "p50": 37.0,
+    "p75": 40.0,
+    "n": 160
+   },
+   "H4": {
+    "p25": 23.0,
+    "p50": 26.0,
+    "p75": 26.0,
+    "n": 136
+   },
+   "H5": {
+    "p25": 20.0,
+    "p50": 20.0,
+    "p75": 22.0,
+    "n": 294
+   },
+   "H6": {
+    "p25": 18.0,
+    "p50": 18.0,
+    "p75": 19.0,
+    "n": 116
+   },
+   "body": {
+    "p25": 18.0,
+    "p50": 18.0,
+    "p75": 20.0,
+    "n": 475
+   }
+  },
+  "desktop_lh": {
+   "H1": {
+    "p25": 1.2,
+    "p50": 1.2,
+    "p75": 1.2,
+    "n": 84
+   },
+   "H2": {
+    "p25": 1.2,
+    "p50": 1.2,
+    "p75": 1.2,
+    "n": 306
+   },
+   "H3": {
+    "p25": 1.2,
+    "p50": 1.2,
+    "p75": 1.2,
+    "n": 160
+   },
+   "H4": {
+    "p25": 1.2,
+    "p50": 1.2,
+    "p75": 1.2,
+    "n": 136
+   },
+   "H5": {
+    "p25": 1.5,
+    "p50": 1.5,
+    "p75": 1.5,
+    "n": 294
+   },
+   "H6": {
+    "p25": 1.5,
+    "p50": 1.5,
+    "p75": 1.5,
+    "n": 116
+   },
+   "body": {
+    "p25": 1.5,
+    "p50": 1.5,
+    "p75": 1.6,
+    "n": 475
+   }
+  },
+  "desktop_weight": {
+   "H1": {
+    "p25": 700.0,
+    "p50": 700.0,
+    "p75": 700.0,
+    "n": 84
+   },
+   "H2": {
+    "p25": 700.0,
+    "p50": 700.0,
+    "p75": 700.0,
+    "n": 306
+   },
+   "H3": {
+    "p25": 700.0,
+    "p50": 700.0,
+    "p75": 700.0,
+    "n": 160
+   },
+   "H4": {
+    "p25": 600.0,
+    "p50": 600.0,
+    "p75": 700.0,
+    "n": 136
+   },
+   "H5": {
+    "p25": 600.0,
+    "p50": 600.0,
+    "p75": 700.0,
+    "n": 294
+   },
+   "H6": {
+    "p25": 600.0,
+    "p50": 600.0,
+    "p75": 600.0,
+    "n": 116
+   }
+  },
+  "mobile": {
+   "H1": {
+    "p25": 33.8,
+    "p50": 36.0,
+    "p75": 38.2,
+    "n": 84
+   },
+   "H2": {
+    "p25": 30.0,
+    "p50": 30.0,
+    "p75": 34.0,
+    "n": 306
+   },
+   "H3": {
+    "p25": 28.0,
+    "p50": 30.0,
+    "p75": 30.0,
+    "n": 160
+   },
+   "H4": {
+    "p25": 21.0,
+    "p50": 22.5,
+    "p75": 26.0,
+    "n": 136
+   },
+   "H5": {
+    "p25": 18.0,
+    "p50": 20.0,
+    "p75": 20.0,
+    "n": 294
+   },
+   "H6": {
+    "p25": 17.0,
+    "p50": 18.0,
+    "p75": 18.0,
+    "n": 116
+   },
+   "body": {
+    "p25": 17.0,
+    "p50": 17.0,
+    "p75": 18.0,
+    "n": 474
+   }
+  }
+ },
+ "heading_uppercase_share": 0.05,
+ "section_padding": {
+  "desktop": {
+   "p25": 90.0,
+   "p50": 90.0,
+   "p75": 90.0,
+   "n": 1106
+  },
+  "mobile": {
+   "p25": 60.0,
+   "p50": 60.0,
+   "p75": 60.0,
+   "n": 1106
+  }
+ },
+ "container_width": {
+  "p25": 1180.0,
+  "p50": 1180.0,
+  "p75": 1180.0,
+  "n": 552
+ },
+ "container_top": [
+  [
+   1180,
+   552
+  ]
+ ],
+ "columns": [
+  [
+   "100",
+   86
+  ],
+  [
+   "none",
+   71
+  ],
+  [
+   "50+50",
+   61
+  ],
+  [
+   "100+100",
+   34
+  ],
+  [
+   "100+35+35+35",
+   24
+  ],
+  [
+   "100+50+50",
+   21
+  ],
+  [
+   "50",
+   10
+  ],
+  [
+   "45+55",
+   10
+  ],
+  [
+   "60",
+   9
+  ],
+  [
+   "50+55",
+   8
+  ],
+  [
+   "100+50+50+50",
+   8
+  ],
+  [
+   "100+50+50+100",
+   6
+  ],
+  [
+   "70",
+   6
+  ],
+  [
+   "80",
+   6
+  ]
+ ],
+ "fonts_display": [
+  [
+   null,
+   23
+  ],
+  [
+   "Sora",
+   20
+  ],
+  [
+   "Barlow Semi Condensed",
+   10
+  ],
+  [
+   "Manrope",
+   8
+  ],
+  [
+   "Poppins",
+   7
+  ],
+  [
+   "Raleway",
+   7
+  ],
+  [
+   "Inter",
+   6
+  ],
+  [
+   "Space Grotesk",
+   6
+  ],
+  [
+   "Plus Jakarta Sans",
+   5
+  ],
+  [
+   "Red Hat Display",
+   5
+  ],
+  [
+   "Montserrat",
+   4
+  ],
+  [
+   "DM Sans",
+   3
+  ],
+  [
+   "IBM Plex Serif",
+   3
+  ],
+  [
+   "Merriweather",
+   3
+  ],
+  [
+   "Hanken Grotesk",
+   2
+  ]
+ ],
+ "fonts_body": [
+  [
+   "Sora",
+   17
+  ],
+  [
+   "Plus Jakarta Sans",
+   12
+  ],
+  [
+   "Inter",
+   12
+  ],
+  [
+   "Manrope",
+   11
+  ],
+  [
+   "DM Sans",
+   8
+  ],
+  [
+   "Poppins",
+   7
+  ],
+  [
+   "Red Hat Display",
+   6
+  ],
+  [
+   "Open Sans",
+   6
+  ],
+  [
+   "Space Grotesk",
+   6
+  ],
+  [
+   "HK Grotesk",
+   5
+  ],
+  [
+   "Barlow Semi Condensed",
+   5
+  ],
+  [
+   "Barlow",
+   5
+  ],
+  [
+   "IBM Plex Sans",
+   5
+  ],
+  [
+   "Public Sans",
+   3
+  ],
+  [
+   "Archivo",
+   3
+  ]
+ ],
+ "pairs": [
+  [
+   "Sora / Sora",
+   16
+  ],
+  [
+   "Manrope / Manrope",
+   8
+  ],
+  [
+   "Plus Jakarta Sans / Plus Jakarta Sans",
+   5
+  ],
+  [
+   "Barlow Semi Condensed / Barlow Semi Condensed",
+   5
+  ],
+  [
+   "Barlow Semi Condensed / Barlow",
+   5
+  ],
+  [
+   "Poppins / Poppins",
+   4
+  ],
+  [
+   "Inter / Inter",
+   4
+  ],
+  [
+   "Raleway / Plus Jakarta Sans",
+   4
+  ],
+  [
+   "Montserrat / Public Sans",
+   3
+  ],
+  [
+   "Poppins / Inter",
+   3
+  ],
+  [
+   "None / Red Hat Display",
+   3
+  ],
+  [
+   "DM Sans / DM Sans",
+   3
+  ]
+ ],
+ "button": {
+  "h": {
+   "p25": 53.0,
+   "p50": 57.0,
+   "p75": 61.0,
+   "n": 272
+  },
+  "padX": {
+   "p25": 36.0,
+   "p50": 42.0,
+   "p75": 51.0,
+   "n": 272
+  },
+  "size": {
+   "p25": 16.0,
+   "p50": 18.0,
+   "p75": 18.0,
+   "n": 272
+  },
+  "radius": {
+   "p25": 3.0,
+   "p50": 3.0,
+   "p75": 32.0,
+   "n": 272
+  },
+  "pill": 0.33,
+  "upper": 0.68,
+  "weight": {
+   "p25": 600.0,
+   "p50": 600.0,
+   "p75": 700.0,
+   "n": 272
+  },
+  "shadow": 0.05,
+  "hardShadow": 0.05,
+  "price": 0.26,
+  "words": {
+   "p25": 4.0,
+   "p50": 5.0,
+   "p75": 7.0,
+   "n": 272
+  },
+  "first_person": 0.26,
+  "yes": 0.1,
+  "ghost": 0,
+  "mobile_h": {
+   "p25": 57.0,
+   "p50": 62.0,
+   "p75": 81.0,
+   "n": 267
+  },
+  "mobile_fullwidth": 0.49
+ },
+ "card": {
+  "radius": {
+   "p25": 0.0,
+   "p50": 10.0,
+   "p75": 15.0,
+   "n": 254
+  },
+  "shadow": 0.06,
+  "border": 0.27,
+  "pad": {
+   "p25": 10.0,
+   "p50": 10.0,
+   "p75": 10.0,
+   "n": 254
+  }
+ },
+ "input": {
+  "h": {
+   "p25": 44.0,
+   "p50": 44.0,
+   "p75": 48.0,
+   "n": 206
+  },
+  "mobile_h": {
+   "p25": 44.0,
+   "p50": 44.0,
+   "p75": 48.0,
+   "n": 204
+  },
+  "radius": {
+   "p25": 5.0,
+   "p50": 6.0,
+   "p75": 6.0,
+   "n": 206
+  },
+  "types": [
+   [
+    "text",
+    91
+   ],
+   [
+    "email",
+    49
+   ],
+   [
+    "tel",
+    36
+   ],
+   [
+    "select-one",
+    30
+   ]
+  ]
+ },
+ "popup_form_field_counts": [
+  [
+   1,
+   5
+  ],
+  [
+   2,
+   16
+  ],
+  [
+   3,
+   2
+  ],
+  [
+   5,
+   2
+  ],
+  [
+   6,
+   1
+  ]
+ ],
+ "ctas_per_page": {
+  "p25": 0.0,
+  "p50": 1.0,
+  "p75": 4.0,
+  "n": 127
+ },
+ "tones": [
+  [
+   "photo",
+   203
+  ],
+  [
+   "light",
+   113
+  ],
+  [
+   "page",
+   102
+  ],
+  [
+   "dark",
+   84
+  ],
+  [
+   "tint",
+   49
+  ],
+  [
+   "gradient",
+   2
+  ]
+ ],
+ "hero_tone": [
+  [
+   "photo",
+   70
+  ],
+  [
+   "dark",
+   27
+  ],
+  [
+   "tint",
+   19
+  ],
+  [
+   "light",
+   8
+  ],
+  [
+   "page",
+   2
+  ],
+  [
+   "gradient",
+   1
+  ]
+ ],
+ "tone_change_rate": {
+  "p25": 0.0,
+  "p50": 0.7,
+  "p75": 1.0,
+  "n": 127
+ },
+ "page_height_by_step": {
+  "optin": {
+   "p25": 4733.0,
+   "p50": 5973.0,
+   "p75": 6411.0,
+   "n": 23
+  },
+  "thankyou": {
+   "p25": 900.0,
+   "p50": 1089.0,
+   "p75": 1302.0,
+   "n": 46
+  },
+  "checkout": {
+   "p25": 1546.8,
+   "p50": 1625.0,
+   "p75": 1711.8,
+   "n": 22
+  },
+  "sales": {
+   "p25": 5742.2,
+   "p50": 7743.5,
+   "p75": 9805.5,
+   "n": 26
+  },
+  "upsell": {
+   "p25": 2006.0,
+   "p50": 2292.5,
+   "p75": 2879.0,
+   "n": 8
+  },
+  "downsell": {
+   "p25": 1921.2,
+   "p50": 2888.5,
+   "p75": 3855.8,
+   "n": 2
+  }
+ },
+ "blocks": [
+  [
+   "benefit-grid",
+   116
+  ],
+  [
+   "confirmation-hero",
+   46
+  ],
+  [
+   "feature-split",
+   45
+  ],
+  [
+   "faq",
+   42
+  ],
+  [
+   "content",
+   38
+  ],
+  [
+   "hero",
+   31
+  ],
+  [
+   "testimonials",
+   29
+  ],
+  [
+   "video",
+   27
+  ],
+  [
+   "cta-band",
+   26
+  ],
+  [
+   "checkout-hero",
+   22
+  ],
+  [
+   "bio",
+   21
+  ],
+  [
+   "form-card",
+   18
+  ],
+  [
+   "offer-stack",
+   17
+  ],
+  [
+   "guarantee",
+   12
+  ],
+  [
+   "hero+form",
+   10
+  ],
+  [
+   "hero+video",
+   10
+  ],
+  [
+   "upsell-decision",
+   9
+  ],
+  [
+   "countdown",
+   8
+  ],
+  [
+   "upsell-hero",
+   8
+  ],
+  [
+   "steps",
+   7
+  ],
+  [
+   "logo-strip",
+   5
+  ],
+  [
+   "footer",
+   4
+  ],
+  [
+   "checkout-form",
+   2
+  ]
+ ],
+ "blocks_by_step": {
+  "optin": [
+   [
+    "benefit-grid",
+    42
+   ],
+   [
+    "feature-split",
+    21
+   ],
+   [
+    "faq",
+    21
+   ],
+   [
+    "hero",
+    13
+   ],
+   [
+    "testimonials",
+    12
+   ],
+   [
+    "cta-band",
+    12
+   ],
+   [
+    "content",
+    8
+   ],
+   [
+    "hero+form",
+    7
+   ],
+   [
+    "video",
+    6
+   ],
+   [
+    "form-card",
+    6
+   ],
+   [
+    "bio",
+    6
+   ],
+   [
+    "offer-stack",
+    4
+   ],
+   [
+    "hero+video",
+    3
+   ],
+   [
+    "countdown",
+    2
+   ],
+   [
+    "logo-strip",
+    2
+   ],
+   [
+    "footer",
+    1
+   ]
+  ],
+  "thankyou": [
+   [
+    "confirmation-hero",
+    46
+   ],
+   [
+    "benefit-grid",
+    9
+   ],
+   [
+    "content",
+    6
+   ],
+   [
+    "steps",
+    5
+   ],
+   [
+    "bio",
+    4
+   ],
+   [
+    "faq",
+    2
+   ],
+   [
+    "testimonials",
+    1
+   ],
+   [
+    "cta-band",
+    1
+   ],
+   [
+    "video",
+    1
+   ]
+  ],
+  "checkout": [
+   [
+    "checkout-hero",
+    22
+   ],
+   [
+    "guarantee",
+    7
+   ],
+   [
+    "cta-band",
+    3
+   ],
+   [
+    "content",
+    2
+   ],
+   [
+    "checkout-form",
+    2
+   ],
+   [
+    "benefit-grid",
+    1
+   ],
+   [
+    "countdown",
+    1
+   ],
+   [
+    "testimonials",
+    1
+   ],
+   [
+    "footer",
+    1
+   ],
+   [
+    "bio",
+    1
+   ],
+   [
+    "feature-split",
+    1
+   ]
+  ],
+  "sales": [
+   [
+    "benefit-grid",
+    61
+   ],
+   [
+    "feature-split",
+    23
+   ],
+   [
+    "content",
+    21
+   ],
+   [
+    "video",
+    20
+   ],
+   [
+    "faq",
+    19
+   ],
+   [
+    "hero",
+    17
+   ],
+   [
+    "testimonials",
+    15
+   ],
+   [
+    "form-card",
+    12
+   ],
+   [
+    "offer-stack",
+    12
+   ],
+   [
+    "bio",
+    10
+   ],
+   [
+    "cta-band",
+    9
+   ],
+   [
+    "hero+video",
+    6
+   ],
+   [
+    "guarantee",
+    5
+   ],
+   [
+    "countdown",
+    5
+   ],
+   [
+    "hero+form",
+    3
+   ],
+   [
+    "logo-strip",
+    3
+   ],
+   [
+    "steps",
+    2
+   ]
+  ],
+  "upsell": [
+   [
+    "upsell-hero",
+    8
+   ],
+   [
+    "upsell-decision",
+    7
+   ],
+   [
+    "benefit-grid",
+    2
+   ],
+   [
+    "offer-stack",
+    1
+   ],
+   [
+    "content",
+    1
+   ],
+   [
+    "footer",
+    1
+   ]
+  ],
+  "downsell": [
+   [
+    "upsell-decision",
+    2
+   ],
+   [
+    "hero",
+    1
+   ],
+   [
+    "cta-band",
+    1
+   ],
+   [
+    "hero+video",
+    1
+   ],
+   [
+    "benefit-grid",
+    1
+   ],
+   [
+    "footer",
+    1
+   ]
+  ]
+ },
+ "first_block": [
+  [
+   "confirmation-hero",
+   46
+  ],
+  [
+   "hero",
+   31
+  ],
+  [
+   "checkout-hero",
+   22
+  ],
+  [
+   "hero+form",
+   10
+  ],
+  [
+   "hero+video",
+   10
+  ],
+  [
+   "upsell-hero",
+   8
+  ]
+ ],
+ "hero_features": {
+  "n": 127,
+  "form": 31,
+  "video": 17,
+  "countdown": 10,
+  "checklist": 39,
+  "button": 60,
+  "two_columns": 46,
+  "eyebrow_above_h1": 18,
+  "center": 78,
+  "date": 12
+ },
+ "modules": [
+  [
+   "text",
+   1400
+  ],
+  [
+   "title",
+   1113
+  ],
+  [
+   "single-image",
+   550
+  ],
+  [
+   "icon-text",
+   508
+  ],
+  [
+   "shortcode",
+   227
+  ],
+  [
+   "icon",
+   160
+  ],
+  [
+   "spacer",
+   116
+  ],
+  [
+   "hosted",
+   87
+  ],
+  [
+   "form",
+   51
+  ],
+  [
+   "accordion",
+   41
+  ],
+  [
+   "an",
+   24
+  ],
+  [
+   "payment-form",
+   23
+  ],
+  [
+   "countdown",
+   21
+  ],
+  [
+   "upsell-yes",
+   15
+  ],
+  [
+   "progress-bar-fill",
+   10
+  ],
+  [
+   "gallery",
+   1
+  ],
+  [
+   "multi-layer-image",
+   1
+  ],
+  [
+   "table-align-left",
+   1
+  ],
+  [
+   "coupon-code",
+   1
+  ],
+  [
+   "animate",
+   1
+  ]
+ ],
+ "sequences": [
+  {
+   "type": "cross-sell",
+   "template": "electric-toothbrush",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "testimonials",
+    "benefit-grid",
+    "content",
+    "offer-stack",
+    "benefit-grid",
+    "video",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "cross-sell",
+   "template": "electric-toothbrush",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "cross-sell",
+   "template": "electric-toothbrush",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "daily-deal",
+   "template": "sauce-funnel",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "testimonials",
+    "feature-split",
+    "video",
+    "feature-split",
+    "benefit-grid",
+    "benefit-grid",
+    "feature-split",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "daily-deal",
+   "template": "sauce-funnel",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero",
+    "guarantee",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "daily-deal",
+   "template": "sauce-funnel",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "content"
+   ]
+  },
+  {
+   "type": "daily-deal",
+   "template": "snacks-funnel",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "testimonials",
+    "logo-strip",
+    "benefit-grid",
+    "content",
+    "offer-stack",
+    "benefit-grid",
+    "video",
+    "benefit-grid",
+    "content"
+   ]
+  },
+  {
+   "type": "daily-deal",
+   "template": "snacks-funnel",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "daily-deal",
+   "template": "snacks-funnel",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "chiropractor",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero+form",
+    "content",
+    "testimonials",
+    "benefit-grid",
+    "feature-split",
+    "testimonials",
+    "faq",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "chiropractor",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "benefit-grid",
+    "faq"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "cleaning-services",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "feature-split",
+    "feature-split",
+    "feature-split",
+    "benefit-grid",
+    "faq",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "cleaning-services",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "steps"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "dentistry",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "feature-split",
+    "feature-split",
+    "feature-split",
+    "benefit-grid",
+    "faq",
+    "video",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "dentistry",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "content"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "full-stack-developer",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "form-card",
+    "bio",
+    "form-card"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "full-stack-developer",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "bio"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "law-firm",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero+form",
+    "feature-split",
+    "benefit-grid",
+    "benefit-grid",
+    "form-card"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "law-firm",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "martial-arts-academy",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "offer-stack",
+    "testimonials",
+    "benefit-grid",
+    "benefit-grid",
+    "benefit-grid",
+    "faq",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "martial-arts-academy",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "bio"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "medical-health-checkup",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero+form",
+    "benefit-grid",
+    "testimonials",
+    "feature-split",
+    "feature-split",
+    "benefit-grid",
+    "faq",
+    "benefit-grid"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "medical-health-checkup",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "benefit-grid",
+    "faq"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "pest-control",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero+form",
+    "benefit-grid",
+    "content",
+    "content",
+    "benefit-grid",
+    "video",
+    "faq",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "pest-control",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "video"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "real-estate-agent",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "offer-stack",
+    "feature-split",
+    "benefit-grid",
+    "content",
+    "offer-stack",
+    "faq",
+    "form-card"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "real-estate-agent",
+   "order": 2,
+   "kind": "sales",
+   "blocks": [
+    "hero"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "real-estate-agent",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "stylish-you",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero+video",
+    "feature-split",
+    "testimonials",
+    "benefit-grid",
+    "feature-split",
+    "benefit-grid",
+    "faq",
+    "form-card"
+   ]
+  },
+  {
+   "type": "lead-generation",
+   "template": "stylish-you",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "car-insurance-checklist-funnel",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "benefit-grid",
+    "feature-split",
+    "logo-strip",
+    "faq",
+    "benefit-grid"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "car-insurance-checklist-funnel",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "bio"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "customer-onboarding-guide",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "feature-split",
+    "feature-split",
+    "testimonials",
+    "faq",
+    "form-card"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "customer-onboarding-guide",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "benefit-grid"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "cyber-security-guide",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "benefit-grid",
+    "bio",
+    "testimonials",
+    "faq",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "cyber-security-guide",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "benefit-grid"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "employee-benefits-guide",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero+video",
+    "benefit-grid",
+    "feature-split",
+    "benefit-grid",
+    "bio",
+    "logo-strip",
+    "faq",
+    "form-card"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "employee-benefits-guide",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "bio"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "fb-ad-ideas",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "bio",
+    "testimonials",
+    "faq",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "fb-ad-ideas",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "git-strategies-handbook",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero+form",
+    "benefit-grid",
+    "bio",
+    "benefit-grid",
+    "faq",
+    "form-card"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "git-strategies-handbook",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "home-selling-guide",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "offer-stack",
+    "benefit-grid",
+    "testimonials",
+    "faq",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "lead-magnet",
+   "template": "home-selling-guide",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "automobile-services-funnel",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "bio",
+    "video",
+    "faq",
+    "form-card"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "automobile-services-funnel",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "automobile-services-funnel",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "content"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "dropshipping-guide",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "feature-split",
+    "benefit-grid",
+    "feature-split",
+    "feature-split",
+    "bio",
+    "content",
+    "benefit-grid",
+    "testimonials",
+    "offer-stack",
+    "testimonials",
+    "faq",
+    "faq",
+    "content"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "dropshipping-guide",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "dropshipping-guide",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "financial-freedom-funnel",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero+form",
+    "feature-split",
+    "benefit-grid",
+    "benefit-grid",
+    "bio",
+    "benefit-grid",
+    "video",
+    "video",
+    "benefit-grid",
+    "faq",
+    "guarantee",
+    "form-card"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "full-stack-dev-funnel",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "content",
+    "benefit-grid",
+    "benefit-grid",
+    "testimonials",
+    "content",
+    "benefit-grid",
+    "feature-split",
+    "testimonials",
+    "content",
+    "faq",
+    "faq",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "full-stack-dev-funnel",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "full-stack-dev-funnel",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "gardening-workshop-funnel",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero+form",
+    "video",
+    "benefit-grid",
+    "benefit-grid",
+    "bio",
+    "benefit-grid",
+    "benefit-grid",
+    "benefit-grid",
+    "benefit-grid",
+    "feature-split",
+    "faq",
+    "guarantee",
+    "form-card"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "gardening-workshop-funnel",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero",
+    "guarantee",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "gardening-workshop-funnel",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "content"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "mens-cosmetic",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "content",
+    "content",
+    "benefit-grid",
+    "content",
+    "video",
+    "content",
+    "benefit-grid",
+    "video",
+    "benefit-grid"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "mens-cosmetic",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "mens-cosmetic",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "benefit-grid"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "micro-video-mastery",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "countdown",
+    "content",
+    "offer-stack",
+    "steps",
+    "content",
+    "offer-stack",
+    "benefit-grid",
+    "offer-stack",
+    "video",
+    "benefit-grid",
+    "faq",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "micro-video-mastery",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "micro-video-mastery",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "parenting-printables-funnel",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "offer-stack",
+    "benefit-grid",
+    "benefit-grid",
+    "bio",
+    "content",
+    "benefit-grid",
+    "feature-split",
+    "benefit-grid",
+    "benefit-grid",
+    "faq",
+    "guarantee",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "parenting-printables-funnel",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero",
+    "guarantee",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "parenting-printables-funnel",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "protein-recipe-book",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "feature-split",
+    "logo-strip",
+    "feature-split",
+    "feature-split",
+    "benefit-grid",
+    "faq",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "protein-recipe-book",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "protein-recipe-book",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "travel-workshop-funnel",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "video",
+    "benefit-grid",
+    "feature-split",
+    "bio",
+    "benefit-grid",
+    "benefit-grid",
+    "video",
+    "offer-stack",
+    "faq",
+    "feature-split",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "travel-workshop-funnel",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "sales",
+   "template": "travel-workshop-funnel",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "steps",
+    "steps",
+    "steps"
+   ]
+  },
+  {
+   "type": "tripwire",
+   "template": "d2c-swipe-file",
+   "order": 2,
+   "kind": "upsell",
+   "blocks": [
+    "upsell-hero",
+    "upsell-decision"
+   ]
+  },
+  {
+   "type": "tripwire",
+   "template": "d2c-swipe-file",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "content"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "instagram-mastery",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero+form",
+    "feature-split",
+    "benefit-grid",
+    "form-card",
+    "logo-strip",
+    "offer-stack",
+    "form-card",
+    "video",
+    "countdown",
+    "form-card"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "instagram-mastery",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero",
+    "bio",
+    "checkout-form",
+    "guarantee"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "instagram-mastery",
+   "order": 3,
+   "kind": "upsell",
+   "blocks": [
+    "upsell-hero",
+    "content"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "instagram-mastery",
+   "order": 4,
+   "kind": "downsell",
+   "blocks": [
+    "hero",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "instagram-mastery",
+   "order": 5,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "option-trading-funnel",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "bio",
+    "benefit-grid",
+    "testimonials",
+    "faq",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "option-trading-funnel",
+   "order": 2,
+   "kind": "sales",
+   "blocks": [
+    "hero+video",
+    "benefit-grid",
+    "countdown",
+    "offer-stack",
+    "testimonials",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "option-trading-funnel",
+   "order": 3,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero",
+    "guarantee"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "option-trading-funnel",
+   "order": 4,
+   "kind": "upsell",
+   "blocks": [
+    "upsell-hero",
+    "upsell-decision"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "option-trading-funnel",
+   "order": 5,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "sales-funnel-checklist",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "content",
+    "benefit-grid",
+    "benefit-grid",
+    "feature-split",
+    "testimonials",
+    "cta-band",
+    "faq",
+    "feature-split"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "sales-funnel-checklist",
+   "order": 2,
+   "kind": "sales",
+   "blocks": [
+    "hero+video",
+    "bio",
+    "countdown",
+    "offer-stack",
+    "testimonials"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "sales-funnel-checklist",
+   "order": 3,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "sales-funnel-checklist",
+   "order": 4,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "yoga-mastery-course",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "content",
+    "content",
+    "content",
+    "benefit-grid",
+    "testimonials",
+    "video",
+    "benefit-grid",
+    "video",
+    "faq",
+    "content"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "yoga-mastery-course",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "yoga-mastery-course",
+   "order": 3,
+   "kind": "upsell",
+   "blocks": [
+    "upsell-hero"
+   ]
+  },
+  {
+   "type": "value-ladder",
+   "template": "yoga-mastery-course",
+   "order": 4,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "ai-prompting-course",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero+video",
+    "testimonials",
+    "benefit-grid",
+    "benefit-grid",
+    "bio",
+    "benefit-grid",
+    "testimonials",
+    "benefit-grid",
+    "benefit-grid",
+    "faq",
+    "guarantee",
+    "form-card"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "ai-prompting-course",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "ai-prompting-course",
+   "order": 3,
+   "kind": "upsell",
+   "blocks": [
+    "upsell-hero",
+    "benefit-grid",
+    "offer-stack",
+    "upsell-decision"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "ai-prompting-course",
+   "order": 4,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "ai-video-tools-course",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero+video",
+    "content",
+    "content",
+    "benefit-grid",
+    "benefit-grid",
+    "benefit-grid",
+    "video",
+    "benefit-grid",
+    "benefit-grid",
+    "benefit-grid",
+    "faq",
+    "steps"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "ai-video-tools-course",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero",
+    "guarantee"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "ai-video-tools-course",
+   "order": 3,
+   "kind": "upsell",
+   "blocks": [
+    "upsell-hero",
+    "upsell-decision"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "ai-video-tools-course",
+   "order": 4,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "cold-emailing-course",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero+video",
+    "feature-split",
+    "benefit-grid",
+    "feature-split",
+    "testimonials",
+    "benefit-grid",
+    "feature-split",
+    "video",
+    "benefit-grid",
+    "faq",
+    "guarantee",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "cold-emailing-course",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "cold-emailing-course",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "benefit-grid"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "copywriting-course",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero+video",
+    "content",
+    "benefit-grid",
+    "benefit-grid",
+    "content",
+    "testimonials",
+    "cta-band",
+    "footer"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "copywriting-course",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero",
+    "content",
+    "benefit-grid",
+    "countdown",
+    "testimonials",
+    "footer"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "copywriting-course",
+   "order": 3,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "content"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "online-marketing",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero+video",
+    "countdown",
+    "feature-split",
+    "video",
+    "benefit-grid",
+    "testimonials",
+    "faq",
+    "offer-stack"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "online-marketing",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero",
+    "content",
+    "checkout-form",
+    "feature-split"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "online-marketing",
+   "order": 3,
+   "kind": "upsell",
+   "blocks": [
+    "upsell-hero",
+    "benefit-grid",
+    "upsell-decision",
+    "upsell-decision",
+    "footer"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "online-marketing",
+   "order": 4,
+   "kind": "downsell",
+   "blocks": [
+    "hero+video",
+    "benefit-grid",
+    "upsell-decision",
+    "upsell-decision",
+    "footer"
+   ]
+  },
+  {
+   "type": "video-sales-letter",
+   "template": "online-marketing",
+   "order": 5,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "affiliate-webinar-funnel",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero+form",
+    "benefit-grid",
+    "feature-split",
+    "video",
+    "faq",
+    "countdown"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "affiliate-webinar-funnel",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "ecom-trends-webinar-funnel",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero+form",
+    "benefit-grid",
+    "benefit-grid",
+    "feature-split",
+    "video",
+    "faq",
+    "cta-band"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "ecom-trends-webinar-funnel",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "testimonials"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "negotiation-strategies-webinar",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "feature-split",
+    "testimonials",
+    "faq",
+    "form-card"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "negotiation-strategies-webinar",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "benefit-grid"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "product-sense-masterclass",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "benefit-grid",
+    "video",
+    "faq",
+    "countdown"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "product-sense-masterclass",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "steps"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "real-estate-investment-webinar",
+   "order": 1,
+   "kind": "optin",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "bio",
+    "video",
+    "faq",
+    "content"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "real-estate-investment-webinar",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "benefit-grid"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "relationship-webinar",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "benefit-grid",
+    "bio",
+    "video",
+    "faq",
+    "form-card"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "relationship-webinar",
+   "order": 2,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "tax-saving-workshop-funnel",
+   "order": 1,
+   "kind": "sales",
+   "blocks": [
+    "hero",
+    "feature-split",
+    "benefit-grid",
+    "benefit-grid",
+    "feature-split",
+    "video",
+    "faq",
+    "form-card"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "tax-saving-workshop-funnel",
+   "order": 2,
+   "kind": "checkout",
+   "blocks": [
+    "checkout-hero",
+    "guarantee"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "tax-saving-workshop-funnel",
+   "order": 3,
+   "kind": "upsell",
+   "blocks": [
+    "upsell-hero",
+    "upsell-decision"
+   ]
+  },
+  {
+   "type": "webinar",
+   "template": "tax-saving-workshop-funnel",
+   "order": 4,
+   "kind": "thankyou",
+   "blocks": [
+    "confirmation-hero",
+    "benefit-grid"
+   ]
+  }
+ ],
+ "source": {
+  "gallery": "https://swipepages.com/funnel-templates/",
+  "read": "2026-11-16",
+  "note": "Measurements and block labels only. No third-party copy."
+ }
+}
