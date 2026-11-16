@@ -1,5 +1,6 @@
 node_modules/
 dist/
+qa-report/
 .astro/
 
 # Funnel scans hold third-party pages and screenshots. Keep them local.

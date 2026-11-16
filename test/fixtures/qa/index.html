@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Known QA problems</title><style>
+  body { margin: 0; font: 16px/1.5 sans-serif; }
+  header { padding: 10px; }
+  #wide { width: 600px; height: 50px; background: #ddd; }
+  #small { width: 30px; height: 30px; padding: 0; }
+  #clipped { height: 24px; width: 200px; overflow: hidden; font-size: 24px; }
+  #ancestor { height: 24px; overflow: hidden; }
+  #ancestor p { margin: 0; width: 100px; }
+  #photo { background: url('/photo.svg'); height: 160px; }
+  #low { color: #ddd; font-size: 20px; }
+  #safe { width: 50px; height: 50px; }
+</style></head><body><main>
+  <header class="section hero"><button id="small" class="button">Go</button></header>
+  <section class="section" aria-labelledby="proof-heading"><h2 id="proof-heading">Proof</h2>
+    <div id="wide">Overflow</div><h3 id="clipped">Clipped heading with several lines of text that cannot fit.</h3>
+    <div id="ancestor"><p id="child">Clipped by an ancestor that hides several lines of content.</p></div>
+    <button id="safe">Safe</button>
+    <div id="photo"><p id="low">Low contrast over an actual image</p></div>
+    <img id="huge" src="/photo.svg" alt="Fixture" style="width:50px;height:50px">
+    <img id="broken" src="/missing.png" alt="Missing fixture" width="50" height="50">
+    <div style="height:1800px"></div>
+    <button id="below" style="height:30px">Below the viewport</button>
+    <img id="lazy" loading="lazy" src="/photo.svg" alt="Lazy fixture" width="600" height="1200" style="width:300px;height:600px">
+  </section>
+</main><script>console.error('Fixture console error');</script></body></html>

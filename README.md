@@ -55,6 +55,7 @@ The method lives in two skills: [funnel-first](skills/funnel-first/SKILL.md) and
 | `npm run dev` | Start the Astro dev server |
 | `npm test` | Run the tests. The browser tests need `npm run build` first and skip without it |
 | `npm run check` | Type-check the project |
+| `npm run qa -- [brand...] [--warn-only]` | Check built funnels at phone, tablet and desktop widths, then stress-test their sections. Writes `qa-report/` |
 | `npm run mcp` | Start the MCP server for agents |
 | `npm run app` | Open the local review app at http://127.0.0.1:4410: brand capture, `/scans` and `/extracts` |
 | `npm run capture -- <id> <url> [url] [url]` | Capture a client's tokens from 1 to 3 pages |
@@ -94,6 +95,7 @@ The method lives in two skills: [funnel-first](skills/funnel-first/SKILL.md) and
 ## Documentation
 
 - [Brand capture](docs/brand-capture/README.md): capture a client's tokens and review them.
+- [Visual QA](docs/qa/README.md): check layout, images and performance, then review stress contact sheets. Run `npm run build` first.
 - [Funnel scans](docs/funnel-scan/README.md) and [the scan record reference](docs/funnel-scan/schema.md).
 - [Design-system extracts](docs/design-system-extract/README.md) and [the extract reference](docs/design-system-extract/schema.md).
 
