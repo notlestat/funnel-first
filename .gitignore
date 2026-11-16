@@ -10,3 +10,8 @@ extracts/
 
 # Blueprint board data: screenshots and board state. Local.
 .blueprint/
+
+# Real client brands: their data, copy and photos stay local. Never publish them.
+src/data/brands/auto-detailing-london*.json
+src/data/captures/auto-detailing-london.json
+public/brands/auto-detailing-london/
