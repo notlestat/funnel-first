@@ -14,7 +14,8 @@
     "app": "node capture/app.ts",
     "scan": "node scan/cli.ts",
     "scan:report": "node scan/cli.ts report",
-    "extract": "node scan/cli.ts extract"
+    "extract": "node scan/cli.ts extract",
+    "qa": "node qa/cli.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.2",
