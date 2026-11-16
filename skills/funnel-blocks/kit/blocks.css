@@ -1,0 +1,464 @@
+/*
+  Funnel blocks: the block library.
+
+  Every rule reads tokens from tokens.css. No raw colours, sizes or fonts below
+  this line, so one token file restyles every block.
+  Class prefix: fb-. Layout uses logical properties so blocks mirror for RTL.
+  Order in this file follows a funnel from the top of the first step to the
+  last: atoms, bands, then blocks by stage (hook → story → offer → after).
+*/
+
+/* ---------- Base ---------- */
+.fb, .fb *, .fb *::before, .fb *::after { box-sizing: border-box; }
+.fb {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: 400 var(--size-body) / var(--line-body) var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.fb img { display: block; max-inline-size: 100%; block-size: auto; }
+.fb :focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
+.fb h1, .fb h2, .fb h3, .fb h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  line-height: var(--line-display);
+  text-wrap: balance;
+}
+.fb p { margin: 0; text-wrap: pretty; }
+.fb figure, .fb blockquote { margin: 0; }
+
+/* ---------- Layout: band → container → stack ---------- */
+.fb-band { padding-block: var(--space-section); padding-inline: var(--gutter); }
+.fb-band.is-tight { padding-block: calc(var(--space-section) * 0.5); }
+.fb-band.is-surface { background: var(--color-surface); }
+.fb-band.is-dark { background: var(--color-dark); color: var(--color-on-dark); --color-muted: var(--color-muted-on-dark); --color-text: var(--color-on-dark); --color-border: rgb(255 255 255 / 0.18); }
+.fb-band.is-accent { background: var(--color-accent); color: var(--color-on-accent); --color-muted: var(--color-on-accent); --color-text: var(--color-on-accent); }
+.fb-band.is-photo { position: relative; isolation: isolate; color: var(--color-on-dark); --color-text: var(--color-on-dark); --color-muted: var(--color-muted-on-dark); }
+.fb-band.is-photo > .fb-band__media { position: absolute; inset: 0; z-index: -2; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.fb-band.is-photo::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgb(0 0 0 / 0.55); } /* the study's overlay: black at 40–60% */
+
+.fb-container { inline-size: 100%; max-inline-size: var(--container); margin-inline: auto; }
+.fb-container.is-narrow { max-inline-size: 760px; }
+.fb-container.is-form { max-inline-size: 560px; }
+.fb-stack { display: grid; gap: var(--space-block); }
+.fb-stack.is-center { justify-items: center; text-align: center; }
+.fb-stack.is-tight { gap: calc(var(--space-block) * 0.5); }
+/* Inline pieces keep their own width inside a stack instead of stretching. */
+.fb-stack > :is(.fb-eyebrow, .fb-button, .fb-steppill, .fb-bio__role, .fb-placeholder-flag, .fb-decline) { justify-self: start; }
+.fb-stack.is-center > :is(.fb-eyebrow, .fb-button, .fb-steppill, .fb-bio__role, .fb-placeholder-flag, .fb-decline) { justify-self: center; }
+.fb-split { display: grid; gap: calc(var(--space-block) * 2); align-items: center; }
+@media (min-width: 900px) {
+  .fb-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .fb-split.is-copy-wide { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+}
+.fb-grid { display: grid; gap: var(--space-block); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+
+/* ---------- Atoms ---------- */
+.fb-heading, .fb-hero__title { font-family: var(--font-display); font-weight: var(--weight-display); line-height: var(--line-display); text-wrap: balance; }
+.fb-heading { font-size: var(--size-heading); max-inline-size: 22ch; }
+.fb-stack.is-center .fb-heading { margin-inline: auto; }
+.fb-lede { font-size: var(--size-body); color: var(--color-muted); max-inline-size: var(--measure); }
+.fb-stack.is-center .fb-lede { margin-inline: auto; }
+.fb-small { font-size: var(--size-small); color: var(--color-muted); }
+
+/* Eyebrow: the line above the headline. Pill on 60% of heroes that have one. */
+.fb-eyebrow {
+  display: inline-block;
+  padding: 0.35em 0.9em;
+  border-radius: 999px;
+  background: var(--color-highlight);
+  color: var(--color-on-highlight);
+  font: 700 var(--size-eyebrow) / 1.3 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.fb-eyebrow.is-plain { padding: 0; background: none; color: var(--color-accent-text); }
+.fb-band.is-dark .fb-eyebrow.is-plain, .fb-band.is-photo .fb-eyebrow.is-plain { color: var(--color-highlight); }
+
+/* One phrase in the headline gets emphasis. Two treatments recur. */
+.fb-accent-word { color: var(--color-accent-text); }
+.fb-band.is-dark .fb-accent-word, .fb-band.is-photo .fb-accent-word, .fb-band.is-accent .fb-accent-word { color: var(--color-highlight); }
+.fb-mark {
+  background: var(--color-highlight);
+  color: var(--color-on-highlight);
+  padding-inline: 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Buttons. Label names the result; the second line carries price or reassurance. */
+.fb-button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15em;
+  min-block-size: var(--button-height);
+  padding: 0.75em 2.2em;
+  border: 0;
+  border-radius: var(--button-radius);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  box-shadow: var(--button-shadow);
+  font: var(--button-weight) var(--size-body) / 1.25 var(--font-body);
+  letter-spacing: var(--button-tracking);
+  text-transform: var(--button-case);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 150ms ease, filter 150ms ease;
+}
+.fb-button:hover { filter: brightness(1.08); }
+.fb-button:active { transform: translateY(1px); }
+.fb-button__sub { font-size: 0.75em; font-weight: 500; letter-spacing: 0; text-transform: none; }
+.fb-button.is-yes { background: var(--color-highlight); color: var(--color-on-highlight); }
+.fb-button.is-ghost { background: transparent; color: inherit; box-shadow: inset 0 0 0 2px currentColor; }
+.fb-button.is-block { display: flex; inline-size: 100%; }
+@media (max-width: 599px) { .fb-button { inline-size: 100%; } } /* phone: every primary button spans the column */
+
+/* "No thanks" on upsells and the filter line under a button. */
+.fb-decline {
+  background: none; border: 0; padding: 0.5em;
+  color: var(--color-muted); font: inherit;
+  text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+}
+.fb-microcopy { font-size: var(--size-small); color: var(--color-muted); }
+
+.fb-checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6em; text-align: start; }
+.fb-checklist li { display: grid; grid-template-columns: 1.4em minmax(0, 1fr); gap: 0.6em; align-items: start; }
+.fb-checklist li::before {
+  content: ""; inline-size: 1.4em; block-size: 1.4em; margin-block-start: 0.05em; border-radius: 50%;
+  background: var(--color-success) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 70% no-repeat;
+}
+
+.fb-chips { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.fb-stack.is-center .fb-chips { justify-content: center; }
+.fb-chip {
+  display: inline-flex; align-items: center; gap: 0.5em;
+  padding: 0.5em 0.9em; border: 1px solid var(--color-border); border-radius: var(--field-radius);
+  font-size: var(--size-small); font-weight: 600;
+}
+
+.fb-stars { color: var(--color-highlight); letter-spacing: 0.1em; font-size: 1.1em; }
+
+.fb-price { display: inline-flex; align-items: baseline; gap: 0.5em; flex-wrap: wrap; }
+.fb-price__was { color: var(--color-danger); text-decoration: line-through; text-decoration-thickness: 2px; }
+.fb-band.is-dark .fb-price__was, .fb-band.is-photo .fb-price__was, .fb-band.is-accent .fb-price__was { color: var(--color-muted); } /* red fails contrast on dark bands; the strike carries the meaning */
+.fb-price__now { font: var(--weight-display) var(--size-heading) / 1 var(--font-display); }
+
+/* ---------- Fields and forms ---------- */
+.fb-form { display: grid; gap: 0.9rem; }
+.fb-field { display: grid; gap: 0.35rem; }
+.fb-field label { font-size: var(--size-small); font-weight: 600; }
+.fb-field input, .fb-field select {
+  min-block-size: var(--field-height);
+  inline-size: 100%;
+  padding-inline: 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--field-radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+}
+.fb-field input::placeholder { color: var(--color-muted); opacity: 0.8; }
+.fb-consent { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.6rem; font-size: var(--size-small); color: var(--color-muted); align-items: start; }
+.fb-consent input { inline-size: 1.15rem; block-size: 1.15rem; margin-block-start: 0.15rem; accent-color: var(--color-accent); }
+
+/* ============ HOOK: the first screen ============ */
+
+/* Announcement bar: one line of urgency or a free-shipping promise above everything. */
+.fb-announce { padding: 0.6rem var(--gutter); background: var(--color-dark); color: var(--color-on-dark); text-align: center; font-size: var(--size-small); }
+.fb-announce strong { color: var(--color-highlight); }
+
+/* Brand bar: logo only, no navigation. 0 nav links in the study: a funnel has one exit. */
+.fb-brandbar { display: flex; justify-content: center; align-items: center; gap: 1rem; padding: 1.25rem var(--gutter); }
+.fb-brandbar.is-split { justify-content: space-between; max-inline-size: var(--container); margin-inline: auto; }
+.fb-brandbar__logo { font: 800 1.25rem / 1 var(--font-display); text-decoration: none; color: inherit; display: inline-flex; gap: 0.5rem; align-items: center; }
+
+/* Hero: four variants share one anatomy:
+   eyebrow → headline (one accented phrase) → lede → checklist → button (+ microcopy) */
+.fb-hero__title { font-size: var(--size-hero); max-inline-size: 20ch; }
+.fb-stack.is-center .fb-hero__title { margin-inline: auto; }
+.fb-hero .fb-checklist { max-inline-size: 36rem; }
+.fb-stack.is-center .fb-checklist { margin-inline: auto; }
+.fb-hero__media { border-radius: var(--card-radius); overflow: hidden; box-shadow: var(--card-shadow); }
+
+/* Video frame: 16:9 with a play affordance. VSL hero and story video. */
+.fb-video { position: relative; aspect-ratio: 16 / 9; inline-size: 100%; border-radius: var(--card-radius); overflow: hidden; background: var(--color-dark); box-shadow: var(--card-shadow); }
+.fb-video > img, .fb-video > iframe { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; border: 0; }
+.fb-video__play {
+  position: absolute; inset: 50% auto auto 50%; translate: -50% -50%;
+  inline-size: 76px; block-size: 76px; border-radius: 50%; border: 0;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5.5v13l11-6.5z' fill='%23111'/%3E%3C/svg%3E") 55% 50% / 42% no-repeat;
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.35); cursor: pointer;
+}
+
+/* Form card: the opt-in. Dark or accent card, title, ≤3 fields, full-width button, privacy line. */
+.fb-formcard {
+  display: grid; gap: 1.1rem;
+  padding: var(--card-padding);
+  border-radius: var(--card-radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--card-shadow);
+}
+/* Dark is the default look; .is-light keeps the band's own text colours. */
+.fb-formcard:not(.is-light) {
+  background: var(--color-dark);
+  color: var(--color-on-dark);
+  border: 0;
+  --color-text: var(--color-on-dark);
+  --color-muted: var(--color-muted-on-dark);
+}
+.fb-formcard__title { font: var(--weight-display) var(--size-subheading) / 1.3 var(--font-display); text-align: center; }
+.fb-formcard:not(.is-light) .fb-field input, .fb-formcard:not(.is-light) .fb-field select { background: rgb(255 255 255 / 0.06); border-color: rgb(255 255 255 / 0.22); color: var(--color-on-dark); }
+.fb-formcard .fb-button { inline-size: 100%; }
+
+/* Countdown: 3 or 4 boxes, digits over labels. Only for a real deadline. */
+.fb-countdown { display: flex; gap: 0.75rem; justify-content: center; }
+.fb-stack:not(.is-center) > .fb-countdown { justify-content: flex-start; }
+.fb-countdown__unit { display: grid; justify-items: center; gap: 0.35rem; }
+.fb-countdown__num {
+  display: grid; place-items: center;
+  inline-size: clamp(3.75rem, 3rem + 3vw, 5rem); aspect-ratio: 1;
+  border: 1px solid var(--color-border); border-radius: var(--card-radius);
+  font: var(--weight-display) clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem) / 1 var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+.fb-countdown__label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+
+/* ============ STORY: value and trust ============ */
+
+/* Rating stack: 3 short starred quotes stacked in the hero or under the form. */
+.fb-ratings { display: grid; gap: 0.75rem; }
+.fb-rating .fb-placeholder-flag { justify-self: center; }
+.fb-rating { display: grid; gap: 0.25rem; justify-items: center; padding: 0.9rem 1rem; border: 1px solid var(--color-border); border-radius: var(--card-radius); text-align: center; font-size: var(--size-small); }
+
+/* Logo strip: "Trusted by …" plus a row of greyed logos. */
+.fb-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.5rem 2.5rem; opacity: 0.7; filter: grayscale(1); }
+.fb-logos > * { block-size: 28px; inline-size: auto; }
+
+/* Benefit grid: 3 icon cards. The most common block after the hero in the study. */
+.fb-card {
+  display: grid; gap: 0.6rem; align-content: start;
+  padding: var(--card-padding);
+  border-radius: var(--card-radius);
+  background: var(--color-bg);
+  box-shadow: var(--card-shadow);
+  color: var(--color-text);
+}
+.fb-band.is-dark .fb-card { background: rgb(255 255 255 / 0.06); box-shadow: none; border: 1px solid var(--color-border); }
+.fb-card__icon {
+  display: grid; place-items: center; inline-size: 48px; block-size: 48px; border-radius: var(--radius);
+  background: var(--color-accent); color: var(--color-on-accent);
+  font-size: 1.4rem;
+}
+.fb-card__title { font: var(--weight-display) var(--size-subheading) / 1.3 var(--font-display); }
+.fb-card p { color: var(--color-muted); }
+
+/* Feature split: image one side, heading + text + checklist the other. Alternate sides down the page. */
+.fb-feature__media { border-radius: var(--card-radius); overflow: hidden; }
+@media (min-width: 900px) { .fb-feature.is-flipped .fb-feature__media { order: -1; } } /* image moves to the start on desktop only; DOM and phone order stay copy-first */
+
+/* Steps: 01 / 02 / 03, how it works or what happens after the yes. */
+.fb-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-block); counter-reset: step; }
+@media (min-width: 900px) { .fb-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.fb-steps li { counter-increment: step; display: grid; gap: 0.5rem; align-content: start; }
+.fb-steps li::before {
+  content: counter(step, decimal-leading-zero);
+  display: grid; place-items: center; inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%;
+  background: var(--color-accent); color: var(--color-on-accent); font: 700 var(--size-small) / 1 var(--font-body);
+}
+
+/* Testimonials: quote cards, stars, a named person with a role. */
+.fb-quote { display: grid; gap: 1rem; align-content: space-between; }
+.fb-quote blockquote { margin: 0; font-size: var(--size-body); }
+.fb-quote figcaption { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 0.75rem; align-items: center; font-size: var(--size-small); }
+.fb-quote figcaption img, .fb-avatar { inline-size: 44px; block-size: 44px; border-radius: 50%; object-fit: cover; background: var(--color-surface); }
+.fb-quote__name { font-weight: 700; color: var(--color-text); }
+.fb-placeholder-flag { justify-self: start; display: inline-block; padding: 0.15em 0.6em; border-radius: 4px; background: var(--color-danger); color: #fff; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Bio: the person behind the promise. Photo, name, credential line, short story. */
+.fb-bio__photo { inline-size: 100%; max-inline-size: 420px; justify-self: center; aspect-ratio: 4 / 5; border-radius: var(--card-radius); overflow: hidden; background: var(--color-surface); }
+.fb-bio__photo img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+.fb-bio__role { color: var(--color-accent-text); font-weight: 700; font-size: var(--size-small); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ============ OFFER: the stack and the ask ============ */
+
+/* Offer stack: each item with its value, bonuses marked FREE, total value, today's price. */
+.fb-offer { padding: var(--card-padding); border-radius: var(--card-radius); background: var(--color-dark); color: var(--color-on-dark); --color-muted: var(--color-muted-on-dark); --color-border: rgb(255 255 255 / 0.18); display: grid; gap: 1.25rem; box-shadow: var(--card-shadow); }
+.fb-offer__items { list-style: none; margin: 0; padding: 0; display: grid; }
+.fb-offer__items li { display: grid; grid-template-columns: 1.4em minmax(0, 1fr) auto; gap: 0.75rem; padding-block: 0.8rem; border-block-end: 1px solid var(--color-border); align-items: baseline; }
+.fb-offer__items li::before { content: "✓"; color: var(--color-success); font-weight: 800; }
+.fb-offer__value { font-variant-numeric: tabular-nums; text-align: end; }
+.fb-offer__value s { color: var(--color-muted); display: block; font-size: var(--size-small); }
+.fb-offer__value strong { color: var(--color-highlight); }
+.fb-offer__total { display: flex; justify-content: space-between; gap: 1rem; font-weight: 700; flex-wrap: wrap; }
+.fb-offer__total s { color: var(--color-muted); }
+.fb-offer__today { text-align: center; display: grid; gap: 0.25rem; }
+.fb-offer__today .fb-price__now { color: var(--color-highlight); font-size: var(--size-hero); }
+
+/* Guarantee: a badge and the promise in plain words. Sits next to the price. */
+.fb-guarantee { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 1.25rem; align-items: center; padding: var(--card-padding); border: 2px dashed var(--color-border); border-radius: var(--card-radius); }
+@media (max-width: 479px) { .fb-guarantee { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; } }
+.fb-guarantee__seal { inline-size: 88px; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center; background: var(--color-highlight); color: var(--color-on-highlight); font: 800 0.8rem / 1.1 var(--font-display); text-transform: uppercase; padding: 0.5rem; }
+
+/* FAQ: native details/summary, so it works without JavaScript. */
+.fb-faq { display: grid; gap: 0.75rem; }
+.fb-faq details { border: 1px solid var(--color-border); border-radius: var(--card-radius); background: var(--color-bg); color: var(--color-text); }
+.fb-band.is-dark .fb-faq details { background: transparent; }
+.fb-faq summary { display: flex; justify-content: space-between; gap: 1rem; padding: 1.1rem 1.25rem; cursor: pointer; font-weight: 700; list-style: none; min-block-size: 44px; }
+.fb-faq summary::-webkit-details-marker { display: none; }
+.fb-faq summary::after { content: "+"; font-size: 1.4em; line-height: 1; color: var(--color-accent-text); transition: rotate 200ms ease; }
+.fb-faq details[open] summary::after { rotate: 45deg; }
+.fb-faq details > div { padding: 0 1.25rem 1.2rem; color: var(--color-muted); }
+
+/* CTA band: the ask repeated for people who read the whole page. */
+.fb-ctaband .fb-heading { max-inline-size: 24ch; }
+
+/* ============ AFTER THE FIRST YES: checkout, upsell, confirmation ============ */
+
+/* Progress bar: "you are almost there". */
+.fb-progress { display: grid; gap: 0.4rem; }
+.fb-progress__track { block-size: 12px; border-radius: 999px; background: color-mix(in srgb, var(--color-text) 12%, transparent); overflow: hidden; }
+.fb-progress__fill { block-size: 100%; inline-size: var(--progress, 60%); border-radius: inherit; background: var(--color-success); }
+.fb-progress__label { font-size: var(--size-small); font-weight: 700; }
+
+/* Two-step checkout tabs: 1 Your details → 2 Payment. */
+.fb-steptabs { display: grid; grid-template-columns: 1fr 1fr; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--color-border); }
+.fb-steptabs > * { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.15rem 0.75rem; align-items: center; padding: 0.8rem 1rem; background: var(--color-surface); color: var(--color-muted); }
+.fb-steptabs > [aria-current="step"] { background: var(--color-bg); color: var(--color-text); }
+.fb-steptabs b { grid-row: span 2; font: 700 1.6rem / 1 var(--font-display); }
+.fb-steptabs span { font-weight: 700; font-size: var(--size-small); }
+.fb-steptabs small { font-size: 0.75rem; color: var(--color-muted); }
+
+/* Product row: what they are buying, with the price, at the top of the checkout. */
+.fb-product { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 1rem; align-items: center; padding-block: 0.75rem; border-block-end: 1px solid var(--color-border); }
+.fb-product__thumb { inline-size: 64px; aspect-ratio: 1; border-radius: var(--radius); background: var(--color-surface); object-fit: cover; }
+.fb-product__name { font-weight: 700; }
+.fb-product__price { font-weight: 800; font-variant-numeric: tabular-nums; }
+
+/* Order bump: one checkbox, one add-on, before the pay button. */
+.fb-bump { display: grid; gap: 0.5rem; padding: 1rem; border: 2px dashed var(--color-danger); border-radius: var(--radius); background: color-mix(in srgb, var(--color-highlight) 16%, var(--color-bg)); color: var(--color-text); }
+.fb-bump label { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.6rem; font-weight: 800; align-items: center; cursor: pointer; }
+.fb-bump input { inline-size: 1.25rem; block-size: 1.25rem; accent-color: var(--color-danger); }
+.fb-bump p { font-size: var(--size-small); color: var(--color-muted); }
+
+.fb-secure { display: flex; justify-content: center; gap: 0.5rem; align-items: center; font-size: var(--size-small); color: var(--color-muted); }
+
+/* Upsell: step pill, "your order is not complete", one yes, one plain no. */
+.fb-steppill { display: inline-block; padding: 0.45em 1em; border-radius: 999px; background: var(--color-highlight); color: var(--color-on-highlight); font-weight: 800; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.fb-decision { display: grid; gap: 0.5rem; justify-items: center; }
+
+/* Confirmation: a check, what happened, what to do next, help if the email is missing. */
+.fb-confirm__check { inline-size: 72px; block-size: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--color-success); color: #fff; font-size: 2rem; font-weight: 800; }
+.fb-nextsteps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; text-align: start; }
+.fb-nextsteps li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.75rem; padding: 1rem; border: 1px solid var(--color-border); border-radius: var(--card-radius); }
+.fb-nextsteps li > b { display: grid; place-items: center; inline-size: 2rem; block-size: 2rem; border-radius: 50%; background: var(--color-accent); color: var(--color-on-accent); font-size: var(--size-small); }
+
+/* Footer: copyright, privacy, terms, and the earnings or results disclaimer where one applies. */
+.fb-footer { padding: 2rem var(--gutter); text-align: center; font-size: 0.8125rem; color: var(--color-muted); display: grid; gap: 0.75rem; }
+.fb-footer nav { display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
+.fb-footer a { color: inherit; }
+
+/* ---------- Motion preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .fb *, .fb *::before, .fb *::after { transition: none !important; animation: none !important; }
+}
+
+/* ============ FUNNEL STEPS: blocks the funnel templates add ============ */
+
+/* White cards keep the page's text colours even inside dark bands. */
+.fb-question, .fb-result, .fb-slots, .fb-plan, .fb-tasks label, .fb-formcard.is-light, .fb-summary {
+  --color-text: var(--color-text-light);
+  --color-muted: var(--color-muted-light);
+  --color-border: var(--color-border-light);
+}
+
+/* Trust row: short facts with a check, under a hero or above a form. */
+.fb-trust { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-size: var(--size-small); color: var(--color-muted); }
+.fb-stack.is-center .fb-trust { justify-content: center; }
+.fb-trust li { display: inline-flex; gap: 0.45rem; align-items: center; }
+.fb-trust li::before { content: "✓"; color: var(--color-accent-text, var(--color-accent)); font-weight: 800; }
+.fb-band.is-dark .fb-trust li::before, .fb-band.is-photo .fb-trust li::before { color: var(--color-highlight); }
+
+/* Question: one tap-to-answer question per screen, progress shown, Back below. */
+.fb-question { display: grid; gap: 1.25rem; padding: var(--card-padding); border-radius: var(--card-radius); background: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border); box-shadow: var(--card-shadow); text-align: start; }
+.fb-question__progress { display: grid; gap: 0.4rem; font-size: var(--size-small); font-weight: 700; color: var(--color-muted); }
+.fb-question__title { font: var(--weight-display) var(--size-subheading) / 1.3 var(--font-display); color: var(--color-text); }
+.fb-answers { display: grid; gap: 0.6rem; }
+.fb-answers.is-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fb-answer { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; min-block-size: 56px; padding: 0.75rem 1.1rem; border: 1.5px solid var(--color-border); border-radius: var(--field-radius); background: var(--color-bg); color: var(--color-text); font: 600 var(--size-body) / 1.3 var(--font-body); text-align: start; cursor: pointer; }
+.fb-answer::after { content: ""; flex: none; inline-size: 1.1rem; block-size: 1.1rem; border-radius: 50%; border: 2px solid var(--color-border); }
+.fb-answer[aria-pressed="true"] { border-color: var(--color-accent); background: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg)); }
+.fb-answer[aria-pressed="true"]::after { border: 5px solid var(--color-accent); }
+.fb-back { justify-self: start; background: none; border: 0; padding: 0.5rem 0; color: var(--color-muted); font: inherit; font-size: var(--size-small); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* Result: the personal recommendation at the end of a quiz. */
+.fb-result { display: grid; gap: 1rem; padding: var(--card-padding); border-radius: var(--card-radius); border: 2px solid var(--color-accent); background: var(--color-bg); color: var(--color-text); text-align: start; }
+.fb-result__label { font-size: var(--size-eyebrow); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-text, var(--color-accent)); }
+.fb-result__title { font: var(--weight-display) var(--size-heading) / 1.15 var(--font-display); }
+.fb-result__price { font-weight: 700; }
+
+/* Booking slots: pick a day, then a time. Selected = aria-pressed. */
+.fb-slots { display: grid; gap: 1.1rem; padding: var(--card-padding); border-radius: var(--card-radius); border: 1px solid var(--color-border); background: var(--color-bg); color: var(--color-text); box-shadow: var(--card-shadow); text-align: start; }
+.fb-slots__label { font-size: var(--size-small); font-weight: 700; }
+.fb-dates { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5rem; }
+.fb-date { display: grid; justify-items: center; gap: 0.1rem; padding: 0.6rem 0.25rem; border: 1.5px solid var(--color-border); border-radius: var(--field-radius); background: var(--color-bg); color: var(--color-text); font: 500 var(--size-small) / 1.2 var(--font-body); cursor: pointer; }
+.fb-date b { font: var(--weight-display) 1.25rem / 1 var(--font-display); }
+.fb-times { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+.fb-time { min-block-size: 44px; border: 1.5px solid var(--color-border); border-radius: var(--field-radius); background: var(--color-bg); color: var(--color-text); font: 600 var(--size-small) / 1 var(--font-body); cursor: pointer; }
+.fb-date[aria-pressed="true"], .fb-time[aria-pressed="true"] { border-color: var(--color-accent); background: var(--color-accent); color: var(--color-on-accent); }
+.fb-time:disabled { opacity: 0.45; text-decoration: line-through; cursor: not-allowed; }
+
+/* Plans: two or three tiers, one featured. */
+.fb-plans { display: grid; gap: var(--space-block); align-items: stretch; }
+@media (min-width: 900px) { .fb-plans { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); } }
+.fb-plan { position: relative; display: flex; flex-direction: column; gap: 1rem; padding: var(--card-padding); border-radius: var(--card-radius); border: 1px solid var(--color-border); background: var(--color-bg); color: var(--color-text); text-align: start; }
+.fb-plan.is-featured { border: 2px solid var(--color-accent); box-shadow: var(--card-shadow); }
+.fb-plan__badge { position: absolute; inset-block-start: 0; inset-inline-start: 50%; translate: -50% -50%; padding: 0.3em 0.9em; border-radius: 999px; background: var(--color-accent); color: var(--color-on-accent); font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+.fb-plan__name { font: var(--weight-display) var(--size-subheading) / 1.3 var(--font-display); }
+.fb-plan__price { font: var(--weight-display) var(--size-heading) / 1 var(--font-display); }
+.fb-plan__price small { font: 500 var(--size-small) var(--font-body); color: var(--color-muted); }
+.fb-plan .fb-button { inline-size: 100%; margin-block-start: auto; }
+
+/* Challenge days: where they are in the series. */
+.fb-days { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5rem; }
+.fb-days li { display: grid; justify-items: center; gap: 0.2rem; padding: 0.6rem 0.25rem; border-radius: var(--field-radius); border: 1.5px solid var(--color-border); font-size: 0.75rem; font-weight: 600; color: var(--color-muted); }
+.fb-days li b { font: var(--weight-display) 1.2rem / 1 var(--font-display); color: var(--color-text); }
+.fb-days li.is-done { background: var(--color-surface); }
+.fb-days li.is-done b::after { content: " ✓"; font-size: 0.8em; color: var(--color-success); }
+.fb-days li[aria-current="step"] { border-color: var(--color-accent); background: var(--color-accent); color: var(--color-on-accent); }
+.fb-days li[aria-current="step"] b { color: var(--color-on-accent); }
+.fb-tasks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; text-align: start; }
+.fb-tasks label { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.75rem; align-items: start; padding: 0.9rem 1rem; border: 1px solid var(--color-border); border-radius: var(--card-radius); background: var(--color-bg); color: var(--color-text); cursor: pointer; }
+.fb-tasks input { inline-size: 1.2rem; block-size: 1.2rem; margin-block-start: 0.15rem; accent-color: var(--color-accent); }
+
+/* Amount picker: gift vouchers and pay-what-you-want. */
+.fb-amounts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
+.fb-amount { min-block-size: 52px; border: 1.5px solid var(--color-border); border-radius: var(--field-radius); background: var(--color-bg); color: var(--color-text); font: 700 var(--size-body) / 1 var(--font-body); cursor: pointer; }
+.fb-amount[aria-pressed="true"] { border-color: var(--color-accent); background: var(--color-accent); color: var(--color-on-accent); }
+
+/* Order summary: line items and the total, beside or above payment. */
+.fb-summary { display: grid; gap: 0.5rem; padding: 1rem 1.1rem; border-radius: var(--radius); background: var(--color-surface); color: var(--color-text); font-size: var(--size-small); }
+.fb-summary div { display: flex; justify-content: space-between; gap: 1rem; }
+.fb-summary .is-total { padding-block-start: 0.5rem; border-block-start: 1px solid var(--color-border); font-size: var(--size-body); font-weight: 800; }
+
+/* Before and after: two photos with labels. */
+.fb-beforeafter { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+.fb-beforeafter figure { position: relative; border-radius: var(--card-radius); overflow: hidden; aspect-ratio: 4 / 3; background: var(--color-surface); }
+.fb-beforeafter img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+.fb-beforeafter figcaption { position: absolute; inset-block-start: 0.6rem; inset-inline-start: 0.6rem; padding: 0.25em 0.7em; border-radius: 999px; background: rgb(0 0 0 / 0.7); color: #fff; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* Image frame for photos inside splits and cards. */
+.fb-photo { border-radius: var(--card-radius); overflow: hidden; background: var(--color-surface); }
+.fb-photo img { inline-size: 100%; block-size: 100%; object-fit: cover; aspect-ratio: 4 / 3; }
+.fb-photo.is-tall img { aspect-ratio: 4 / 5; }
+.fb-photo.is-wide img { aspect-ratio: 16 / 9; }
+
+/* Step label used on design boards: which funnel step this is. */
+.fb-steplabel { display: flex; justify-content: center; gap: 0.5rem; padding: 0.4rem var(--gutter); background: var(--color-surface); color: var(--color-muted); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; }

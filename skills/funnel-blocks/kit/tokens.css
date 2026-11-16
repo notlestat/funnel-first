@@ -1,0 +1,70 @@
+/*
+  Funnel blocks: tokens.
+
+  The first 18 names are the conversion system's token contract
+  (src/system/tokens.ts), so a brand file's tokens drop straight in.
+  The names under "Extended" are the extra decisions the 48-template study
+  showed every funnel making. They all have defaults derived from the base 18,
+  so a brand only sets them to change the default.
+
+  Values are the study medians (desktop 1440 / phone 390) unless noted.
+  See ../references/tokens.md for the measurements behind each one.
+*/
+:root {
+  /* Base 18: the conversion system contract */
+  --color-bg: #ffffff;
+  --color-surface: #f3f4f6;
+  --color-text: #111827;
+  --color-muted: #4b5563;
+  --color-accent: #2563eb;
+  --color-on-accent: #ffffff;
+  --color-border: #d1d5db;
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --weight-display: 700;
+  --size-hero: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem);     /* 36 phone, 52 desktop */
+  --size-heading: clamp(1.875rem, 1.5rem + 1.6vw, 2.625rem); /* 30 phone, 42 desktop */
+  --size-body: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);    /* 17 phone, 18 desktop */
+  --size-small: 0.875rem;                                   /* 14 */
+  --space-section: clamp(3.75rem, 2.9rem + 3.4vw, 5.625rem); /* 60 phone, 90 desktop */
+  --space-block: 1.5rem;                                    /* 24 */
+  --radius: 6px;                                            /* fields 6, buttons 3 or pill, cards 10 */
+  --measure: 62ch;
+
+  /* Extended: decisions the study shows every funnel makes */
+  --container: 1180px;                       /* 1180 is the builder default on almost every page */
+  --gutter: 1rem;                            /* phone side gutter */
+  --size-subheading: 1.25rem;               /* card titles: 20 on both widths */
+  --size-eyebrow: 0.8125rem;                 /* 13, uppercase, tracked */
+  --line-display: 1.2;
+  --line-body: 1.55;
+
+  --color-dark: #0f172a;                     /* the dark band: hero, form card, offer card */
+  --color-on-dark: #f8fafc;
+  --color-muted-on-dark: #cbd5e1;
+  --color-highlight: #facc15;                /* marker strip behind one phrase, eyebrow pills, the yes button on dark */
+  --color-on-highlight: #111827;
+  --color-success: #16a34a;                  /* checks in benefit lists */
+  --color-danger: #dc2626;                   /* struck-through "was" prices, timers in their last hour */
+
+  --button-height: 56px;                     /* median 57 desktop; 62 on phones because labels wrap */
+  --button-radius: var(--radius);            /* set 999px for pill (about a third of the study) */
+  --button-case: uppercase;                  /* 68% of buttons; set none for sentence case */
+  --button-tracking: 0.04em;
+  --button-weight: 700;
+  --button-shadow: none;                     /* 5% use a hard offset, e.g. 5px 5px 0 var(--color-text) */
+
+  --field-height: 48px;                      /* study median 44; 48 gives a comfortable target */
+  --field-radius: var(--radius);
+  --card-radius: calc(var(--radius) * 1.67);  /* 10 */
+  --card-shadow: 0 1px 2px rgb(0 0 0 / 0.06), 0 8px 24px rgb(0 0 0 / 0.08);
+  --card-padding: clamp(1.25rem, 1rem + 1vw, 2rem);
+
+  /* Frozen copies of the page colours. Custom properties resolve where they are
+     declared, so these keep the light-page values inside dark bands. White cards
+     (questions, slots, plans, light forms) use them. Do not override. */
+  --color-text-light: var(--color-text);
+  --color-muted-light: var(--color-muted);
+  --color-border-light: var(--color-border);
+  --color-accent-text: var(--color-accent);   /* accent used as text on light; darken it when the accent fails contrast */
+}

@@ -36,6 +36,19 @@ const tokensSchema = z.object(
 
 const recipeIds = Object.keys(recipes) as [RecipeId, ...RecipeId[]];
 
+// The client's own images, copied into public/brands/<client>/ with their permission.
+// Local files only, so the page never hotlinks another site. Width and height reserve
+// the space before the file loads, so the page does not jump. Alt may be empty only
+// for a purely decorative image; the build checks the file exists.
+const image = z.object({
+  src: z.string().regex(/^\/brands\/[a-z0-9-]+\/[\w.-]+\.(webp|avif|jpe?g|png|svg)$/, 'use a local file: /brands/<client>/<name>.webp'),
+  alt: z.string(),
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+});
+const describedImage = image.extend({ alt: z.string().min(1, 'describe what the image shows') });
+export type BrandImage = z.infer<typeof image>;
+
 // ---- Section content. Each is optional here; the recipe decides which are required. ----
 
 const heroContent = z.object({
@@ -44,6 +57,8 @@ const heroContent = z.object({
   subhead: z.string(),
   // Not used by the "question" variant, where the first question replaces the button.
   cta: z.string().optional(),
+  // Sits behind the eyebrow, headline and subhead under a fixed dark scrim. The ask stays below it.
+  image: image.optional(),
 });
 
 const option = z.object({ label: z.string().min(1).max(60), hint: z.string().max(80).optional() });
@@ -114,6 +129,12 @@ const proofContent = z.object({
   heading: z.string(),
   // A quote without a named, permitted source must be marked as a placeholder.
   quotes: z.array(z.object({ quote: z.string(), source: z.string(), placeholder: z.boolean() })),
+  // Before and after photos of the client's own work, side by side. Not a slider: no motion.
+  // A pair the client has not confirmed as their own work stays a placeholder.
+  pairs: z
+    .array(z.object({ before: describedImage, after: describedImage, caption: z.string().min(1), placeholder: z.boolean() }))
+    .max(3, 'three before/after pairs at most; pick the strongest')
+    .optional(),
 });
 
 const agendaContent = z.object({
@@ -160,6 +181,8 @@ export const brandSchema = z
     name: z.string(),
     fictional: z.boolean(),
     fontsHref: z.url().optional(),
+    // Shown small at the top of the hero. Never a link: the page has one way forward.
+    logo: describedImage.optional(),
     tokens: tokensSchema,
     recipe: z.enum(recipeIds),
     strategy: strategySchema.optional(),

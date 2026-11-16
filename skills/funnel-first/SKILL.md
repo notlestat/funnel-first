@@ -9,6 +9,8 @@ The page exists to get one yes. Looks serve that yes, never the other way round.
 
 This skill drives the conversion system. Its MCP server (`conversion-system`) applies the same rules as the build.
 
+For how each step is built (the blocks, their order and measured token values), load `funnel-blocks`.
+
 ## 1. Write the strategy before any page
 
 Brunson's first steps, written into the brand file's `strategy` block. A page built without them is decoration.

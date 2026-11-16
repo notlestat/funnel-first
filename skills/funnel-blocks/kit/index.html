@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Funnel Blocks</title>
+<meta name="description" content="Every funnel block in the kit, rendered from tokens, with sample brands to prove one token file restyles them all.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Archivo:wght@400;600;700;800&family=Archivo+Narrow:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="blocks.css">
+<style>
+  /* Sample brands: only tokens change. Everything below the gallery chrome is the kit. */
+  [data-brand="signal"] {
+    --color-bg: #ffffff; --color-surface: #f1f5f9; --color-text: #0f172a; --color-muted: #475569;
+    --color-accent: #2563eb; --color-on-accent: #ffffff; --color-border: #cbd5e1;
+    --color-dark: #0b1630; --color-highlight: #facc15; --color-on-highlight: #111827;
+    --font-display: "Plus Jakarta Sans", system-ui, sans-serif; --radius: 8px; --button-radius: 8px;
+  }
+  [data-brand="garden"] {
+    --color-bg: #fbf8f1; --color-surface: #efe9db; --color-text: #1f2a1f; --color-muted: #4d5a4b;
+    --color-accent: #2f6b3b; --color-on-accent: #ffffff; --color-border: #d6cdb8;
+    --color-dark: #1f3324; --color-on-dark: #f6f2e6; --color-muted-on-dark: #c9d3c3;
+    --color-highlight: #f2b84b; --color-on-highlight: #1f2a1f; --color-success: #2f6b3b;
+    --font-display: "Fraunces", Georgia, serif; --font-body: "Inter", system-ui, sans-serif;
+    --weight-display: 700; --radius: 14px; --button-radius: 999px; --button-case: none; --button-tracking: 0;
+  }
+  [data-brand="punch"] {
+    --color-bg: #ffffff; --color-surface: #f2f2ee; --color-text: #111111; --color-muted: #3d3d3d;
+    --color-accent: #be123c; --color-on-accent: #ffffff; --color-border: #111111;
+    --color-dark: #111111; --color-highlight: #fde047; --color-on-highlight: #111111;
+    --font-display: "Archivo Narrow", "Archivo", sans-serif; --font-body: "Archivo", system-ui, sans-serif;
+    --weight-display: 700; --radius: 0px; --button-radius: 0px; --button-shadow: 5px 5px 0 #111111;
+    --card-shadow: 6px 6px 0 #111111; --line-display: 1.12;
+  }
+
+  /* Gallery chrome */
+  .g-bar { position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: #0a0a0a; color: #f5f5f5; font: 500 14px/1.3 Inter, system-ui, sans-serif; }
+  .g-bar strong { font-weight: 800; letter-spacing: 0.02em; }
+  .g-bar fieldset { border: 0; margin: 0; padding: 0; display: flex; gap: 0.25rem; flex-wrap: wrap; }
+  .g-bar legend { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
+  .g-bar label { position: relative; }
+  .g-bar input { position: absolute; opacity: 0; inset: 0; }
+  .g-bar label span { display: inline-block; padding: 0.45rem 0.8rem; border-radius: 999px; border: 1px solid #3f3f46; cursor: pointer; }
+  .g-bar input:checked + span { background: #f5f5f5; color: #0a0a0a; border-color: #f5f5f5; }
+  .g-bar input:focus-visible + span { outline: 2px solid #60a5fa; outline-offset: 2px; }
+  .g-label { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: baseline; padding: 0.9rem 1rem; background: #f4f4f5; color: #18181b; border-block: 1px solid #e4e4e7; font: 400 13px/1.4 Inter, system-ui, sans-serif; }
+  .g-label b { font-size: 14px; font-weight: 800; }
+  .g-label code { font: 600 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace; background: #e4e4e7; padding: 0.2rem 0.4rem; border-radius: 4px; }
+  .g-label i { font-style: normal; padding: 0.15rem 0.5rem; border-radius: 999px; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .g-label i[data-stage="hook"] { background: #fee2e2; color: #991b1b; }
+  .g-label i[data-stage="story"] { background: #dbeafe; color: #1e40af; }
+  .g-label i[data-stage="offer"] { background: #dcfce7; color: #166534; }
+  .g-label i[data-stage="after"] { background: #ede9fe; color: #5b21b6; }
+  .g-label span { color: #52525b; flex: 1 1 280px; }
+  .g-ph { display: grid; place-items: center; background: repeating-linear-gradient(135deg, var(--color-surface) 0 12px, color-mix(in srgb, var(--color-surface) 70%, var(--color-border)) 12px 24px); color: var(--color-muted); font: 600 13px/1.3 Inter, system-ui, sans-serif; text-align: center; padding: 1rem; }
+  .g-ph.is-wide { aspect-ratio: 16 / 10; }
+  .g-ph.is-tall { aspect-ratio: 4 / 5; }
+  .g-ph.is-dark { color: #94a3b8; background: repeating-linear-gradient(135deg, #1f2937 0 12px, #273449 12px 24px); color: #cbd5e1; }
+</style>
+</head>
+<body class="fb" data-brand="signal">
+
+<header class="g-bar">
+  <strong>Funnel Blocks · 21 blocks · 5 hero variants · 1 token file</strong>
+  <fieldset>
+    <legend>Sample brand</legend>
+    <label><input type="radio" name="brand" value="signal" checked><span>Signal</span></label>
+    <label><input type="radio" name="brand" value="garden"><span>Garden</span></label>
+    <label><input type="radio" name="brand" value="punch"><span>Punch</span></label>
+  </fieldset>
+</header>
+
+<main>
+
+<!-- ======================= HOOK ======================= -->
+
+<div class="g-label"><b>Announcement bar</b><code>fb-announce</code><i data-stage="hook">hook</i><span>One line above everything: the deadline or the shipping promise. Only if it is true.</span></div>
+<div class="fb-announce"><strong>Enrolment closes Friday:</strong> the free starter workbook comes with every seat booked this week.</div>
+
+<div class="g-label"><b>Brand bar</b><code>fb-brandbar</code><i data-stage="hook">hook</i><span>Logo only. The study pages had no navigation links: a funnel page has one way out.</span></div>
+<div class="fb-brandbar"><a class="fb-brandbar__logo" href="#">◆ Northfield</a></div>
+
+<div class="g-label"><b>Hero · stacked</b><code>fb-hero</code><i data-stage="hook">hook</i><span>Centred anatomy: eyebrow → headline with one accented phrase → lede → checklist → button with a second line → microcopy.</span></div>
+<section class="fb-band fb-hero is-dark">
+  <div class="fb-container fb-stack is-center">
+    <span class="fb-eyebrow">Free 5-day workshop</span>
+    <h1 class="fb-hero__title">Write cold emails people <span class="fb-accent-word">actually answer</span></h1>
+    <p class="fb-lede">Five short lessons and one template a day. Built for founders who send their own outreach.</p>
+    <ul class="fb-checklist">
+      <li>A subject line formula you can reuse tomorrow</li>
+      <li>Three opening lines that skip the small talk</li>
+      <li>The follow-up schedule that gets the second reply</li>
+    </ul>
+    <a class="fb-button is-yes" href="#">Save my free seat <span class="fb-button__sub">Starts Monday · 20 minutes a day</span></a>
+    <p class="fb-microcopy">No card needed. Unsubscribe in one click.</p>
+  </div>
+</section>
+
+<div class="g-label"><b>Hero · split with form</b><code>fb-hero + fb-formcard</code><i data-stage="hook">hook</i><span>Copy left, form card right. On phones the form follows the copy. The first ask is on the first screen.</span></div>
+<section class="fb-band fb-hero">
+  <div class="fb-container fb-split is-copy-wide">
+    <div class="fb-stack">
+      <span class="fb-eyebrow is-plain">For homeowners in North London</span>
+      <h1 class="fb-hero__title">Find out what your loft conversion <span class="fb-mark">really costs</span></h1>
+      <p class="fb-lede">Answer four questions and a surveyor sends a written estimate within two working days.</p>
+      <ul class="fb-checklist">
+        <li>Fixed-price estimate, itemised</li>
+        <li>Planning advice included</li>
+        <li>No visit needed for the first quote</li>
+      </ul>
+    </div>
+    <form class="fb-formcard" onsubmit="return false">
+      <p class="fb-formcard__title">Get my written estimate</p>
+      <div class="fb-field"><label for="h-name">First name</label><input id="h-name" autocomplete="given-name"></div>
+      <div class="fb-field"><label for="h-email">Email</label><input id="h-email" type="email" autocomplete="email"></div>
+      <button class="fb-button is-yes" type="submit">Send my estimate</button>
+      <p class="fb-microcopy" style="text-align:center">Demo form: nothing is sent.</p>
+    </form>
+  </div>
+</section>
+
+<div class="g-label"><b>Hero · photo</b><code>fb-band is-photo</code><i data-stage="hook">hook</i><span>Full-bleed photo under a 55% black overlay; white type; the accented phrase takes the highlight colour.</span></div>
+<section class="fb-band fb-hero is-photo">
+  <div class="fb-band__media g-ph is-dark" style="position:absolute;inset:0;z-index:-2;place-items:end start">photo</div>
+  <div class="fb-container fb-stack is-center">
+    <h1 class="fb-hero__title">A spotless home <span class="fb-mark">without lifting a finger</span></h1>
+    <p class="fb-lede">Weekly or one-off cleans by the same vetted team, booked in two minutes.</p>
+    <a class="fb-button" href="#">Book my first clean</a>
+  </div>
+</section>
+
+<div class="g-label"><b>Hero · video (VSL)</b><code>fb-hero + fb-video</code><i data-stage="hook">hook</i><span>Headline, then the video, then the button straight under it. The video carries the story; the page carries the ask.</span></div>
+<section class="fb-band fb-hero is-surface">
+  <div class="fb-container is-narrow fb-stack is-center">
+    <span class="fb-eyebrow">Watch before you book</span>
+    <h1 class="fb-hero__title">Why most small gardens fail in the first year</h1>
+    <div class="fb-video"><div class="g-ph is-dark" style="position:absolute;inset:0">video poster</div><button class="fb-video__play" aria-label="Play the 9-minute video"></button></div>
+    <a class="fb-button" href="#">Reserve my place <span class="fb-button__sub">£37 · lifetime access</span></a>
+  </div>
+</section>
+
+<div class="g-label"><b>Hero · event</b><code>fb-hero + fb-chips + fb-countdown</code><i data-stage="hook">hook</i><span>Date and time chips, the countdown to the start, then a button that names the session.</span></div>
+<section class="fb-band fb-hero is-dark">
+  <div class="fb-container fb-stack is-center">
+    <div class="fb-chips"><span class="fb-chip">📅 Thursday 4 December</span><span class="fb-chip">🕖 7–8pm GMT</span></div>
+    <h1 class="fb-hero__title">Negotiate your next contract <span class="fb-accent-word">with a plan</span></h1>
+    <p class="fb-lede">A live 60-minute session with three real deals taken apart, and time for your questions.</p>
+    <div class="fb-countdown" role="timer" aria-label="Session starts in 3 days, 4 hours, 12 minutes">
+      <div class="fb-countdown__unit"><span class="fb-countdown__num">03</span><span class="fb-countdown__label">Days</span></div>
+      <div class="fb-countdown__unit"><span class="fb-countdown__num">04</span><span class="fb-countdown__label">Hours</span></div>
+      <div class="fb-countdown__unit"><span class="fb-countdown__num">12</span><span class="fb-countdown__label">Minutes</span></div>
+    </div>
+    <a class="fb-button is-yes" href="#">Register for Thursday's session</a>
+  </div>
+</section>
+
+<!-- ======================= STORY ======================= -->
+
+<div class="g-label"><b>Logo strip</b><code>fb-logos</code><i data-stage="story">story</i><span>"Used by" and greyed marks. Only logos you have permission to show.</span></div>
+<section class="fb-band is-tight">
+  <div class="fb-container fb-stack is-center is-tight">
+    <p class="fb-small">Used by teams at</p>
+    <div class="fb-logos"><span class="g-ph" style="inline-size:110px">logo</span><span class="g-ph" style="inline-size:90px">logo</span><span class="g-ph" style="inline-size:120px">logo</span><span class="g-ph" style="inline-size:100px">logo</span></div>
+  </div>
+</section>
+
+<div class="g-label"><b>Benefit grid</b><code>fb-grid + fb-card</code><i data-stage="story">story</i><span>Three icon cards. The most frequent block after the hero in the study.</span></div>
+<section class="fb-band is-surface">
+  <div class="fb-container fb-stack">
+    <div class="fb-stack is-center is-tight"><h2 class="fb-heading">What changes after the first week</h2><p class="fb-lede">Each lesson ends with something you send that day.</p></div>
+    <div class="fb-grid">
+      <article class="fb-card"><div class="fb-card__icon" aria-hidden="true">✉︎</div><h3 class="fb-card__title">Replies, not opens</h3><p>Every template is judged by the replies it gets, not the open rate.</p></article>
+      <article class="fb-card"><div class="fb-card__icon" aria-hidden="true">⏱</div><h3 class="fb-card__title">Twenty minutes a day</h3><p>Short enough to finish before your first meeting.</p></article>
+      <article class="fb-card"><div class="fb-card__icon" aria-hidden="true">✎</div><h3 class="fb-card__title">Your own words</h3><p>Fill-in-the-blank frames, so the email still sounds like you.</p></article>
+    </div>
+  </div>
+</section>
+
+<div class="g-label"><b>Feature split</b><code>fb-split fb-feature</code><i data-stage="story">story</i><span>Image one side, copy the other; flip on alternate rows. DOM order stays copy-first.</span></div>
+<section class="fb-band">
+  <div class="fb-container fb-split fb-feature is-flipped">
+    <div class="fb-stack">
+      <h2 class="fb-heading">Grow food in a space the size of a doormat</h2>
+      <p class="fb-lede">Container layouts for balconies and window ledges, with a planting calendar for each month.</p>
+      <ul class="fb-checklist"><li>Twelve layouts, each under one square metre</li><li>Shade-tolerant crops for north-facing spaces</li></ul>
+    </div>
+    <div class="fb-feature__media g-ph is-wide">image</div>
+  </div>
+</section>
+
+<div class="g-label"><b>Steps</b><code>fb-steps</code><i data-stage="story">story</i><span>01 / 02 / 03. How it works, or what happens after they say yes.</span></div>
+<section class="fb-band is-surface">
+  <div class="fb-container fb-stack">
+    <h2 class="fb-heading">How it works</h2>
+    <ol class="fb-steps">
+      <li><h3 class="fb-card__title">Answer four questions</h3><p class="fb-small">Size, access, roof type and timing.</p></li>
+      <li><h3 class="fb-card__title">Get a written estimate</h3><p class="fb-small">Itemised, within two working days.</p></li>
+      <li><h3 class="fb-card__title">Book a survey if you like it</h3><p class="fb-small">No charge for the first visit.</p></li>
+    </ol>
+  </div>
+</section>
+
+<div class="g-label"><b>Testimonials</b><code>fb-quote</code><i data-stage="story">story</i><span>Named person, role, stars. Without a named source and written permission, the flag stays on.</span></div>
+<section class="fb-band">
+  <div class="fb-container fb-stack">
+    <h2 class="fb-heading">What past students say</h2>
+    <div class="fb-grid">
+      <figure class="fb-card fb-quote"><div class="fb-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div><blockquote>"Quote supplied by the client, with written permission to publish."</blockquote><figcaption><span class="fb-avatar"></span><span><span class="fb-quote__name">Named person</span><br>Role, company</span></figcaption><span class="fb-placeholder-flag">Placeholder</span></figure>
+      <figure class="fb-card fb-quote"><div class="fb-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div><blockquote>"A second quote, with the result in the person's own words."</blockquote><figcaption><span class="fb-avatar"></span><span><span class="fb-quote__name">Named person</span><br>Role, company</span></figcaption><span class="fb-placeholder-flag">Placeholder</span></figure>
+      <figure class="fb-card fb-quote"><div class="fb-stars" role="img" aria-label="5 out of 5 stars">★★★★★</div><blockquote>"A third, ideally answering the main doubt."</blockquote><figcaption><span class="fb-avatar"></span><span><span class="fb-quote__name">Named person</span><br>Role, company</span></figcaption><span class="fb-placeholder-flag">Placeholder</span></figure>
+    </div>
+  </div>
+</section>
+
+<div class="g-label"><b>Rating stack</b><code>fb-ratings</code><i data-stage="story">story</i><span>Three short starred lines stacked above a hero headline or under a form: proof next to the ask.</span></div>
+<section class="fb-band is-dark">
+  <div class="fb-container is-form fb-ratings">
+    <div class="fb-rating"><span class="fb-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>"Short result line, client-supplied."<span class="fb-placeholder-flag">Placeholder</span></div>
+    <div class="fb-rating"><span class="fb-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span>"Second short line."<span class="fb-placeholder-flag">Placeholder</span></div>
+  </div>
+</section>
+
+<div class="g-label"><b>Bio</b><code>fb-split + fb-bio</code><i data-stage="story">story</i><span>Who is behind the promise: photo, credential line, a short first-person story.</span></div>
+<section class="fb-band is-surface">
+  <div class="fb-container fb-split">
+    <div class="fb-bio__photo g-ph is-tall">portrait</div>
+    <div class="fb-stack">
+      <span class="fb-bio__role">Your host</span>
+      <h2 class="fb-heading">Hi, I'm the person who will teach you</h2>
+      <p class="fb-lede">Two or three sentences in the host's own words: what they did, what went wrong, and what they learned that this offer is built on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= OFFER ======================= -->
+
+<div class="g-label"><b>Offer stack</b><code>fb-offer</code><i data-stage="offer">offer</i><span>Each item with its value, bonuses marked free, the total, then today's price. Values must be real.</span></div>
+<section class="fb-band">
+  <div class="fb-container is-form">
+    <div class="fb-offer">
+      <p class="fb-formcard__title">Everything you get today</p>
+      <ul class="fb-offer__items">
+        <li><span>The 5-day workshop recordings</span><span class="fb-offer__value">£149</span></li>
+        <li><span>Template library (42 emails)</span><span class="fb-offer__value">£49</span></li>
+        <li><span>Bonus: follow-up planner</span><span class="fb-offer__value"><s>£29</s><strong>Free</strong></span></li>
+      </ul>
+      <div class="fb-offer__total"><span>Total value</span><s>£227</s></div>
+      <div class="fb-offer__today"><span class="fb-small">Today</span><span class="fb-price__now">£37</span></div>
+      <a class="fb-button is-yes is-block" href="#">Get instant access</a>
+    </div>
+  </div>
+</section>
+
+<div class="g-label"><b>Guarantee</b><code>fb-guarantee</code><i data-stage="offer">offer</i><span>A seal and the promise in plain words, placed next to the price.</span></div>
+<section class="fb-band is-tight">
+  <div class="fb-container is-narrow">
+    <div class="fb-guarantee"><div class="fb-guarantee__seal">30-day refund</div><div class="fb-stack is-tight"><h3 class="fb-card__title">Try the first week. Keep it only if it works.</h3><p class="fb-small">Email within 30 days and we refund every penny. No form, no questions.</p></div></div>
+  </div>
+</section>
+
+<div class="g-label"><b>FAQ</b><code>fb-faq</code><i data-stage="story">story</i><span>Native details/summary: works without JavaScript. Each question is a doubt that stops the sale.</span></div>
+<section class="fb-band is-surface">
+  <div class="fb-container is-narrow fb-stack">
+    <h2 class="fb-heading">Questions people ask first</h2>
+    <div class="fb-faq">
+      <details open><summary>What if I miss a live day?</summary><div>Every lesson is recorded and stays available for a year.</div></details>
+      <details><summary>Do I need a paid email tool?</summary><div>No. Everything works from a normal inbox.</div></details>
+      <details><summary>Is this right for agencies?</summary><div>It is written for founders sending their own outreach. Agencies may find it basic.</div></details>
+    </div>
+  </div>
+</section>
+
+<div class="g-label"><b>CTA band</b><code>fb-ctaband</code><i data-stage="offer">offer</i><span>The ask, repeated for people who read the whole page. Same label as the hero button.</span></div>
+<section class="fb-band fb-ctaband is-accent">
+  <div class="fb-container fb-stack is-center">
+    <h2 class="fb-heading">Your first reply could land this week</h2>
+    <a class="fb-button is-yes" href="#">Save my free seat</a>
+  </div>
+</section>
+
+<!-- ======================= AFTER THE FIRST YES ======================= -->
+
+<div class="g-label"><b>Checkout</b><code>fb-progress · fb-steptabs · fb-product · fb-bump</code><i data-stage="after">after</i><span>Progress bar, two-step tabs, what they are buying, a short field stack, one order bump, the pay button, a secure line.</span></div>
+<section class="fb-band is-surface">
+  <div class="fb-container is-form fb-stack">
+    <div class="fb-progress" style="--progress:66%"><span class="fb-progress__label">One step left</span><div class="fb-progress__track"><div class="fb-progress__fill"></div></div></div>
+    <form class="fb-formcard is-light" onsubmit="return false">
+      <div class="fb-steptabs"><div aria-current="step"><b>1</b><span>Your details</span><small>Name and email</small></div><div><b>2</b><span>Payment</span><small>Card details</small></div></div>
+      <div class="fb-product"><div class="fb-product__thumb"></div><div><div class="fb-product__name">Cold email workshop</div><div class="fb-small">Lifetime access</div></div><div class="fb-product__price">£37</div></div>
+      <div class="fb-field"><label for="c-name">Full name</label><input id="c-name" autocomplete="name"></div>
+      <div class="fb-field"><label for="c-email">Email</label><input id="c-email" type="email" autocomplete="email"></div>
+      <div class="fb-bump"><label><input type="checkbox"> Yes, add the follow-up planner for £9</label><p>A printable 30-day plan for every lead who did not reply. One-time price on this page only.</p></div>
+      <button class="fb-button" type="submit">Continue to payment</button>
+      <p class="fb-secure">🔒 Demo checkout: no payment is taken.</p>
+    </form>
+  </div>
+</section>
+
+<div class="g-label"><b>Upsell</b><code>fb-steppill · fb-decision · fb-decline</code><i data-stage="after">after</i><span>"Order step 2 of 3", the reason it is not finished, the add-on, one big yes and a plain-text no.</span></div>
+<section class="fb-band is-dark">
+  <div class="fb-container is-narrow fb-stack is-center">
+    <span class="fb-steppill">Order step 2 of 3</span>
+    <h1 class="fb-hero__title">Wait: add the done-for-you templates?</h1>
+    <p class="fb-lede">Forty-two finished emails, sorted by industry, so the first send takes minutes instead of an evening.</p>
+    <div class="fb-price"><span class="fb-price__was">£97</span><span class="fb-price__now">£29</span></div>
+    <div class="fb-decision">
+      <a class="fb-button is-yes" href="#">Yes, add it to my order</a>
+      <button class="fb-decline" type="button">No thanks, I'll write my own</button>
+    </div>
+  </div>
+</section>
+
+<div class="g-label"><b>Confirmation</b><code>fb-confirm · fb-nextsteps</code><i data-stage="after">after</i><span>A check, what happened, numbered next steps, and help if the email does not arrive.</span></div>
+<section class="fb-band">
+  <div class="fb-container is-form fb-stack is-center">
+    <div class="fb-confirm__check" aria-hidden="true">✓</div>
+    <h1 class="fb-heading">You're booked in</h1>
+    <p class="fb-lede">The joining link is on its way to your inbox.</p>
+    <ol class="fb-nextsteps">
+      <li><b>1</b><span>Add Thursday 7pm to your calendar</span></li>
+      <li><b>2</b><span>Reply to the welcome email so it doesn't land in spam</span></li>
+      <li><b>3</b><span>Bring one deal you are working on</span></li>
+    </ol>
+    <p class="fb-small">No email after ten minutes? Check spam, or <a href="#">contact us</a>.</p>
+  </div>
+</section>
+
+<div class="g-label"><b>Footer</b><code>fb-footer</code><i data-stage="after">after</i><span>Copyright, privacy, terms, and a results disclaimer where one applies. No other links.</span></div>
+<footer class="fb-footer">
+  <nav><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></nav>
+  <p>Results vary. Nothing on this page is a promise of income.</p>
+  <p>© 2026 Northfield</p>
+</footer>
+
+</main>
+<script>
+  for (const input of document.querySelectorAll('input[name="brand"]')) {
+    input.addEventListener('change', () => { document.body.dataset.brand = input.value; });
+  }
+</script>
+</body>
+</html>

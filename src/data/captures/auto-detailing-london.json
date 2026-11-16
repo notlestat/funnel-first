@@ -1,0 +1,1434 @@
+{
+  "status": "reconstructed-draft",
+  "urls": [
+    "https://autodetailinglondon.co.uk/",
+    "https://autodetailinglondon.co.uk/car-detailing-wandsworth"
+  ],
+  "captured_at": "2026-11-15",
+  "customProperties": {
+    "--background": "40 20% 97%",
+    "--foreground": "0 0% 15%",
+    "--card": "0 0% 100%",
+    "--card-foreground": "0 0% 15%",
+    "--popover": "0 0% 100%",
+    "--popover-foreground": "0 0% 15%",
+    "--primary": "43 74% 49%",
+    "--primary-foreground": "0 0% 100%",
+    "--secondary": "0 0% 20%",
+    "--secondary-foreground": "40 20% 97%",
+    "--muted": "40 15% 92%",
+    "--muted-foreground": "0 0% 40%",
+    "--accent": "43 60% 85%",
+    "--accent-foreground": "0 0% 15%",
+    "--destructive": "0 84% 60%",
+    "--destructive-foreground": "0 0% 100%",
+    "--border": "40 10% 85%",
+    "--input": "40 10% 85%",
+    "--ring": "43 74% 49%",
+    "--radius": ".75rem",
+    "--sidebar-background": "0 0% 98%",
+    "--sidebar-foreground": "240 5.3% 26.1%",
+    "--sidebar-primary": "240 5.9% 10%",
+    "--sidebar-primary-foreground": "0 0% 98%",
+    "--sidebar-accent": "240 4.8% 95.9%",
+    "--sidebar-accent-foreground": "240 5.9% 10%",
+    "--sidebar-border": "220 13% 91%",
+    "--sidebar-ring": "217.2 91.2% 59.8%"
+  },
+  "samples": [
+    {
+      "role": "page",
+      "property": "background-color",
+      "value": "#F9F8F6",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "page",
+      "property": "color",
+      "value": "#262626",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "page",
+      "property": "font-family",
+      "value": "\"DM Sans\", sans-serif",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "page",
+      "property": "font-size",
+      "value": "16px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h1",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h1",
+      "property": "font-size",
+      "value": "64px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h1",
+      "property": "font-weight",
+      "value": "700",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h1",
+      "property": "color",
+      "value": "#FFFFFF",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "font-size",
+      "value": "48px",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "font-weight",
+      "value": "600",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "color",
+      "value": "#262626",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "font-size",
+      "value": "36px",
+      "count": 2,
+      "weight": 2,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "font-weight",
+      "value": "700",
+      "count": 2,
+      "weight": 2,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "font-size",
+      "value": "20px",
+      "count": 5,
+      "weight": 5,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "font-weight",
+      "value": "600",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "font-size",
+      "value": "24px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "color",
+      "value": "#262626",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "display",
+      "property": "font-size",
+      "value": "64px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "display",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "display",
+      "property": "font-weight",
+      "value": "700",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "20px",
+      "count": 1,
+      "weight": 174,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "color",
+      "value": "#666666",
+      "count": 19,
+      "weight": 2927,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "18px",
+      "count": 6,
+      "weight": 759,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "color",
+      "value": "#262626",
+      "count": 27,
+      "weight": 1454,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "16px",
+      "count": 40,
+      "weight": 3622,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "14px",
+      "count": 8,
+      "weight": 619,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "input",
+      "property": "border-color",
+      "value": "#DDDAD5",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "input",
+      "property": "border-radius",
+      "value": "9999px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "surface",
+      "property": "background-color",
+      "value": "#FFFFFF",
+      "count": 13,
+      "weight": 3054500.7321395874,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "surface",
+      "property": "background-color",
+      "value": "#333333",
+      "count": 1,
+      "weight": 588960,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "border",
+      "property": "color",
+      "value": "#DDDAD5",
+      "count": 96,
+      "weight": 96,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "border",
+      "property": "color",
+      "value": "#D9A520",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "112px",
+      "count": 3,
+      "weight": 3,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "96px",
+      "count": 2,
+      "weight": 2,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "64px",
+      "count": 2,
+      "weight": 2,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "container",
+      "property": "max-width",
+      "value": "1400px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "desktop"
+    },
+    {
+      "role": "page",
+      "property": "background-color",
+      "value": "#F9F8F6",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "page",
+      "property": "color",
+      "value": "#262626",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "page",
+      "property": "font-family",
+      "value": "\"DM Sans\", sans-serif",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "page",
+      "property": "font-size",
+      "value": "16px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h1",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h1",
+      "property": "font-size",
+      "value": "40px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h1",
+      "property": "font-weight",
+      "value": "700",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h1",
+      "property": "color",
+      "value": "#FFFFFF",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-size",
+      "value": "32px",
+      "count": 3,
+      "weight": 3,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-weight",
+      "value": "600",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "color",
+      "value": "#262626",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-size",
+      "value": "30px",
+      "count": 2,
+      "weight": 2,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-weight",
+      "value": "700",
+      "count": 2,
+      "weight": 2,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-size",
+      "value": "36px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "font-size",
+      "value": "20px",
+      "count": 5,
+      "weight": 5,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "font-weight",
+      "value": "600",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "font-size",
+      "value": "24px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "color",
+      "value": "#262626",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "display",
+      "property": "font-size",
+      "value": "40px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "display",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "display",
+      "property": "font-weight",
+      "value": "700",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "18px",
+      "count": 6,
+      "weight": 840,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "color",
+      "value": "#666666",
+      "count": 19,
+      "weight": 2927,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "color",
+      "value": "#262626",
+      "count": 27,
+      "weight": 1454,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "16px",
+      "count": 31,
+      "weight": 2661,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "14px",
+      "count": 18,
+      "weight": 1673,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "input",
+      "property": "border-color",
+      "value": "#DDDAD5",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "input",
+      "property": "border-radius",
+      "value": "9999px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "surface",
+      "property": "background-color",
+      "value": "#FFFFFF",
+      "count": 13,
+      "weight": 2443884.5193508863,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "surface",
+      "property": "background-color",
+      "value": "#333333",
+      "count": 1,
+      "weight": 452985,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "border",
+      "property": "color",
+      "value": "#DDDAD5",
+      "count": 96,
+      "weight": 96,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "border",
+      "property": "color",
+      "value": "#D9A520",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "80px",
+      "count": 3,
+      "weight": 3,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "96px",
+      "count": 2,
+      "weight": 2,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "40px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "64px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/",
+      "viewport": "mobile"
+    },
+    {
+      "role": "page",
+      "property": "background-color",
+      "value": "#F9F8F6",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "page",
+      "property": "color",
+      "value": "#262626",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "page",
+      "property": "font-family",
+      "value": "\"DM Sans\", sans-serif",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "page",
+      "property": "font-size",
+      "value": "16px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h1",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h1",
+      "property": "font-size",
+      "value": "64px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h1",
+      "property": "font-weight",
+      "value": "700",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h1",
+      "property": "color",
+      "value": "#FFFFFF",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "font-size",
+      "value": "48px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "font-weight",
+      "value": "600",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "color",
+      "value": "#262626",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h2",
+      "property": "font-size",
+      "value": "36px",
+      "count": 5,
+      "weight": 5,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "font-size",
+      "value": "20px",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "font-weight",
+      "value": "600",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "h3",
+      "property": "color",
+      "value": "#262626",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "display",
+      "property": "font-size",
+      "value": "64px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "display",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "display",
+      "property": "font-weight",
+      "value": "700",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "color",
+      "value": "#666666",
+      "count": 31,
+      "weight": 4675,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "14px",
+      "count": 16,
+      "weight": 1214,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "20px",
+      "count": 1,
+      "weight": 165,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "18px",
+      "count": 7,
+      "weight": 1528,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "color",
+      "value": "#262626",
+      "count": 29,
+      "weight": 1588,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "16px",
+      "count": 47,
+      "weight": 4368,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "surface",
+      "property": "background-color",
+      "value": "#FFFFFF",
+      "count": 13,
+      "weight": 3054500.7321395874,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "surface",
+      "property": "background-color",
+      "value": "#333333",
+      "count": 2,
+      "weight": 1224000,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "border",
+      "property": "color",
+      "value": "#DDDAD5",
+      "count": 84,
+      "weight": 84,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "border",
+      "property": "color",
+      "value": "#D9A520",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "96px",
+      "count": 8,
+      "weight": 8,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "64px",
+      "count": 2,
+      "weight": 2,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "80px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "container",
+      "property": "max-width",
+      "value": "768px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "desktop"
+    },
+    {
+      "role": "page",
+      "property": "background-color",
+      "value": "#F9F8F6",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "page",
+      "property": "color",
+      "value": "#262626",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "page",
+      "property": "font-family",
+      "value": "\"DM Sans\", sans-serif",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "page",
+      "property": "font-size",
+      "value": "16px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h1",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h1",
+      "property": "font-size",
+      "value": "40px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h1",
+      "property": "font-weight",
+      "value": "700",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h1",
+      "property": "color",
+      "value": "#FFFFFF",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-size",
+      "value": "32px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-weight",
+      "value": "600",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "color",
+      "value": "#262626",
+      "count": 6,
+      "weight": 6,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h2",
+      "property": "font-size",
+      "value": "30px",
+      "count": 5,
+      "weight": 5,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "font-size",
+      "value": "20px",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "font-weight",
+      "value": "600",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "h3",
+      "property": "color",
+      "value": "#262626",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "display",
+      "property": "font-size",
+      "value": "40px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "display",
+      "property": "font-family",
+      "value": "\"Playfair Display\", serif",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "display",
+      "property": "font-weight",
+      "value": "700",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "color",
+      "value": "#666666",
+      "count": 31,
+      "weight": 4675,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "14px",
+      "count": 26,
+      "weight": 2268,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "18px",
+      "count": 7,
+      "weight": 1600,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "color",
+      "value": "#262626",
+      "count": 29,
+      "weight": 1588,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "text",
+      "property": "font-size",
+      "value": "16px",
+      "count": 38,
+      "weight": 3407,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "surface",
+      "property": "background-color",
+      "value": "#FFFFFF",
+      "count": 13,
+      "weight": 2443884.5193508863,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "surface",
+      "property": "background-color",
+      "value": "#333333",
+      "count": 2,
+      "weight": 687375,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "border",
+      "property": "color",
+      "value": "#DDDAD5",
+      "count": 84,
+      "weight": 84,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "border",
+      "property": "color",
+      "value": "#D9A520",
+      "count": 4,
+      "weight": 4,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "64px",
+      "count": 9,
+      "weight": 9,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "40px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "section",
+      "property": "padding-top",
+      "value": "80px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    },
+    {
+      "role": "container",
+      "property": "max-width",
+      "value": "768px",
+      "count": 1,
+      "weight": 1,
+      "page": "https://autodetailinglondon.co.uk/car-detailing-wandsworth",
+      "viewport": "mobile"
+    }
+  ],
+  "limitations": [
+    "Reconstructed from rendered pages. Internal token names, intent and font licences are unknown."
+  ],
+  "proposal": {
+    "tokens": {
+      "color-bg": {
+        "value": "#F9F8F6",
+        "confidence": "measured",
+        "source": "Page background, seen 4× on 2/2 page(s)"
+      },
+      "color-text": {
+        "value": "#262626",
+        "confidence": "measured",
+        "source": "Body text colour, seen 4× on 2/2 page(s)"
+      },
+      "font-body": {
+        "value": "\"DM Sans\", sans-serif",
+        "confidence": "measured",
+        "source": "Body font, seen 4× on 2/2 page(s)"
+      },
+      "color-accent": {
+        "value": "#1D4ED8",
+        "confidence": "default",
+        "source": "No evidence on the page. System default."
+      },
+      "color-on-accent": {
+        "value": "#FFFFFF",
+        "confidence": "default",
+        "source": "No evidence on the page. System default."
+      },
+      "font-display": {
+        "value": "\"Playfair Display\", serif",
+        "confidence": "measured",
+        "source": "Font of the largest text near the top of the page"
+      },
+      "weight-display": {
+        "value": "700",
+        "confidence": "measured",
+        "source": "Weight of the largest text near the top"
+      },
+      "size-hero": {
+        "value": "clamp(2.5rem, 4.44vw, 4rem)",
+        "confidence": "measured",
+        "source": "Largest text near the top at 390px (40px) and 1440px (64px)"
+      },
+      "size-heading": {
+        "value": "clamp(1.875rem, 2.5vw, 2.25rem)",
+        "confidence": "measured",
+        "source": "h2 at 390px (30px) and 1440px (36px)"
+      },
+      "size-body": {
+        "value": "1rem",
+        "confidence": "recurring",
+        "source": "Most common running-text size (16px)"
+      },
+      "size-small": {
+        "value": "0.875rem",
+        "confidence": "inferred",
+        "source": "Most common text smaller than body (14px)"
+      },
+      "color-muted": {
+        "value": "#666666",
+        "confidence": "inferred",
+        "source": "Most-used secondary text colour (15204 characters)"
+      },
+      "color-surface": {
+        "value": "#FFFFFF",
+        "confidence": "inferred",
+        "source": "Largest filled area that is not the page background"
+      },
+      "color-border": {
+        "value": "#DDDAD5",
+        "confidence": "recurring",
+        "source": "Most common divider colour, seen 360×"
+      },
+      "radius": {
+        "value": "9999px",
+        "confidence": "recurring",
+        "source": "Button corner radius"
+      },
+      "measure": {
+        "value": "48rem",
+        "confidence": "inferred",
+        "source": "Width of the container around the main heading (768px)"
+      },
+      "space-section": {
+        "value": "clamp(4rem, 6.67vw, 6rem)",
+        "confidence": "recurring",
+        "source": "Section padding at 390px (64px) and 1440px (96px)"
+      },
+      "space-block": {
+        "value": "2rem",
+        "confidence": "default",
+        "source": "No evidence on the page. System default."
+      }
+    },
+    "needsReview": [
+      "color-surface: inferred. Largest filled area that is not the page background",
+      "color-muted: inferred. Most-used secondary text colour (15204 characters)",
+      "color-accent: default. No evidence on the page. System default.",
+      "color-on-accent: default. No evidence on the page. System default.",
+      "size-small: inferred. Most common text smaller than body (14px)",
+      "space-block: default. No evidence on the page. System default.",
+      "measure: inferred. Width of the container around the main heading (768px)"
+    ],
+    "contrastErrors": []
+  }
+}

@@ -1,0 +1,1217 @@
+{
+  "_note": "Design-test content for the funnel-blocks templates. Client data: keep uncommitted, like the brand file. Facts come from the brand file and the live site; anything else is TBC and flagged.",
+  "logo": "@logo",
+  "images": {
+    "logo": "/assets/f95719cedb9e3747.webp",
+    "hero": "/assets/a9f68b610833b07b.webp",
+    "before": "/assets/77c9b26cc6c5784f.webp",
+    "after": "/assets/49259a9bc2c799de.webp",
+    "car": "/assets/160c33a59b87faff.jpg"
+  },
+  "tokens": {
+    "color-surface": "#EFEDE8",
+    "color-dark": "#333333",
+    "color-on-dark": "#F9F8F6",
+    "color-muted-on-dark": "#D3D1CE",
+    "color-highlight": "#D9A520",
+    "color-on-highlight": "#262626",
+    "color-accent-text": "#8A6510",
+    "color-success": "#2F7D4F",
+    "button-radius": "999px",
+    "button-case": "none",
+    "button-tracking": "0",
+    "button-weight": "600",
+    "button-shadow": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+    "field-radius": "12px",
+    "card-radius": "16px",
+    "card-shadow": "0 0 0 1px #DDDAD5",
+    "container": "1180px",
+    "line-display": "1.15"
+  },
+  "shared": {
+    "brandbar": {},
+    "footer": {
+      "disclaimer": "Mobile car detailing across London. Prices and offers shown are to be confirmed."
+    },
+    "trust": {
+      "items": [
+        "We come to your home or work",
+        "We bring our own water and power",
+        "Interior, exterior and paint protection"
+      ]
+    },
+    "beforeafter": {
+      "title": "What a full detail changes",
+      "before": "@before",
+      "after": "@after",
+      "caption": "Photos from the company's site. Confirm they are their own work before launch."
+    },
+    "quotes": {
+      "title": "From customers",
+      "items": [
+        {
+          "quote": "They arrived, brought their own water and electricity so I could relax, and left a finish my wife was amazed at.",
+          "name": "Ethan",
+          "role": "Full name or town needed",
+          "placeholder": true
+        },
+        {
+          "quote": "They were lovely people, came on time and detailed my car and left it smelling amazing.",
+          "name": "Angela",
+          "role": "Full name or town needed",
+          "placeholder": true
+        },
+        {
+          "quote": "Very professional car detailers and hard workers. My Range Rover is sparkling clean.",
+          "name": "Clive",
+          "role": "Full name or town needed",
+          "placeholder": true
+        }
+      ]
+    },
+    "bio": {
+      "role": "Who comes to your car",
+      "title": "The owner introduces the team here",
+      "body": [
+        "Two or three sentences in the owner's words: how they started detailing in London, and what they never cut corners on.",
+        "Its job is to make a stranger comfortable handing over their keys."
+      ],
+      "placeholder": true
+    },
+    "faq": {
+      "title": "Questions people ask first",
+      "items": [
+        [
+          "Do I need to be home?",
+          "No. If we can reach the car and you leave us the keys, you can carry on with your day."
+        ],
+        [
+          "Do you need my water or electricity?",
+          "No. The van carries its own water and power."
+        ],
+        [
+          "Which areas do you cover?",
+          "London and the surrounding boroughs. Pick your area when you book and we will confirm."
+        ],
+        [
+          "How long does a detail take?",
+          "It depends on the car and the service. We confirm a time window when you book."
+        ]
+      ]
+    }
+  },
+  "funnels": {
+    "lead-magnet": {
+      "optin": {
+        "hero": {
+          "variant": "split",
+          "tone": "",
+          "eyebrow": "Free guide for London drivers",
+          "eyebrowPlain": true,
+          "title": "Keep your car ==showroom clean== between details",
+          "lede": "A short guide to winter salt, interior smells and the five-minute habits that make a professional detail last.",
+          "checklist": [
+            "What road salt does to paint, and how to rinse it off",
+            "Keeping leather and fabric fresh with kids and dogs",
+            "When a wash is enough, and when it needs a detail"
+          ],
+          "form": {
+            "title": "Send me the free guide",
+            "fields": [
+              "First name",
+              "Email"
+            ],
+            "button": "Email me the guide",
+            "note": "Demo form: nothing is sent. Guide still to be written."
+          }
+        },
+        "benefits": {
+          "title": "What is inside",
+          "items": [
+            {
+              "icon": "❄",
+              "title": "Winter care",
+              "body": "Salt, grit and wet carpets, and what to do about each."
+            },
+            {
+              "icon": "✦",
+              "title": "Interior habits",
+              "body": "Small things that stop dirt building up in the first place."
+            },
+            {
+              "icon": "⌁",
+              "title": "When to call us",
+              "body": "The signs a car needs more than a wash."
+            }
+          ]
+        },
+        "feature": {
+          "title": "Written by the people who clean London's cars",
+          "lede": "Everything in the guide comes from what the team sees on driveways every week.",
+          "checklist": [
+            "No product plugs",
+            "Ten minutes to read"
+          ],
+          "image": "@car",
+          "alt": "A detailed SUV in a London car park"
+        },
+        "cta": {
+          "title": "Get the free guide",
+          "button": {
+            "label": "Email me the guide",
+            "style": "yes"
+          },
+          "tone": "dark"
+        }
+      },
+      "thankyou": {
+        "confirm": {
+          "title": "Check your inbox",
+          "lede": "The guide is on its way. It can take a few minutes.",
+          "steps": [
+            "Open the email from Auto Detailing London",
+            "Save the guide to your phone",
+            "Book a detail when the car needs more than a wash"
+          ],
+          "button": "Book a detail",
+          "help": "Nothing after ten minutes? Check spam, or WhatsApp us."
+        },
+        "next": {
+          "title": "While you wait",
+          "items": [
+            {
+              "icon": "✓",
+              "title": "Interior detail",
+              "body": "Seats, carpets, leather and the fiddly bits."
+            },
+            {
+              "icon": "✓",
+              "title": "Exterior detail",
+              "body": "Hand wash, decontamination and protection."
+            },
+            {
+              "icon": "✓",
+              "title": "Paint protection",
+              "body": "Ceramic coating for paint that stays glossy longer."
+            }
+          ]
+        }
+      }
+    },
+    "appointment": {
+      "landing": {
+        "hero": {
+          "variant": "question",
+          "tone": "dark",
+          "eyebrow": "Mobile detailing across London",
+          "title": "Which detail does your car *actually need?*",
+          "lede": "Four quick questions, then pick a time. We come to your home or work.",
+          "question": {
+            "progress": "Question 1 of 4",
+            "percent": 25,
+            "q": "What needs doing?",
+            "answers": [
+              "The inside",
+              "Inside and outside",
+              "Paint protection or ceramic coating",
+              "Not sure yet"
+            ],
+            "selected": -1
+          }
+        },
+        "benefits": {
+          "title": "What a car wash skips",
+          "items": [
+            {
+              "icon": "✓",
+              "title": "Seats and carpets shampooed",
+              "body": "Deep vacuum, then fabric shampoo and hot water extraction."
+            },
+            {
+              "icon": "✓",
+              "title": "Leather looked after",
+              "body": "Cleaned, conditioned and protected."
+            },
+            {
+              "icon": "✓",
+              "title": "The fiddly bits",
+              "body": "Vents, buttons, seat belts and cup holders, all cleaned."
+            }
+          ]
+        },
+        "cta": {
+          "title": "Find the right detail in four taps",
+          "button": {
+            "label": "Start the questions",
+            "style": "yes"
+          },
+          "tone": "dark"
+        }
+      },
+      "contact": {
+        "form": {
+          "title": "Last step: where should we send your booking link?",
+          "lede": "We'll text you a link to pick a time that suits you.",
+          "fields": [
+            "Name",
+            "Mobile number"
+          ],
+          "consent": "Also text me the occasional seasonal offer. You can opt out at any time.",
+          "button": "Send my booking link",
+          "light": true,
+          "note": "Only book if the car will be somewhere our vans can reach. Demo form: nothing is sent."
+        }
+      },
+      "book": {
+        "slots": {
+          "title": "Pick a time",
+          "lede": "Deluxe interior detail, medium car, South London.",
+          "summary": [
+            [
+              "Service",
+              "Deluxe interior detail"
+            ],
+            [
+              "From",
+              "£195 (winter offer, end date TBC)"
+            ]
+          ],
+          "dates": [
+            [
+              "Mon",
+              "17"
+            ],
+            [
+              "Tue",
+              "18"
+            ],
+            [
+              "Wed",
+              "19"
+            ],
+            [
+              "Thu",
+              "20"
+            ],
+            [
+              "Fri",
+              "21"
+            ]
+          ],
+          "day": 1,
+          "times": [
+            "8:00",
+            "10:00",
+            "12:00",
+            "14:00",
+            "16:00",
+            "18:00"
+          ],
+          "time": 1,
+          "taken": [
+            3
+          ],
+          "button": "Book Tuesday 10:00"
+        }
+      }
+    },
+    "quiz": {
+      "q1": {
+        "question": {
+          "intro": "Which detail does your car *need?*",
+          "lede": "Answer four questions. We'll match you to a service and a price.",
+          "progress": "Question 1 of 4",
+          "percent": 25,
+          "q": "When was the inside last properly cleaned?",
+          "answers": [
+            "In the last few months",
+            "Over six months ago",
+            "I can't remember",
+            "Never, it's a family car"
+          ],
+          "selected": -1
+        }
+      },
+      "q3": {
+        "question": {
+          "progress": "Question 3 of 4",
+          "percent": 75,
+          "q": "What size is your car?",
+          "answers": [
+            "Small",
+            "Medium",
+            "Large",
+            "Van or 7‑seater"
+          ],
+          "grid": true,
+          "selected": 1,
+          "back": true
+        }
+      },
+      "result": {
+        "result": {
+          "intro": "Your match",
+          "label": "We recommend",
+          "title": "Deluxe interior detail",
+          "body": "For a medium car whose interior hasn't had a deep clean in over six months.",
+          "price": "From £195 on the winter offer (end date TBC)",
+          "includes": [
+            "Seats and carpets shampooed and extracted",
+            "Leather cleaned and conditioned",
+            "Vents, buttons and trim detailed"
+          ],
+          "button": {
+            "label": "Pick a time",
+            "style": "yes"
+          },
+          "alt": "See all services instead"
+        }
+      }
+    },
+    "webinar": {
+      "register": {
+        "hero": {
+          "variant": "split",
+          "tone": "dark",
+          "chips": [
+            "Date TBC",
+            "Time TBC",
+            "Free, live online"
+          ],
+          "eyebrow": "Free live workshop",
+          "title": "Protect your paint *before winter*",
+          "lede": "A 30-minute live session on salt, grit and coatings, with time for your questions.",
+          "countdown": {
+            "label": "Countdown appears when the date is set",
+            "units": [
+              [
+                "--",
+                "Days"
+              ],
+              [
+                "--",
+                "Hours"
+              ],
+              [
+                "--",
+                "Minutes"
+              ]
+            ]
+          },
+          "form": {
+            "title": "Save my seat",
+            "fields": [
+              "First name",
+              "Email"
+            ],
+            "button": "Register for the workshop",
+            "style": "yes",
+            "note": "Demo form: nothing is sent. Session not yet scheduled."
+          }
+        },
+        "benefits": {
+          "title": "What you'll leave with",
+          "items": [
+            {
+              "icon": "1",
+              "title": "A winter washing routine",
+              "body": "What to do weekly, and what never to do."
+            },
+            {
+              "icon": "2",
+              "title": "Coatings explained",
+              "body": "Wax, sealant and ceramic, and which one fits how you drive."
+            },
+            {
+              "icon": "3",
+              "title": "Answers for your car",
+              "body": "Bring your questions. The team answers live."
+            }
+          ]
+        },
+        "form": {
+          "title": "Save your seat",
+          "fields": [
+            "First name",
+            "Email"
+          ],
+          "button": "Register for the workshop",
+          "light": true
+        }
+      },
+      "confirmed": {
+        "confirm": {
+          "title": "You're registered",
+          "lede": "We'll email the joining link the day before.",
+          "steps": [
+            "Add the session to your calendar",
+            "Reply to the welcome email so it doesn't land in spam",
+            "Bring a photo of anything on your car you want help with"
+          ],
+          "button": "Add to calendar"
+        },
+        "video": {
+          "title": "A two-minute preview",
+          "poster": "@hero",
+          "label": "Play the preview",
+          "caption": "Preview video still to be recorded."
+        }
+      }
+    },
+    "vsl": {
+      "video": {
+        "hero": {
+          "variant": "stacked",
+          "tone": "dark",
+          "narrow": true,
+          "eyebrow": "Watch before you book",
+          "title": "What a *full detail* actually involves",
+          "video": {
+            "poster": "@hero",
+            "label": "Play the 3-minute walkthrough"
+          },
+          "button": {
+            "label": "Book my detail",
+            "style": "yes",
+            "sub": "Deluxe interior from £195"
+          },
+          "micro": "Video still to be recorded."
+        },
+        "benefits": {
+          "title": "What you saw in the video",
+          "items": [
+            {
+              "icon": "✓",
+              "title": "Hot water extraction",
+              "body": "Pulls out the dirt a vacuum leaves behind."
+            },
+            {
+              "icon": "✓",
+              "title": "Steam on the fiddly bits",
+              "body": "Vents, seams and cup holders."
+            },
+            {
+              "icon": "✓",
+              "title": "Protection last",
+              "body": "Leather and trim protected so it stays clean longer."
+            }
+          ]
+        },
+        "offer": {
+          "title": "The deluxe interior detail",
+          "items": [
+            {
+              "name": "Full vacuum and fabric shampoo",
+              "free": true
+            },
+            {
+              "name": "Leather clean and condition",
+              "free": true
+            },
+            {
+              "name": "Steam clean of vents and trim",
+              "free": true
+            },
+            {
+              "name": "Odour treatment",
+              "free": true
+            }
+          ],
+          "todayLabel": "Winter offer, from",
+          "today": "£195",
+          "button": {
+            "label": "Book my detail",
+            "style": "yes"
+          },
+          "placeholder": false
+        },
+        "guarantee": {
+          "seal": "Promise TBC",
+          "title": "The client's own promise goes here",
+          "body": "For example, what happens if a customer isn't happy. Only show it once the client confirms it.",
+          "placeholder": true
+        },
+        "cta": {
+          "title": "Ready when your car is",
+          "button": {
+            "label": "Book my detail",
+            "style": "yes"
+          },
+          "tone": "dark"
+        }
+      },
+      "checkout": {
+        "checkout": {
+          "progress": "One step left",
+          "percent": 66,
+          "product": {
+            "name": "Deluxe interior detail",
+            "meta": "Medium car · South London",
+            "price": "£195",
+            "image": "@before"
+          },
+          "fields": [
+            "Full name",
+            "Email",
+            "Mobile number",
+            {
+              "label": "Address for the visit"
+            }
+          ],
+          "button": "Continue to payment",
+          "secure": "Demo checkout: no payment is taken."
+        },
+        "guarantee": {
+          "seal": "Promise TBC",
+          "title": "The client's own promise goes here",
+          "body": "Confirm with the client before launch.",
+          "placeholder": true
+        }
+      }
+    },
+    "tripwire": {
+      "offer": {
+        "announce": {
+          "strong": "Winter offer:",
+          "text": "deluxe interior detail from £195. End date TBC."
+        },
+        "hero": {
+          "variant": "split",
+          "tone": "",
+          "eyebrow": "First visit offer",
+          "eyebrowPlain": true,
+          "title": "Try us with an ==interior refresh==",
+          "lede": "A shorter interior clean at a lower first-visit price, so you can see the standard before booking a full detail.",
+          "checklist": [
+            "Vacuum, wipe-down and windows",
+            "Done at your home or work",
+            "Upgrade to a full detail on the day"
+          ],
+          "image": "@car",
+          "button": {
+            "label": "Claim the first-visit price",
+            "style": "yes",
+            "sub": "£TBC · price to confirm"
+          }
+        },
+        "benefits": {
+          "title": "Why start small",
+          "items": [
+            {
+              "icon": "✓",
+              "title": "See the standard",
+              "body": "Judge the work before a bigger booking."
+            },
+            {
+              "icon": "✓",
+              "title": "No water or power needed",
+              "body": "The van brings everything."
+            },
+            {
+              "icon": "✓",
+              "title": "Upgrade on the day",
+              "body": "Add the full detail if you want more."
+            }
+          ]
+        },
+        "guarantee": {
+          "seal": "Promise TBC",
+          "title": "The client's own promise goes here",
+          "body": "Confirm with the client before launch.",
+          "placeholder": true
+        },
+        "cta": {
+          "title": "Claim your first-visit price",
+          "button": {
+            "label": "Claim the offer",
+            "style": "yes"
+          },
+          "tone": "dark"
+        }
+      },
+      "checkout": {
+        "checkout": {
+          "progress": "Almost done",
+          "percent": 70,
+          "product": {
+            "name": "Interior refresh",
+            "meta": "First visit only",
+            "price": "£TBC",
+            "image": "@before"
+          },
+          "fields": [
+            "Full name",
+            "Mobile number",
+            "Postcode"
+          ],
+          "bump": {
+            "label": "Yes, add an odour treatment for £TBC",
+            "body": "Removes smoke, pet and food smells from fabric and air vents. Only offered on this page."
+          },
+          "summary": [
+            [
+              "Interior refresh",
+              "£TBC"
+            ],
+            [
+              "Odour treatment",
+              "£TBC"
+            ],
+            [
+              "Total",
+              "£TBC"
+            ]
+          ],
+          "button": "Pay and book",
+          "secure": "Demo checkout: no payment is taken. Prices to confirm."
+        }
+      },
+      "upsell": {
+        "upsell": {
+          "pill": "Order step 2 of 3",
+          "title": "Make it a *full deluxe detail?*",
+          "lede": "We're already coming to you. Upgrade now and the team does the full interior on the same visit.",
+          "image": "@after",
+          "checklist": [
+            "Seats and carpets shampooed",
+            "Leather cleaned and conditioned"
+          ],
+          "now": "+£TBC",
+          "yes": "Yes, upgrade my visit",
+          "no": "No thanks, keep the refresh",
+          "placeholder": true
+        }
+      },
+      "thankyou": {
+        "confirm": {
+          "title": "You're booked in",
+          "lede": "We'll text you the day before with a time window.",
+          "summary": [
+            [
+              "Service",
+              "Interior refresh"
+            ],
+            [
+              "Paid",
+              "£TBC"
+            ]
+          ],
+          "steps": [
+            "Leave the car somewhere the van can park",
+            "Take valuables out of the car",
+            "Leave the keys with someone, or meet the team"
+          ],
+          "help": "Need to change the time? WhatsApp us."
+        }
+      }
+    },
+    "ecommerce": {
+      "product": {
+        "voucher": {
+          "eyebrow": "Gift voucher",
+          "title": "Give someone a *spotless car*",
+          "lede": "A voucher for any Auto Detailing London service, emailed instantly or posted as a card.",
+          "amounts": [
+            "£50",
+            "£100",
+            "£195",
+            "Other"
+          ],
+          "selected": 2,
+          "image": "@after",
+          "button": {
+            "label": "Buy this voucher",
+            "style": "yes"
+          },
+          "trust": [
+            "Email or post",
+            "Valid for any service",
+            "Expiry TBC"
+          ],
+          "placeholder": true
+        },
+        "benefits": {
+          "title": "How it works",
+          "items": [
+            {
+              "icon": "1",
+              "title": "Choose an amount",
+              "body": "Or pick £195 to cover a deluxe interior detail."
+            },
+            {
+              "icon": "2",
+              "title": "Add a message",
+              "body": "We email it, or post a printed card."
+            },
+            {
+              "icon": "3",
+              "title": "They book when ready",
+              "body": "The voucher code goes in at booking."
+            }
+          ]
+        }
+      },
+      "checkout": {
+        "checkout": {
+          "progress": "Nearly there",
+          "percent": 70,
+          "tab1": "Your details",
+          "product": {
+            "name": "Gift voucher",
+            "meta": "Emailed to the recipient",
+            "price": "£195",
+            "image": "@after"
+          },
+          "fields": [
+            "Your name",
+            "Your email",
+            "Recipient's email"
+          ],
+          "summary": [
+            [
+              "Gift voucher",
+              "£195"
+            ],
+            [
+              "Delivery",
+              "Email, free"
+            ],
+            [
+              "Total",
+              "£195"
+            ]
+          ],
+          "button": "Pay £195",
+          "secure": "Demo checkout: no payment is taken. Vouchers not yet offered."
+        }
+      },
+      "thankyou": {
+        "confirm": {
+          "title": "Voucher sent",
+          "lede": "We've emailed the voucher and your receipt.",
+          "summary": [
+            [
+              "Voucher",
+              "£195"
+            ],
+            [
+              "Sent to",
+              "Recipient's email"
+            ]
+          ],
+          "steps": [
+            "Check the recipient got the email",
+            "They enter the code when they book",
+            "Questions? WhatsApp us"
+          ]
+        }
+      }
+    },
+    "application": {
+      "landing": {
+        "hero": {
+          "variant": "photo",
+          "image": "@car",
+          "eyebrow": "Ceramic coating and paint protection",
+          "title": "Paint that stays ==glossy for years==",
+          "lede": "Coatings take time and skill. Tell us about the car first, and we'll recommend the right protection.",
+          "button": {
+            "label": "Apply for a consultation",
+            "style": "yes"
+          },
+          "micro": "Takes two minutes. We reply by text."
+        },
+        "feature": {
+          "eyebrow": "Why we ask first",
+          "title": "Not every car needs a coating",
+          "lede": "Paint condition, how the car is stored and how you drive all change what we'd recommend.",
+          "checklist": [
+            "Paint correction assessed first",
+            "A written recommendation",
+            "No pressure to book"
+          ],
+          "image": "@after"
+        },
+        "feature2": {
+          "eyebrow": "What protection does",
+          "title": "Easier washing, deeper gloss",
+          "lede": "A coating bonds to the paint so dirt and water slide off.",
+          "checklist": [
+            "Protects against salt and bird droppings",
+            "Washing takes less effort"
+          ],
+          "image": "@before",
+          "flipped": true
+        },
+        "steps": {
+          "title": "How it works",
+          "items": [
+            [
+              "Apply",
+              "Tell us about the car and how it's used."
+            ],
+            [
+              "Consultation",
+              "A call or visit to look at the paint."
+            ],
+            [
+              "Recommendation",
+              "A written plan and price."
+            ]
+          ]
+        },
+        "cta": {
+          "title": "Find out what your paint needs",
+          "button": {
+            "label": "Apply for a consultation",
+            "style": "yes"
+          },
+          "tone": "dark"
+        }
+      },
+      "apply": {
+        "apply": {
+          "progress": "Step 1 of 2",
+          "title": "Tell us about the car",
+          "lede": "So we can recommend the right protection before we talk.",
+          "fields": [
+            {
+              "label": "Make and model"
+            },
+            {
+              "label": "Year",
+              "options": [
+                "2024 or newer",
+                "2020 to 2023",
+                "2015 to 2019",
+                "Older"
+              ]
+            },
+            {
+              "label": "Where is it parked overnight?",
+              "options": [
+                "Garage",
+                "Driveway",
+                "On the street"
+              ]
+            },
+            {
+              "label": "What do you want?",
+              "options": [
+                "Ceramic coating",
+                "Paint correction",
+                "Not sure, advise me"
+              ]
+            },
+            {
+              "label": "Anything we should know?",
+              "textarea": true,
+              "optional": true
+            },
+            "Name",
+            "Mobile number"
+          ],
+          "button": "Send my application",
+          "note": "Demo form: nothing is sent."
+        }
+      },
+      "book": {
+        "slots": {
+          "title": "Book your consultation",
+          "lede": "A 15-minute call to talk through the car and your options.",
+          "dates": [
+            [
+              "Mon",
+              "17"
+            ],
+            [
+              "Tue",
+              "18"
+            ],
+            [
+              "Wed",
+              "19"
+            ],
+            [
+              "Thu",
+              "20"
+            ],
+            [
+              "Fri",
+              "21"
+            ]
+          ],
+          "day": 2,
+          "times": [
+            "9:00",
+            "11:00",
+            "13:00",
+            "15:00",
+            "17:00",
+            "19:00"
+          ],
+          "time": 2,
+          "taken": [
+            0
+          ],
+          "button": "Book Wednesday 13:00"
+        }
+      }
+    },
+    "membership": {
+      "plans": {
+        "hero": {
+          "variant": "stacked",
+          "tone": "dark",
+          "eyebrow": "Maintenance plan",
+          "title": "A clean car, *every visit booked for you*",
+          "lede": "A regular detail at home or work, on a schedule that suits you.",
+          "button": {
+            "label": "See the plans",
+            "style": "yes"
+          },
+          "trust": [
+            "Pause or cancel any time",
+            "Same team each visit",
+            "Plan terms TBC"
+          ]
+        },
+        "plans": {
+          "title": "Pick how often",
+          "lede": "Prices and visit lengths to be confirmed by the client.",
+          "placeholder": "Plan names, prices and frequencies are proposals.",
+          "plans": [
+            {
+              "name": "Every 8 weeks",
+              "price": "£TBC",
+              "per": "per visit",
+              "items": [
+                "Interior and exterior maintenance clean",
+                "Priority booking"
+              ],
+              "button": "Choose 8 weeks"
+            },
+            {
+              "name": "Every 4 weeks",
+              "price": "£TBC",
+              "per": "per visit",
+              "featured": "Most popular",
+              "items": [
+                "Interior and exterior maintenance clean",
+                "Priority booking",
+                "Odour treatment each visit"
+              ],
+              "button": "Choose 4 weeks"
+            },
+            {
+              "name": "Every 2 weeks",
+              "price": "£TBC",
+              "per": "per visit",
+              "items": [
+                "Everything in 4 weeks",
+                "Wheels and tyres dressed"
+              ],
+              "button": "Choose 2 weeks"
+            }
+          ]
+        },
+        "steps": {
+          "title": "How the plan works",
+          "items": [
+            [
+              "Start with a full detail",
+              "So every visit after keeps it there."
+            ],
+            [
+              "Pick a schedule",
+              "We book the visits in."
+            ],
+            [
+              "Pause any time",
+              "Away for a month? Skip a visit."
+            ]
+          ]
+        },
+        "benefits": {
+          "title": "Why a plan beats one-off cleans",
+          "items": [
+            {
+              "icon": "✓",
+              "title": "It never gets bad",
+              "body": "Regular visits stop dirt building up."
+            },
+            {
+              "icon": "✓",
+              "title": "Nothing to remember",
+              "body": "Visits are booked for you."
+            },
+            {
+              "icon": "✓",
+              "title": "Same team",
+              "body": "They know the car and how you like it."
+            }
+          ]
+        },
+        "cta": {
+          "title": "Start your plan",
+          "button": {
+            "label": "Choose a plan",
+            "style": "yes"
+          },
+          "tone": "dark"
+        }
+      },
+      "signup": {
+        "checkout": {
+          "progress": "Set up your plan",
+          "percent": 60,
+          "product": {
+            "name": "Every 4 weeks",
+            "meta": "Maintenance plan",
+            "price": "£TBC",
+            "image": "@after"
+          },
+          "fields": [
+            "Full name",
+            "Email",
+            "Mobile number",
+            "Postcode"
+          ],
+          "summary": [
+            [
+              "First visit: full detail",
+              "£TBC"
+            ],
+            [
+              "Then every 4 weeks",
+              "£TBC"
+            ],
+            [
+              "Due today",
+              "£TBC"
+            ]
+          ],
+          "button": "Start my plan",
+          "secure": "Demo checkout: no payment is taken. Plan not yet offered."
+        }
+      },
+      "welcome": {
+        "confirm": {
+          "title": "Welcome to the plan",
+          "lede": "Your first visit is a full detail. We'll text you to book it.",
+          "steps": [
+            "Pick a time for the first full detail",
+            "We schedule the visits after that",
+            "Pause or skip from the link in any text"
+          ],
+          "button": "Book my first visit"
+        }
+      }
+    },
+    "challenge": {
+      "register": {
+        "hero": {
+          "variant": "split",
+          "tone": "",
+          "eyebrow": "Free 5-day challenge",
+          "eyebrowPlain": true,
+          "title": "Five days to a car you're ==proud to park==",
+          "lede": "One short video and one small job a day. No special products needed.",
+          "checklist": [
+            "Day 1: clear out and vacuum",
+            "Day 3: windows without streaks",
+            "Day 5: protect what you've cleaned"
+          ],
+          "form": {
+            "title": "Join the free challenge",
+            "fields": [
+              "First name",
+              "Email"
+            ],
+            "button": "Start day 1",
+            "style": "yes",
+            "note": "Demo form: nothing is sent. Challenge still to be made."
+          }
+        },
+        "steps": {
+          "title": "What happens",
+          "items": [
+            [
+              "Day 1 arrives by email",
+              "A short video and one task."
+            ],
+            [
+              "Do it in 15 minutes",
+              "With things you already have."
+            ],
+            [
+              "Finish on day 5",
+              "With an offer for a full detail, if you want one."
+            ]
+          ]
+        },
+        "form": {
+          "title": "Join the free challenge",
+          "fields": [
+            "First name",
+            "Email"
+          ],
+          "button": "Start day 1",
+          "light": true
+        }
+      },
+      "day": {
+        "days": {
+          "eyebrow": "Day 3 of 5",
+          "title": "Windows *without streaks*",
+          "days": [
+            "Clear out",
+            "Vacuum",
+            "Windows",
+            "Dashboard",
+            "Protect"
+          ],
+          "current": 2,
+          "poster": "@hero",
+          "tasks": [
+            "Watch today's 4-minute video",
+            "Clean the inside of the windscreen",
+            "Do the side windows top to bottom"
+          ],
+          "button": {
+            "label": "Mark today done",
+            "style": "yes"
+          }
+        },
+        "cta": {
+          "title": "Rather have it done for you?",
+          "lede": "Book a full interior detail and skip to day 5.",
+          "button": {
+            "label": "Book a detail",
+            "style": "yes"
+          },
+          "tone": "dark"
+        }
+      }
+    }
+  },
+  "sheet": {
+    "source": "Extracted from autodetailinglondon.co.uk on 15 November 2026 (6 pages, desktop). Fonts, colours, radii and component styles are theirs unless marked derived.",
+    "derived": [
+      "color-on-accent",
+      "color-accent-text",
+      "color-muted-on-dark",
+      "color-success"
+    ],
+    "decisions": [
+      "Button text is dark (#262626) on their gold. The site uses white on gold, about 2.3:1, which fails WCAG AA. Dark text reads at about 7:1.",
+      "Gold used as text on the light page is darkened to #8A6510 (accent-text). Their #D9A520 on #F9F8F6 is about 2.1:1 and fails. Gold stays as-is for fills, and as text on the dark #333 band.",
+      "Dark band is their footer and surface colour #333333. Tint band is their muted colour (#EFEDE8). Neither is invented.",
+      "Buttons are pills in sentence case, as on their site. Weight raised from 500 to 600 for clarity at small sizes. Revert if the client prefers.",
+      "Fields use their 12px radius, not the pill search box, because labelled forms with selects and text areas read badly as pills.",
+      "Cards keep their look: white, 1px #DDDAD5 border, 16px corners, no shadow.",
+      "Photos: the before/after pair and the Rolls-Royce come from their site; confirm they are their own work and that customers agreed. The Ferrari photo shows another valeter's decal and is not used.",
+      "Every price except 'Deluxe interior from £195' is TBC. Quotes keep the placeholder flag until a full name or town and written permission arrive."
+    ]
+  }
+}
