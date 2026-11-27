@@ -71,6 +71,13 @@ const target = usesFlow(recipe) ? '#flow' : '#capture';
 </Base>
 
 <script>
-  import { track } from '../../system/events';
+  import { isCtaLocation, track } from '../../system/events';
   track('funnel_viewed', {});
+
+  // Buttons that jump to the ask carry data-cta, naming where they sit on the page.
+  document.addEventListener('click', (event) => {
+    const button = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-cta]') : null;
+    const location = button?.dataset.cta;
+    if (isCtaLocation(location)) track('cta_clicked', { location });
+  });
 </script>

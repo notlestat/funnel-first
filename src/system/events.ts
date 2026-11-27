@@ -6,10 +6,20 @@ export const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content
 export type UtmKey = (typeof utmKeys)[number];
 export type Utm = Partial<Record<UtmKey, string>>;
 
+// Pages hand these over as data-* strings, so they come with guards that check the string.
+export const ctaLocations = ['hero', 'video', 'cta'] as const;
+export type CtaLocation = (typeof ctaLocations)[number];
+export const isCtaLocation = (value: unknown): value is CtaLocation => ctaLocations.some((l) => l === value);
+
+export const stepKinds = ['question', 'note', 'contact'] as const;
+export type StepKind = (typeof stepKinds)[number];
+export const isStepKind = (value: unknown): value is StepKind => stepKinds.some((k) => k === value);
+
 export interface FunnelEvents {
   funnel_viewed: Record<string, never>;
-  cta_clicked: { location: 'hero' | 'video' | 'cta' };
-  flow_step_reached: { step: number; kind: 'question' | 'note' | 'contact' };
+  cta_clicked: { location: CtaLocation };
+  // step is the 1-based position in the whole flow, notes and the contact step included.
+  flow_step_reached: { step: number; kind: StepKind };
   // No backend yet, so a form that passes validation is an attempt, never a delivered lead.
   capture_attempted: { form: 'flow' | 'capture'; delivered: false };
   flow_back: { from: number };

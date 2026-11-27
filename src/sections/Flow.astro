@@ -84,6 +84,8 @@ const next = {
 </form>
 
 <script>
+  import { isStepKind, track } from '../system/events';
+
   for (const form of document.querySelectorAll<HTMLFormElement>('form[data-flow]')) {
     const steps = [...form.querySelectorAll<HTMLElement>('[data-step]')];
     const progress = form.querySelector<HTMLElement>('[data-progress]')!;
@@ -105,7 +107,13 @@ const next = {
       if (focus) step.querySelector<HTMLElement>('legend, h2')?.focus();
     };
 
-    const advance = () => show(Math.min(current + 1, steps.length - 1), true);
+    // Only moving forward counts as reaching a step: not the first render, not Back.
+    const advance = () => {
+      const from = current;
+      show(Math.min(current + 1, steps.length - 1), true);
+      const kind = steps[current].dataset.kind;
+      if (current !== from && isStepKind(kind)) track('flow_step_reached', { step: current + 1, kind });
+    };
 
     const isRadio = (el: EventTarget | null): el is HTMLInputElement => el instanceof HTMLInputElement && el.type === 'radio';
 
@@ -159,6 +167,7 @@ const next = {
         firstInvalid.focus();
         return;
       }
+      track('capture_attempted', { form: 'flow', delivered: false });
       status.textContent = form.dataset.afterMessage ?? 'Demo only: nothing was sent.';
     });
 

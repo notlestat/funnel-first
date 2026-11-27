@@ -1,6 +1,6 @@
 # Measurement plan
 
-Status: in progress on `feat/measurement`. Step 1 is done.
+Status: in progress on `feat/measurement`. Steps 1 and 2 are done, except the `flow_back` call, whose test is marked `todo`.
 
 ## The question v1 answers
 
