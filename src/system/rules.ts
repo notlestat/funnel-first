@@ -129,6 +129,7 @@ export function launchChecks(brand: Brand): Check[] {
   if (story) checks.push({ status: story.placeholder ? 'waiting' : 'pass', label: story.placeholder ? 'story still to be written or approved by the client' : 'story approved' });
   if (video) checks.push({ status: video.placeholder ? 'waiting' : 'pass', label: video.placeholder ? 'video still to be supplied' : 'video supplied with captions' });
   checks.push({ status: 'waiting', label: 'form backend not connected, the demo sends nothing' });
+  checks.push(brand.analytics ? { status: 'pass', label: 'analytics sends to PostHog' } : { status: 'waiting', label: 'analytics not set, nothing is measured' });
   if (flow?.after === 'booking') checks.push({ status: 'waiting', label: 'booking calendar not connected' });
   if (flow?.after === 'result') checks.push({ status: 'waiting', label: 'quiz results page not built' });
   return checks;

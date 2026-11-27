@@ -26,6 +26,8 @@ const { heading, body, button, consent } = Astro.props.content;
 </section>
 
 <script>
+  import { track } from '../system/events';
+
   // Demo only: there is no backend yet, so this must never claim a sign-up worked.
   for (const form of document.querySelectorAll<HTMLFormElement>('form[data-capture]')) {
     const email = form.querySelector<HTMLInputElement>('input[type="email"]')!;
@@ -41,6 +43,7 @@ const { heading, body, button, consent } = Astro.props.content;
         status.textContent = '';
         return;
       }
+      track('capture_attempted', { form: 'capture', delivered: false });
       status.textContent = 'Demo only: nothing was sent.';
     });
   }

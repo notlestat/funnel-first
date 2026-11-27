@@ -14,6 +14,8 @@ Load the `funnel-first` skill (`skills/funnel-first/SKILL.md`) before any funnel
 | `scans/`, `extracts/` | Written by the scanner and extractor only. Local, not committed | |
 | `src/sections/`, `src/system/`, `src/layouts/`, `src/pages/`, `src/content.config.ts`, `scan/`, `skills/` | Do not edit | Designer, when a new section, variant or rule is needed |
 
+The brand file's `analytics` field takes a PostHog project key that the client or designer gave you. Never invent one. The events a funnel sends live in `src/system/events.ts`, which only the designer changes. See `docs/measurement/README.md`.
+
 If a client needs something the schema does not allow, stop and say which section or variant is missing. Do not work around the schema. The designer adds it through the Skills Atlas workflow "Add a section or variant to the conversion system" (`system-variant`).
 
 ## Tools
@@ -48,7 +50,7 @@ Commands: `npm run app` opens brand capture at http://127.0.0.1:4410, the scan v
 6. **Brunson pass.** Load the `brunson-pass` skill and write `pass` into the brand file: hook, story and offer for every step from the ad to the result, at least two curiosity headlines, the doubt and the section that answers it, the offer stack (`confirmed` or `ask-client`), questions for the client, and an answer to every designer check. Then change the copy to match. A real client funnel does not build without it.
 7. **Check.** Call `validate_brand` until there are no errors and you can explain every warning, then `write_brand`. Run `npm run build`. A failure names the field or contrast pair to fix. Fix the data, never the rule.
 8. **Review.** Open `/<client>/system` and `/<client>/` in a browser at desktop and 390px wide. Tap through the whole question flow, including Back, the keyboard and the contact step. Take screenshots and put them on the Blueprint board for the designer's Keep / Change / Drop. Change only the brand file in response.
-9. **Hand off.** Report the launch readiness list and send the Brunson pass questions to the client. Placeholders, the unconnected form, the booking calendar and a missing results page are not launch-ready. They belong to the backend.
+9. **Hand off.** Report the launch readiness list and send the Brunson pass questions to the client. Placeholders, the unconnected form, the booking calendar and a missing results page are not launch-ready. They belong to the backend. A brand without `analytics` measures nothing: ask the client for their PostHog project key.
 
 ## Rules the build enforces
 
@@ -57,6 +59,7 @@ Commands: `npm run app` opens brand capture at http://127.0.0.1:4410, the scan v
 - Multi-step recipes put the first question in the hero; single pages never do.
 - A question has 2 to 6 answers, a flow at most 6 questions, and the contact step at most two details including email or phone.
 - A real video has captions and an allowed embed host.
+- `analytics.key` is a PostHog project key, starting with `phc_`. A personal key (`phx_`) is refused.
 - Text, muted text and button text meet WCAG AA contrast (`src/system/rules.ts`).
 - The demo form and the question flow never claim a submission succeeded.
 
