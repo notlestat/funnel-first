@@ -33,7 +33,7 @@ const target = usesFlow(recipe) ? '#flow' : '#capture';
 ---
 
 <Base title={seo.title} description={seo.description} tokens={tokens} fontsHref={fontsHref}>
-  <main>
+  <main data-funnel-brand={brand.id} data-funnel-recipe={recipe}>
     {
       recipes[recipe].map((id) => {
         switch (id) {
@@ -69,3 +69,8 @@ const target = usesFlow(recipe) ? '#flow' : '#capture';
     }
   </main>
 </Base>
+
+<script>
+  import { track } from '../../system/events';
+  track('funnel_viewed', {});
+</script>
