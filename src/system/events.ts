@@ -52,6 +52,16 @@ export function readUtm(search: string): Utm {
   return utm;
 }
 
+type Listener = (event: SentEvent) => void;
+const listeners: Listener[] = [];
+
+// Hands a listener every event sent so far, then each new one.
+// The PostHog sink needs the replay: it loads after funnel_viewed has already fired.
+export function onEvent(listener: Listener): void {
+  for (const event of window.__funnelEvents ?? []) listener(event);
+  listeners.push(listener);
+}
+
 export function track<E extends EventName>(name: E, props: FunnelEvents[E]): void {
   // The funnel page marks <main> with its brand and recipe. Other pages, like the system sheet, send nothing.
   const main = document.querySelector<HTMLElement>('[data-funnel-brand]');
@@ -60,4 +70,5 @@ export function track<E extends EventName>(name: E, props: FunnelEvents[E]): voi
   // A funnel is one page, so the UTMs are still in the address bar. Nothing is stored in the browser.
   const event: SentEvent = { name, props: { ...props, ...readUtm(location.search), brand: funnelBrand, recipe: funnelRecipe } };
   (window.__funnelEvents ??= []).push(event);
+  for (const listener of listeners) listener(event);
 }

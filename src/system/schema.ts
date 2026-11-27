@@ -2,6 +2,7 @@
 import { z } from 'zod';
 import { tokenNames, type TokenName } from './tokens.ts';
 import { recipes, usesFlow, variants, type RecipeId, type SectionId } from './sections.ts';
+import { analyticsRegions, posthogKey } from './analytics.ts';
 import { designerCheckIds } from './rules.ts';
 
 const label = z.enum(['FACT', 'OBSERVATION', 'INFERENCE', 'HYPOTHESIS', 'UNKNOWN']);
@@ -194,6 +195,14 @@ export const brandSchema = z
       offer: z.enum(variants.offer).optional(),
     }),
     seo: z.object({ title: z.string(), description: z.string().max(160) }),
+    // Turns on PostHog for this funnel. Without it, events stay in the page and nothing is measured.
+    analytics: z
+      .object({
+        provider: z.literal('posthog'),
+        key: z.string().regex(posthogKey, 'use the PostHog project key, which starts with phc_. Never a personal key (phx_)'),
+        region: z.enum(analyticsRegions),
+      })
+      .optional(),
     content: z.object({
       hero: heroContent.optional(),
       flow: flowContent.optional(),

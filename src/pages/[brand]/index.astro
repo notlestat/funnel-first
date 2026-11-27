@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 }
 
 const { brand } = Astro.props as { brand: CollectionEntry<'brands'> };
-const { tokens, content: c, layout, seo, fontsHref, recipe, logo } = brand.data;
+const { tokens, content: c, layout, seo, fontsHref, recipe, logo, analytics } = brand.data;
 assertBrandPasses(brand.id, tokens);
 // The build runs from the project root, so public/ resolves from there.
 assertImagesExist(brand.id, brand.data, 'public');
@@ -33,7 +33,7 @@ const target = usesFlow(recipe) ? '#flow' : '#capture';
 ---
 
 <Base title={seo.title} description={seo.description} tokens={tokens} fontsHref={fontsHref}>
-  <main data-funnel-brand={brand.id} data-funnel-recipe={recipe}>
+  <main data-funnel-brand={brand.id} data-funnel-recipe={recipe} data-analytics-key={analytics?.key} data-analytics-region={analytics?.region}>
     {
       recipes[recipe].map((id) => {
         switch (id) {
@@ -72,7 +72,13 @@ const target = usesFlow(recipe) ? '#flow' : '#capture';
 
 <script>
   import { isCtaLocation, track } from '../../system/events';
+  import { isAnalyticsRegion, startPostHog } from '../../system/analytics';
+
   track('funnel_viewed', {});
+
+  // PostHog's code downloads only when the brand file turns analytics on.
+  const { analyticsKey, analyticsRegion } = document.querySelector<HTMLElement>('[data-funnel-brand]')?.dataset ?? {};
+  if (analyticsKey && isAnalyticsRegion(analyticsRegion)) void startPostHog({ key: analyticsKey, region: analyticsRegion });
 
   // Buttons that jump to the ask carry data-cta, naming where they sit on the page.
   document.addEventListener('click', (event) => {

@@ -47,6 +47,10 @@ An agent does most of this through the MCP server in `mcp/server.ts`, which `.mc
 
 The method lives in two skills: [funnel-first](skills/funnel-first/SKILL.md) and [brunson-pass](skills/brunson-pass/SKILL.md).
 
+## Measure a funnel
+
+Every funnel page records its view, button clicks, steps forward in the question flow and form attempts. Add `analytics` with a PostHog project key to a brand file to send those events to PostHog. [Measure a funnel](docs/measurement/README.md) has the setup and [Funnel events](docs/measurement/events.md) lists each event.
+
 ## Commands
 
 | Command | What it does |
